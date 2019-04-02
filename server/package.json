@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/ourexwork/courier/issues"
   },
-  "homepage": "https://github.com/ourexwork/courier#readme"
+  "homepage": "https://github.com/ourexwork/courier#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "joi": "^14.3.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.20"
+  }
 }
