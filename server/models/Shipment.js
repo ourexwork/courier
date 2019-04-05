@@ -86,4 +86,6 @@ const ShipmentSchema = new mongoose.Schema({
   }
 });
 
-const shipments = mongoose.model('shipments', ShipmentSchema);
+const Shipment = mongoose.model('shipment', ShipmentSchema);
+
+module.exports = { Shipment };
