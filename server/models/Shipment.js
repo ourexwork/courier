@@ -18,72 +18,75 @@ const { User } = require('./User');
  *  */
 
 const ShipmentSchema = new mongoose.Schema({
-  sender: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-    maxlength: 50,
-    minlength: 3
-  },
-  description: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 3,
-    maxlength: 150
-  },
-  weight: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: String
-  },
-  shipmentMode: {
-    type: String,
-    required: true,
-    enum: ['air', 'rail', 'road', 'sea']
-  },
-  pickUpAddress: {
-    type: String,
-    required: true
-  },
-  deliveryAddress: {
-    type: String,
-    required: true
-  },
-  pickUpDate: {
-    type: Date,
-    required: true,
-    default: Date.now
-  },
-  deliveryDate: {
-    type: Date
-  },
-  shipmentStatus: {
-    type: String,
-    required: true,
-    enum: ['pending', 'processing', 'in transit', 'delivered'],
-    default: 'pending'
-  },
-  receiverName: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  receiverAddress: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  receiverPhoneNumber: {
-    type: String,
-    required: true
-  }
+    sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 50,
+        minlength: 3
+    },
+    description: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 3,
+        maxlength: 150
+    },
+    weight: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: String
+    },
+    shipmentMode: {
+        type: String,
+        required: true,
+        enum: ['air', 'rail', 'road', 'sea']
+    },
+    pickUpAddress: {
+        type: String,
+        required: true
+    },
+    deliveryAddress: {
+        type: String,
+        required: true
+    },
+    pickUpDate: {
+        type: Date,
+        required: true,
+        default: Date.now
+    },
+    deliveryDate: {
+        type: Date
+    },
+    shipmentStatus: {
+        type: String,
+        required: true,
+        enum: ['pending', 'processing', 'in transit', 'delivered'],
+        default: 'pending'
+    },
+    receiverName: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    receiverAddress: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    receiverPhoneNumber: {
+        type: String,
+        required: true
+    }
 });
 
-const shipments = mongoose.model('shipments', ShipmentSchema);
+const Shipment = mongoose.model('shipment', ShipmentSchema);
+
+
+module.exports = { Shipment };
