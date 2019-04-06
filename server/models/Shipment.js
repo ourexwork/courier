@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Joi = require('joi');
 const { User } = require('./User');
 
 /**
@@ -9,12 +10,13 @@ const { User } = require('./User');
  * weight
  * price which will be mathematically calculated
  * shimpment mode (Air, Road, Sea, Rail )
- * pickUp Address
- * Delivery Address
+ * pickUp Address - address, long, lat
+ * Delivery Address - address, long, lat
  * date and time Item was picked
  * date and time item will be delivered
  * shipmentStatus (pending, processing, in transit, delivered )
  * expressDelivery ( yes / no )
+ * reciever name address phonenumber email
  *  */
 
 const ShipmentSchema = new mongoose.Schema({
@@ -33,15 +35,16 @@ const ShipmentSchema = new mongoose.Schema({
     type: String,
     required: true,
     trim: true,
-    minlength: 3,
+    minlength: 10,
     maxlength: 150
   },
   weight: {
-    type: String,
+    type: Number,
     required: true
   },
-  price: {
-    type: String
+  quantity: {
+    type: Number,
+    required: true
   },
   shipmentMode: {
     type: String,
@@ -49,17 +52,15 @@ const ShipmentSchema = new mongoose.Schema({
     enum: ['air', 'rail', 'road', 'sea']
   },
   pickUpAddress: {
-    type: String,
+    type: Object,
     required: true
   },
   deliveryAddress: {
-    type: String,
+    type: Object,
     required: true
   },
   pickUpDate: {
-    type: Date,
-    required: true,
-    default: Date.now
+    type: Date
   },
   deliveryDate: {
     type: Date
@@ -70,22 +71,53 @@ const ShipmentSchema = new mongoose.Schema({
     enum: ['pending', 'processing', 'in transit', 'delivered'],
     default: 'pending'
   },
-  receiverName: {
-    type: String,
+  receiver: {
+    type: Object,
     required: true,
     trim: true
-  },
-  receiverAddress: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  receiverPhoneNumber: {
-    type: String,
-    required: true
   }
 });
 
+function validateShipment(shipment) {
+  const Schema = {
+    name: Joi.string()
+      .required()
+      .min(3)
+      .max(50)
+      .trim(),
+    description: Joi.string()
+      .required()
+      .min(10)
+      .max(150)
+      .trim(),
+    weight: Joi.string()
+      .required()
+      .min(1)
+      .trim(),
+    quantity: Joi.string()
+      .required()
+      .min()
+      .trim(),
+    shimpmentMode: Joi.string(),
+    pickUpAddress: Joi.string().trim(),
+    deliveryAddress: Joi.string().trim(),
+    recieverName: Joi.string()
+      .min(3)
+      .max(150)
+      .required()
+      .trim(),
+    receiverEmail: Joi.string()
+      .email()
+      .required()
+      .trim(),
+    receiverPhoneNumber: Joi.string()
+      .required()
+      .trim()
+  };
+
+  return Joi.validate(shipment, Schema);
+}
+
 const Shipment = mongoose.model('shipment', ShipmentSchema);
 
-module.exports = { Shipment };
+module.exports = { Shipment, validateShipment };

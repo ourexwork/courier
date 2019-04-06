@@ -21,6 +21,7 @@
     },
     "homepage": "https://github.com/ourexwork/courier#readme",
     "dependencies": {
+        "axios": "^0.18.0",
         "bcrypt": "^3.0.5",
         "concurrently": "^4.1.0",
         "config": "^3.0.1",

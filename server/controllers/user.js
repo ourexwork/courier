@@ -1,5 +1,5 @@
+const _ = require('lodash');
 const { User, Validate, loginValidate } = require('../models/User');
-
 const { sendMail } = require('../config/mailer');
 
 const registerUser = async (req, res) => {

@@ -40,12 +40,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 1024
   },
-  // confirm_password: {
-  //     type: String,
-  //     required: true,
-  //     minlength: 3,
 
-  // },
   dateRegistered: {
     type: Date,
     default: Date.now
