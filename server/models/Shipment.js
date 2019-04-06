@@ -19,7 +19,7 @@ const { User } = require('./User');
  * reciever name address phonenumber email
  *  */
 
-const ShipmentSchema = new mongoose.Schema({
+const shipmentSchema = new mongoose.Schema({
   sender: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -118,6 +118,6 @@ function validateShipment(shipment) {
   return Joi.validate(shipment, Schema);
 }
 
-const Shipment = mongoose.model('shipment', ShipmentSchema);
+const Shipment = mongoose.model('shipment', shipmentSchema);
 
 module.exports = { Shipment, validateShipment };
