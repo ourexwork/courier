@@ -17,7 +17,8 @@ const { User } = require('./User');
  * expressDelivery ( yes / no )
  *  */
 
-const ShipmentSchema = new mongoose.Schema({
+
+const shipmentSchema = new mongoose.Schema({
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -57,9 +58,7 @@ const ShipmentSchema = new mongoose.Schema({
         required: true
     },
     pickUpDate: {
-        type: Date,
-        required: true,
-        default: Date.now
+        type: Date
     },
     deliveryDate: {
         type: Date
@@ -88,5 +87,4 @@ const ShipmentSchema = new mongoose.Schema({
 
 const Shipment = mongoose.model('shipment', ShipmentSchema);
 
-
-module.exports = { Shipment };
+module.exports = { Shipment, shipmentSchema };
