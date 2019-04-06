@@ -1,4 +1,4 @@
 {
-  "coPrivateKey": "coPrivateKey",
-  "GEOLOCATION_API_KEY": "GEOLOCATION_API_KEY"
+    "coPrivateKey": "coPrivateKey",
+    "GEOLOCATION_API_KEY": "GEOLOCATION_API_KEY"
 }

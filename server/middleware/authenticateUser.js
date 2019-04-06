@@ -11,6 +11,6 @@ module.exports = async function(req, res, next) {
         req.user = decode;
         next();
     } catch (error) {
-        res.send(400).send('Please Login or Register');
+        res.status(400).send('Please Login or Register');
     }
 };

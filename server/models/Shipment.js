@@ -20,104 +20,104 @@ const { User } = require('./User');
  *  */
 
 const shipmentSchema = new mongoose.Schema({
-  sender: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
-  },
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-    maxlength: 50,
-    minlength: 3
-  },
-  description: {
-    type: String,
-    required: true,
-    trim: true,
-    minlength: 10,
-    maxlength: 150
-  },
-  weight: {
-    type: Number,
-    required: true
-  },
-  quantity: {
-    type: Number,
-    required: true
-  },
-  shipmentMode: {
-    type: String,
-    required: true,
-    enum: ['air', 'rail', 'road', 'sea']
-  },
-  pickUpAddress: {
-    type: Object,
-    required: true
-  },
-  deliveryAddress: {
-    type: Object,
-    required: true
-  },
-  pickUpDate: {
-    type: Date
-  },
-  deliveryDate: {
-    type: Date
-  },
-  shipmentStatus: {
-    type: String,
-    required: true,
-    enum: ['pending', 'processing', 'in transit', 'delivered'],
-    default: 'pending'
-  },
-  receiver: {
-    type: Object,
-    required: true,
-    trim: true
-  }
+    sender: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 50,
+        minlength: 3
+    },
+    description: {
+        type: String,
+        required: true,
+        trim: true,
+        minlength: 1,
+        maxlength: 150
+    },
+    weight: {
+        type: String,
+        required: true
+    },
+    quantity: {
+        type: String,
+        required: true
+    },
+    shipmentMode: {
+        type: String,
+        required: true,
+        enum: ['air', 'rail', 'road', 'sea']
+    },
+    pickUpAddress: {
+        type: Object,
+        required: true
+    },
+    deliveryAddress: {
+        type: Object,
+        required: true
+    },
+    pickUpDate: {
+        type: Date
+    },
+    deliveryDate: {
+        type: Date
+    },
+    shipmentStatus: {
+        type: String,
+        required: true,
+        enum: ['pending', 'processing', 'in transit', 'delivered'],
+        default: 'pending'
+    },
+    receiver: {
+        type: Object,
+        required: true,
+        trim: true
+    }
 });
 
 function validateShipment(shipment) {
-  const Schema = {
-    name: Joi.string()
-      .required()
-      .min(3)
-      .max(50)
-      .trim(),
-    description: Joi.string()
-      .required()
-      .min(10)
-      .max(150)
-      .trim(),
-    weight: Joi.string()
-      .required()
-      .min(1)
-      .trim(),
-    quantity: Joi.string()
-      .required()
-      .min()
-      .trim(),
-    shimpmentMode: Joi.string(),
-    pickUpAddress: Joi.string().trim(),
-    deliveryAddress: Joi.string().trim(),
-    recieverName: Joi.string()
-      .min(3)
-      .max(150)
-      .required()
-      .trim(),
-    receiverEmail: Joi.string()
-      .email()
-      .required()
-      .trim(),
-    receiverPhoneNumber: Joi.string()
-      .required()
-      .trim()
-  };
+    const Schema = {
+        name: Joi.string()
+            .required()
+            .min(3)
+            .max(50)
+            .trim(),
+        description: Joi.string()
+            .required()
+            .min(1)
+            .max(150)
+            .trim(),
+        weight: Joi.string()
+            .required()
+            .min(1)
+            .trim(),
+        quantity: Joi.string()
+            .required()
+            .min(1)
+            .trim(),
+        shipmentMode: Joi.string(),
+        pickUpAddress: Joi.string().trim(),
+        deliveryAddress: Joi.string().trim(),
+        receiverName: Joi.string()
+            .min(3)
+            .max(150)
+            .required()
+            .trim(),
+        receiverEmail: Joi.string()
+            .email()
+            .required()
+            .trim(),
+        receiverPhoneNumber: Joi.string()
+            .required()
+            .trim()
+    };
 
-  return Joi.validate(shipment, Schema);
+    return Joi.validate(shipment, Schema);
 }
 
 const Shipment = mongoose.model('shipment', shipmentSchema);
 
-module.exports = { Shipment, validateShipment };
+module.exports = { Shipment, shipmentSchema, validateShipment };

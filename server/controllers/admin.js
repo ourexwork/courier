@@ -71,4 +71,4 @@ const cancelShipment = async(req, res) => {
 
 }
 
-module.exports = { allUsers, getOneUser, shipmentStatus, shipmentPickUp }
+module.exports = { allUsers, getOneUser, shipmentStatus, shipmentPickUp, cancelShipment }

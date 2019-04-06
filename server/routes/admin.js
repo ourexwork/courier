@@ -11,7 +11,7 @@ const {
 const adminAuth = require('../middleware/authenticateUser');
 
 //route to get all users
-router.get('/', adminAuth, allUsers);
+router.get('/getall', adminAuth, allUsers);
 
 //route to get a particular user
 router.get('/selected/:id', adminAuth, getOneUser);
@@ -25,3 +25,5 @@ router.post('/update/pickupstatus', adminAuth, shipmentPickUp);
 
 //this routes cancels shipment 
 router.post('/cancel-shipment', adminAuth, cancelShipment)
+
+module.exports = router

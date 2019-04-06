@@ -3,14 +3,14 @@ const { userSchema } = require('../models/User');
 const { shipmentSchema } = require('../models/Shipment');
 
 
-const transactionSchema = new mongoose.model({
+const transactionSchema = new mongoose.Schema({
     user: userSchema,
     Shipment: shipmentSchema,
     status: {
         type: String,
         enum: ['cancelled shipment', 'delivered shipment']
-    },
-    default: 'cancelled shipment'
+    }
+    // default: 'cancelled shipment'
 })
 
 
