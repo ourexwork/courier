@@ -20,18 +20,18 @@ const getOneUser = async(req, res) => {
 
 const shipmentStatus = async(req, res) => {
 
-    const shipmentStatus = await Shipment.findByIdAndDelete(req.body._id, {
-        shipmentStatus: req.body.shipmentStatus
+    const shipmentStatus = await Shipment.findByIdAndUpdate(req.body._id, {
+        shipmentStatus: 'processing'
     })
 
-    res.send({ message: `Shipment is ${req.body.shipmentStatus}` })
+    res.send({ message: `Shipment is processing` })
 }
 
 const shipmentPickUp = async(req, res) => {
 
     let shipment = await Shipment.findByIdAndUpdate(req.body._id, {
 
-        pickUpDate: Date.now
+        pickUpDate: Date.now()
 
     })
 

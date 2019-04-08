@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-const { userSchema } = require('../models/User');
-const { shipmentSchema } = require('../models/Shipment');
+const { userSchema } = require('./User');
+const { shipmentSchema } = require('./Shipment');
 
 
 const transactionSchema = new mongoose.Schema({

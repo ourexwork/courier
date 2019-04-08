@@ -20,6 +20,9 @@ const { User } = require('./User');
  *  */
 
 const shipmentSchema = new mongoose.Schema({
+    priceShipmentId: {
+        type: String
+    },
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -39,11 +42,11 @@ const shipmentSchema = new mongoose.Schema({
         maxlength: 150
     },
     weight: {
-        type: String,
+        type: Number,
         required: true
     },
     quantity: {
-        type: String,
+        type: Number,
         required: true
     },
     shipmentMode: {
@@ -75,11 +78,16 @@ const shipmentSchema = new mongoose.Schema({
         type: Object,
         required: true,
         trim: true
-    }
+    },
+    price: String
 });
 
 function validateShipment(shipment) {
     const Schema = {
+        _id: Joi.string(),
+        shipmentStatus: Joi.string(),
+        receiver: Joi.object(),
+        sender: Joi.string(),
         name: Joi.string()
             .required()
             .min(3)
@@ -90,29 +98,30 @@ function validateShipment(shipment) {
             .min(1)
             .max(150)
             .trim(),
-        weight: Joi.string()
+        weight: Joi.number()
             .required()
-            .min(1)
-            .trim(),
-        quantity: Joi.string()
+            .min(1),
+        quantity: Joi.number()
             .required()
-            .min(1)
-            .trim(),
+            .min(1),
         shipmentMode: Joi.string(),
-        pickUpAddress: Joi.string().trim(),
-        deliveryAddress: Joi.string().trim(),
+        pickUpAddress: Joi.object(),
+        deliveryAddress: Joi.object(),
         receiverName: Joi.string()
             .min(3)
             .max(150)
-            .required()
+            // .required()
             .trim(),
         receiverEmail: Joi.string()
             .email()
-            .required()
+            // .required()
             .trim(),
         receiverPhoneNumber: Joi.string()
-            .required()
-            .trim()
+            // .required()
+            .trim(),
+        price: Joi.string(),
+        __v: Joi.number()
+
     };
 
     return Joi.validate(shipment, Schema);

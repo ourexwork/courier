@@ -8,7 +8,7 @@ const toRadians = (value) => {
 }
 
 // using haversine formular
-const distance = (lat1, lon1, lat2, lon2) => {
+module.exports = (lat1, lon1, lat2, lon2) => {
 
     /*
     Q = latitude
@@ -17,7 +17,7 @@ const distance = (lat1, lon1, lat2, lon2) => {
     R = the earth mean radius 6.371 km or  or 6.371e3m
     D = Distance
     */
-    let R = 6371e3; // this is will give result in metres, but in km =(6371)
+    let R = 6371e3; // this 6371e3 is will give result in metres, but in km =(6371)
 
     let Q1 = toRadians(lat1);
 
@@ -40,7 +40,7 @@ const distance = (lat1, lon1, lat2, lon2) => {
 
 }
 
-export default distance
+
 
 
 // distance(18.643190, 3.254760, 8.559120, 3.365850)
