@@ -12,7 +12,7 @@
 
          const shipments = await Shipment.find()
              .populate('sender', 'firstName , lastName email')
-             .populate('price', 'price Date')
+             .populate('price', 'Date')
 
          //  const data = shipments.map(async(shipment) => {
          //      const priceShipment_id = shipment.priceShipment_id

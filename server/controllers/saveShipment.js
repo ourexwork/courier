@@ -27,7 +27,7 @@ const saveShipment = async(req, res) => {
             'deliveryAddress',
             'receiver',
             'sender',
-            'pricing'
+            // 'pricing'
         ]);
 
 
@@ -37,7 +37,7 @@ const saveShipment = async(req, res) => {
 
 
         const shipment = new Shipment({
-            ...newShipment,
+            ...newShipment
         })
 
         const price = new Price({

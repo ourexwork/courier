@@ -24,11 +24,19 @@ const priceSchema = new mongoose.Schema({
     Date: {
         type: Date,
         default: Date.now()
+    },
+    PaymentMethod: {
+        type: String,
+        enum: ['onPickUp online'],
+        default: 'online'
+    },
+    paymentStatus: {
+        type: Boolean,
+        default: false
     }
-
 
 });
 
-const Price = mongoose.model('price', priceSchema);
+const Price = mongoose.model('Price', priceSchema);
 
 module.exports = { Price };

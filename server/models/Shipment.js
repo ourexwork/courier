@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const { User } = require('./User');
-
+const { Price } = require('./Price');
 /**
  * Shipment document<table> needs
  * User that wants to ship
@@ -79,7 +79,7 @@ const shipmentSchema = new mongoose.Schema({
     pricing: String,
     price: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Price'
     }
 });
 
