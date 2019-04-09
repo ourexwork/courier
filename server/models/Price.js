@@ -11,12 +11,8 @@ const priceSchema = new mongoose.Schema({
     },
 
     price: {
-        // type: Number,
-        // required: true
-
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Shipment'
-
+        type: Number,
+        required: true
     },
 
 

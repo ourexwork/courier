@@ -76,7 +76,9 @@ const shipmentSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    price: Object
+    price: {
+
+    }
 });
 
 function validateShipment(shipment) {
