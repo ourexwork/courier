@@ -76,8 +76,10 @@ const shipmentSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    pricing: String,
     price: {
-
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 
@@ -118,7 +120,7 @@ function validateShipment(shipment) {
         receiverPhoneNumber: Joi.string()
             // .required()
             .trim(),
-        price: Joi.any(),
+        pricing: Joi.any(),
         __v: Joi.number()
 
     };

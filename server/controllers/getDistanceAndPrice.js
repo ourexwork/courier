@@ -32,9 +32,9 @@ const getDistanceAndPrice = async(req, res) => {
             deliveryAddress.latitude, deliveryAddress.longitude);
         console.log(distance)
         if (pickUpAddress.country != deliveryAddress.country) {
-            let price = (distance * req.body.weigth * req.body.quantity) + 1000;
+            let pricing = (distance * req.body.weigth * req.body.quantity) + 1000;
         } else {
-            price = distance * req.body.weight * req.body.quantity
+            pricing = distance * req.body.weight * req.body.quantity
         }
 
 
@@ -52,7 +52,7 @@ const getDistanceAndPrice = async(req, res) => {
             pickUpAddress,
             deliveryAddress,
             receiver,
-            price,
+            pricing,
             sender: req.user._id
         });
 

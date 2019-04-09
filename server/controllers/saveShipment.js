@@ -27,11 +27,11 @@ const saveShipment = async(req, res) => {
             'deliveryAddress',
             'receiver',
             'sender',
-            'price'
+            'pricing'
         ]);
 
 
-        const newPrice = _.pick(req.body, ['price', 'sender']);
+        const newPrice = _.pick(req.body, ['sender']);
 
         //priceShipmentid should or maybe be done usind uuid in fron end
 
@@ -42,7 +42,8 @@ const saveShipment = async(req, res) => {
 
         const price = new Price({
             ...newPrice,
-            shipment: shipment._id
+            shipment: shipment._id,
+            price: req.body.pricing
         });
 
         shipment.price = price._id;

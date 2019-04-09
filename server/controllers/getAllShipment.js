@@ -10,7 +10,9 @@
      // if user  is logged and is admin, although the middleware already checked
      if (req.user.isAdmin) {
 
-         const shipments = await Shipment.find().populate('sender', 'firstName , lastName email').populate('pri')
+         const shipments = await Shipment.find()
+             .populate('sender', 'firstName , lastName email')
+             .populate('price', 'price Date')
 
          //  const data = shipments.map(async(shipment) => {
          //      const priceShipment_id = shipment.priceShipment_id
