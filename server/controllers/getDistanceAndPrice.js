@@ -7,7 +7,7 @@ const getDistance = require('../functions/getDistance');
 
 
 // this controller enables the user to create a shipment
-const getdetailsAndPrice = async(req, res) => {
+const getDistanceAndPrice = async(req, res) => {
     // if we have a user
     if (req.user) {
         // validate the request body
@@ -56,11 +56,11 @@ const getdetailsAndPrice = async(req, res) => {
             sender: req.user._id
         });
 
-        await shipment.save();
+        // await shipment.save();
 
         res.send(shipment);
 
     }
 };
 
-module.exports = { getdetailsAndPrice };
+module.exports = { getDistanceAndPrice };

@@ -20,9 +20,6 @@ const { User } = require('./User');
  *  */
 
 const shipmentSchema = new mongoose.Schema({
-    priceShipmentId: {
-        type: String
-    },
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -79,7 +76,7 @@ const shipmentSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    price: String
+    price: Object
 });
 
 function validateShipment(shipment) {
@@ -105,8 +102,8 @@ function validateShipment(shipment) {
             .required()
             .min(1),
         shipmentMode: Joi.string(),
-        pickUpAddress: Joi.object(),
-        deliveryAddress: Joi.object(),
+        pickUpAddress: Joi.any(),
+        deliveryAddress: Joi.any(),
         receiverName: Joi.string()
             .min(3)
             .max(150)
@@ -119,7 +116,7 @@ function validateShipment(shipment) {
         receiverPhoneNumber: Joi.string()
             // .required()
             .trim(),
-        price: Joi.string(),
+        price: Joi.any(),
         __v: Joi.number()
 
     };

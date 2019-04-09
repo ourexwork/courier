@@ -33,24 +33,27 @@ const saveShipment = async(req, res) => {
 
         const newPrice = _.pick(req.body, ['price', 'sender']);
 
+        //priceShipmentid should or maybe be done usind uuid in fron end
+
 
         const shipment = new Shipment({
             ...newShipment,
-            priceShipmentId: req.body._id,
-
         })
 
         const price = new Price({
             ...newPrice,
-            priceShipmentId: req.body._id,
             shipment: shipment._id
         });
+
+        shipment.price = price._id;
+        //  if uuid is unique in db do the follwing
 
         new Fawn.Task()
             .save('prices', price)
             .save('shipments', shipment)
             .run();
 
+        // await shipment.save()
     }
     res.send({ message: 'shipment saved!!' });
 }

@@ -11,9 +11,14 @@ const priceSchema = new mongoose.Schema({
     },
 
     price: {
-        type: Number,
-        required: true
+        // type: Number,
+        // required: true
+
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Shipment'
+
     },
+
 
     sender: {
         type: mongoose.Schema.Types.ObjectId,
