@@ -2,10 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
     getOneUser,
-    allUsers,
-    shipmentStatus,
-    shipmentPickUp,
-    cancelShipment
+    allUsers
 } = require('../controllers/admin');
 
 const adminAuth = require('../middleware/authenticateUser');
@@ -17,13 +14,6 @@ router.get('/getallusers', adminAuth, allUsers);
 router.get('/selected/:id', adminAuth, getOneUser);
 
 //this route updates the shipment status to whatever
-router.post('/update-shipment-status', adminAuth, shipmentStatus);
 
-//this route confirms shipment has been picked up,n 
-//updates the date and update the shipment status to is processing
-router.post('/update-pickupstatus', adminAuth, shipmentPickUp);
-
-//this routes cancels shipment 
-router.post('/cancel-shipment', adminAuth, cancelShipment)
 
 module.exports = router

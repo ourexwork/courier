@@ -1,19 +1,20 @@
 const mongoose = require('mongoose');
-const { userSchema } = require('./User');
-const { shipmentSchema } = require('./Shipment');
+const { userSchema } = require('../models/User');
+const { shipmentSchema } = require('../models/Shipment');
 
 
 const transactionSchema = new mongoose.Schema({
-    user: userSchema,
-    Shipment: shipmentSchema,
+    user: { type: userSchema },
+    shipment: { type: shipmentSchema },
     status: {
         type: String,
-        enum: ['cancelled shipment', 'delivered shipment']
+        enum: ['cancelled', 'shipment'],
+        required: true
     }
     // default: 'cancelled shipment'
-})
+});
 
 
-const Transaction = mongoose.model('transaction history', transactionSchema);
+const TransactionHistory = mongoose.model('transaction history', transactionSchema);
 
-module.exports = { Transaction };
+module.exports = { TransactionHistory };

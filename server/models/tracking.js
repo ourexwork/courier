@@ -3,7 +3,10 @@ const Joi = require('joi');
 
 const trackingSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    shipment: { type: Object, required: true },
+    shipment: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Shipment'
+    },
     dateUpdated: { type: Date, required: true },
     NoteFromAdmin: { type: String, required: true }
 });

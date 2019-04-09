@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Fawn = require('fawn');
 
 const { validateShipment, Shipment } = require('../models/Shipment');
-const { Price } = require('../models/Price');
+const { Payment } = require('../models/Payment');
 
 
 
@@ -31,26 +31,26 @@ const saveShipment = async(req, res) => {
         ]);
 
 
-        const newPrice = _.pick(req.body, ['sender']);
+        const newPayment = _.pick(req.body, ['sender']);
 
-        //priceShipmentid should or maybe be done usind uuid in fron end
+        //PaymentShipmentid should or maybe be done usind uuid in fron end
 
 
         const shipment = new Shipment({
             ...newShipment
         })
 
-        const price = new Price({
-            ...newPrice,
+        const payment = new Payment({
+            ...newPayment,
             shipment: shipment._id,
-            price: req.body.pricing
+            amount: req.body.pricing
         });
 
-        shipment.price = price._id;
+        shipment.payment = payment._id;
         //  if uuid is unique in db do the follwing
 
         new Fawn.Task()
-            .save('prices', price)
+            .save('payments', payment)
             .save('shipments', shipment)
             .run();
 

@@ -1,14 +1,14 @@
 const mongoose = require('mongoose');
 const Joi = require('joi');
 const { User } = require('./User');
-const { Price } = require('./Price');
+const { Payment } = require('./Payment');
 /**
  * Shipment document<table> needs
  * User that wants to ship
  * name of item
  * description
  * weight
- * price which will be mathematically calculated
+ * Payment which will be mathematically calculated
  * shimpment mode (Air, Road, Sea, Rail )
  * pickUp Address - address, long, lat
  * Delivery Address - address, long, lat
@@ -77,9 +77,9 @@ const shipmentSchema = new mongoose.Schema({
         trim: true
     },
     pricing: String,
-    price: {
+    payment: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Price'
+        ref: 'Payment'
     }
 });
 

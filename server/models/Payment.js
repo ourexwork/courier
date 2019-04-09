@@ -1,21 +1,16 @@
 const mongoose = require('mongoose');
 
-const priceSchema = new mongoose.Schema({
-    priceShipmentId: {
-        type: String
-    },
+const paymentSchema = new mongoose.Schema({
 
     shipment: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Shipment'
     },
 
-    price: {
+    amount: {
         type: Number,
         required: true
     },
-
-
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -25,10 +20,10 @@ const priceSchema = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    PaymentMethod: {
+    paymentMethod: {
         type: String,
-        enum: ['onPickUp online'],
-        default: 'online'
+        enum: ['onPickUp', 'online'],
+
     },
     paymentStatus: {
         type: Boolean,
@@ -37,6 +32,6 @@ const priceSchema = new mongoose.Schema({
 
 });
 
-const Price = mongoose.model('Price', priceSchema);
+const Payment = mongoose.model('Payment', paymentSchema);
 
-module.exports = { Price };
+module.exports = { Payment };
