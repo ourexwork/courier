@@ -11,6 +11,7 @@ const { saveShipment } = require('../controllers/saveShipment');
 const { getDistanceAndPrice } = require('../controllers/getDistanceAndPrice');
 const { getAllShipment } = require('../controllers/getAllShipment');
 const { getOneShipment } = require('../controllers/getOneShipment');
+const { getTrackedShipment } = require('../controllers/getTrackedShipment')
 const authenticateUser = require('../middleware/authenticateUser');
 const adminAuth = require('../middleware/adminAuth');
 
@@ -35,7 +36,10 @@ router.put('/update-shipment-status', adminAuth, shipmentStatus);
 router.put('/update-pickupstatus', adminAuth, shipmentPickUp);
 
 //this routes cancels shipment 
-router.post('/cancel-shipment', adminAuth, cancelShipment)
+router.post('/cancel-shipment', adminAuth, cancelShipment);
+
+//track shipment
+router.get('/track-shipment', authenticateUser, getTrackedShipment)
 
 
 

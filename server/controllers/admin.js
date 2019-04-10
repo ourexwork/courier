@@ -13,10 +13,13 @@ const allUsers = async(req, res) => {
 };
 
 const getOneUser = async(req, res) => {
-    const User = await User.findById(req.params.id);
-    res.send(User);
-}
+    const User = await User.findById(req.body._id);
+    if (User) {
+        res.send(User);
+    }
+    res.status(404).send({ error: "User does not Exist " });
+};
 
 
 
-module.exports = { allUsers, getOneUser }
+module.exports = { allUsers, getOneUser };

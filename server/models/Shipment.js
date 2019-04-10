@@ -59,6 +59,11 @@ const shipmentSchema = new mongoose.Schema({
         type: Object,
         required: true
     },
+
+    currentLocation: {
+        type: Object,
+        default: 'abuja'
+    },
     pickUpDate: {
         type: Date
     },
