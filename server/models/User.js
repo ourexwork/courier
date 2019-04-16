@@ -40,7 +40,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 1024
   },
-
   dateRegistered: {
     type: Date,
     default: Date.now
