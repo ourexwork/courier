@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const {
+    saveShipment,
+    getTrackedShipment,
+    getOneShipment,
+    getDistanceAndPrice,
+    getAllShipment,
+    deliveredShipment,
     shipmentStatus,
     shipmentPickUp,
     cancelShipment
 } = require('../controllers/shipmentQueries');
 
 const { userShipment } = require('../controllers/shipment');
-const { saveShipment } = require('../controllers/saveShipment');
-const { getDistanceAndPrice } = require('../controllers/getDistanceAndPrice');
-const { getAllShipment } = require('../controllers/getAllShipment');
-const { getOneShipment } = require('../controllers/getOneShipment');
-const { getTrackedShipment } = require('../controllers/getTrackedShipment')
 const authenticateUser = require('../middleware/authenticateUser');
 const adminAuth = require('../middleware/adminAuth');
 
@@ -38,8 +39,10 @@ router.put('/update-pickupstatus', adminAuth, shipmentPickUp);
 //this routes cancels shipment 
 router.post('/cancel-shipment', adminAuth, cancelShipment);
 
+router.post('/delivered-shipment', adminAuth, deliveredShipment);
+
 //track shipment
-router.get('/track-shipment', authenticateUser, getTrackedShipment)
+router.get('/track-shipment', getTrackedShipment)
 
 
 

@@ -126,6 +126,7 @@ function validateShipment(shipment) {
             // .required()
             .trim(),
         pricing: Joi.any(),
+        paymentMethod: Joi.string(),
         __v: Joi.number()
 
     };
