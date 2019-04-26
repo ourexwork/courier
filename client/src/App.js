@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.scss';
+
+// Stylesheets
+import 'normalize.css/normalize.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-animated-slider/build/horizontal.css';
+import './styles/App.scss';
+
+// Routing
+import AppRouter from './routers/AppRouter';
 
 class App extends Component {
   render() {
     return (
       <div className='App'>
-        <header className='App-header'>
-          Just Render the entire application
-        </header>
+        <AppRouter />
       </div>
     );
   }
