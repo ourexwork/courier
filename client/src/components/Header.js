@@ -42,7 +42,7 @@ export default class Header extends Component {
 
   render() {
     return (
-      <ScrollableAnchor id={'header'}>
+      <ScrollableAnchor id={'home'}>
         <div className='header'>
           <Navigation />
           <Slider

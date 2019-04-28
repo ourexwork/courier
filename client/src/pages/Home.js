@@ -6,6 +6,7 @@ import Services from '../components/Services';
 import Testimonial from '../components/Testimonial';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
+import SearchTrack from '../components/SearchTrack';
 
 export default class Home extends Component {
   state = {
@@ -31,6 +32,7 @@ export default class Home extends Component {
   render() {
     return (
       <div id='home'>
+        <SearchTrack />
         <Header />
         <About />
         <Services />
