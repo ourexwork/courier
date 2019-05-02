@@ -64,12 +64,6 @@ export default class Header extends Component {
                   <p>{item.description}</p>
                   <button>{item.button}</button>
                 </div>
-                <section>
-                  <img src={item.userProfile} alt={item.user} />
-                  <span>
-                    Posted by <strong>{item.user}</strong>
-                  </span>
-                </section>
               </div>
             ))}
           </Slider>
@@ -78,3 +72,10 @@ export default class Header extends Component {
     );
   }
 }
+
+// <section>
+// <img src={item.userProfile} alt={item.user} />
+// <span>
+//   Posted by <strong>{item.user}</strong>
+// </span>
+// </section>
