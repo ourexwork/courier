@@ -67,6 +67,7 @@ const loginUser = async(req, res) => {
     // validate the username/email and password
     const { error } = loginValidate(req.body);
     if (error) return res.status(400).send({ error: error.details[0].message });
+    // validate the username/email and password
 
     // find the user by credential
     const userCredential = _.pick(req.body, ['username', 'password']);
@@ -74,9 +75,13 @@ const loginUser = async(req, res) => {
     try {
         const user = await User.findByCredentials(userCredential);
         // check if the user's account has been verified
+        if (!user) {
+            return res.status(400).send({ error: 'username or password is wrong' });
+        }
+        
         if (!user.isVerified) {
             return res.status(400).send({
-                error: 'your account has to be verified before you can log in'
+                error: `Please ${req.body.username} check your email to confirm your account `
             });
             // create a button on the client side the resends the token for account confirmation
         }
@@ -86,8 +91,11 @@ const loginUser = async(req, res) => {
             .send(_.pick(user, ['_id', 'email']));
     } catch (error) {
         res.status(400).send({ error: error.message });
+
         // log the error
     }
+
+
 };
 
 // this function gets the current user

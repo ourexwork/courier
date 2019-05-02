@@ -1,32 +1,49 @@
 //import config from 'config';
 import axios from 'axios';
-export const login = (userData = {}) => ({
+
+export const login = (user) => ({
     type: 'LOGIN_USER',
-    user: userData
+    user
 
 })
+
 
 export const startLogin = (userData = {}) => {
 
     return (dispatch) => {
 
         const {
-            _id = '',
-                email = '',
-                isAdmin = '',
-                isVerified = ''
+            username = '',
+                password = '',
 
 
         } = userData;
 
-        axios.post('/api/users/login', userData).then((data) => {
-                console.log(data);
+
+        const user = { username, password };
+
+        axios.post('api/users/login', user).then((data) => {
 
                 localStorage.setItem('x-auth-token', data)
                 dispatch(login(data))
-            }).catch(error => console.log(error))
-            // const d = await axios.post('/api/user/register', userData)
-            // console.log(d)
+            }).catch((e) => {
+
+                const user = { _id: '', username: '', email: '', error: e.response.data.error }
+                dispatch(login(user))
+                    // console.log(error.response.data)
+
+            })
+            // try {
+            //     const callBackEnd = await axios.post('api/users/login', user);
+            //     dispatch(login(callBackEnd.data))
+            // } catch (error) {
+            //     if (error.response) {
+            //                 console.log(error.response.data)
+            //                 return error.response.data
+            //             }
+            // }
+
+
 
     }
 

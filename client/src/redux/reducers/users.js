@@ -1,4 +1,9 @@
-const userDefaultState = [];
+const userDefaultState = {
+    _id: '',
+    username: '',
+    email: '',
+    error: ''
+};
 
 export const userReducer = (state = userDefaultState, action) => {
     switch (action.type) {
@@ -8,10 +13,9 @@ export const userReducer = (state = userDefaultState, action) => {
                 action.user
             ];
         case 'LOGIN_USER':
-            return [
-                ...state,
-                action.user
-            ];
+            return {
+                ...action.user
+            };
 
 
         default:
