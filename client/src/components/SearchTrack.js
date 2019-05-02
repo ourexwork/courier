@@ -24,7 +24,7 @@ export default class SearchTrack extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div>
         <form onSubmit={this._onSubmit}>
           <input
             value={this.state.trackid}

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import Slider from 'react-animated-slider';
 import Navigation from './Navigation';
 import ScrollableAnchor from 'react-scrollable-anchor';
-export default class Header extends Component {
+import { withStyles } from '@material-ui/core/styles';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+
+class Header extends Component {
   state = {
     content: [
       {
@@ -41,6 +44,7 @@ export default class Header extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <ScrollableAnchor id={'home'}>
         <div className='header'>
@@ -64,17 +68,30 @@ export default class Header extends Component {
                   <p>{item.description}</p>
                   <button>{item.button}</button>
                 </div>
-                <section>
-                  <img src={item.userProfile} alt={item.user} />
-                  <span>
-                    Posted by <strong>{item.user}</strong>
-                  </span>
-                </section>
               </div>
             ))}
           </Slider>
+          <a href='#about'>
+            <KeyboardArrowDownIcon className={classes.icon + ' arrow-down '} />
+          </a>
         </div>
       </ScrollableAnchor>
     );
   }
 }
+
+// Style for the svg icon
+const styles = theme => ({
+  icon: {
+    spacing: theme.spacing.unit,
+    fontSize: 32
+  }
+});
+export default withStyles(styles)(Header);
+
+// <section>
+// <img src={item.userProfile} alt={item.user} />
+// <span>
+//   Posted by <strong>{item.user}</strong>
+// </span>
+// </section>
