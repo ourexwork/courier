@@ -6,39 +6,34 @@ import Services from '../components/Services';
 import Testimonial from '../components/Testimonial';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
-import SearchTrack from '../components/SearchTrack';
 
 export default class Home extends Component {
-  state = {
-    renderScroll: false
-  };
+  // state = {
+  //   renderScroll: false
+  // };
 
   componentDidMount() {
-    let height = document.getElementById('home');
-
-    if (height.scroll) {
-      this.setState(() => {
-        return { renderScroll: true };
-      });
-    }
-
-    if (height) {
-      this.setState(() => {
-        return { renderScroll: true };
-      });
-    }
+    // let height = document.getElementById('home');
+    // if (height.scroll) {
+    //   this.setState(() => {
+    //     return { renderScroll: true };
+    //   });
+    // }
+    // if (height) {
+    //   this.setState(() => {
+    //     return { renderScroll: true };
+    //   });
+    // }
   }
 
   render() {
     return (
-      <div id='home'>
-        <SearchTrack />
+      <div>
         <Header />
         <About />
         <Services />
         <Testimonial />
         <Footer />
-        {this.state.renderScroll && <ScrollToTop />}
       </div>
     );
   }

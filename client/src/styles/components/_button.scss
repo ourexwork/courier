@@ -1,0 +1,31 @@
+.loginButton {
+  border: 1px solid $blue;
+  border-color: $white;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  color: $white;
+  font-size: $font-size-x-small;
+  padding: $xs-size $s-size;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  &:hover {
+    background-color: lighten($color: $blue, $amount: 5);
+    border-color: lighten($color: $blue, $amount: 5);
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+.registerButton {
+  @extend .loginButton;
+  background-color: darken($color: $blue, $amount: 5);
+  border: 1px solid $blue;
+  color: $white;
+}

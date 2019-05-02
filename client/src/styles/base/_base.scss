@@ -5,6 +5,7 @@ html {
 // the roboto font is not installed yet
 body {
   background-color: $light-grey;
+  box-sizing: border-box;
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
 }
