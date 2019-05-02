@@ -1,0 +1,16 @@
+.header {
+  position: relative;
+}
+
+.arrow-down {
+  bottom: 20px;
+  color: $white;
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
