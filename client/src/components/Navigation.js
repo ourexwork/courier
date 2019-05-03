@@ -4,17 +4,42 @@ import { NavLink } from 'react-router-dom';
 import SearchTrack from './SearchTrack';
 
 export default class Navigation extends Component {
+  state = {
+    scroll: false
+  };
+
+  addScroll = () => {
+    // get the window scroll
+    const offset = window.scrollY;
+    if (offset > 100) {
+      this.setState(() => ({
+        scroll: true
+      }));
+    } else {
+      this.setState(() => ({ scroll: false }));
+    }
+  };
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.addScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.addScroll);
+  }
+
   render() {
+    const navScroll = this.state.scroll ? 'nav--scroll' : '';
     return (
       // navigation components go in here
-      <nav className='fixed-top'>
+      <nav className={' nav  fixed-top ' + navScroll}>
         <div className='container'>
           <div className='navigation'>
             <a className='navbar-brand' href='#Brand'>
               brand
             </a>
 
-            <div className='track-shipment'>
+            <div className='navigation__search'>
               <SearchTrack />
             </div>
 

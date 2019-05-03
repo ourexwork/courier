@@ -4,6 +4,7 @@ import Navigation from './Navigation';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import { withStyles } from '@material-ui/core/styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
   state = {
@@ -87,6 +88,11 @@ const styles = theme => ({
     fontSize: 32
   }
 });
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
 export default withStyles(styles)(Header);
 
 // <section>
