@@ -1,0 +1,27 @@
+.about {
+  height: 100vh;
+  padding: $xl-size 0;
+}
+.about__title {
+  font-size: 5rem;
+  text-align: center;
+  margin-bottom: 10rem;
+}
+
+.about__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about__content p {
+  display: inline-block;
+  font-family: 'Roboto';
+  font-size: 3rem;
+  font-weight: 100;
+  line-height: 1.6;
+}
+.about__content img {
+  width: 45rem;
+}

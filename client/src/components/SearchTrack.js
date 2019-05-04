@@ -22,20 +22,29 @@ export default class SearchTrack extends Component {
     }
   };
 
+  _onSubmit = e => {
+    e.preventDefault();
+    // dispatch an action
+    // redirect the user
+  };
+
   render() {
     return (
-      <div>
-        <form onSubmit={this._onSubmit}>
+      <>
+        <form className='form' onSubmit={this._onSubmit}>
           <input
+            className='form__input'
             value={this.state.trackid}
             onChange={this._validateTrackId}
             type='text'
             placeholder='Track your shipment(FXED1234)'
           />
           {this.state.trackError && <span>{this.state.trackError}</span>}
-          <button type='submit'>Track</button>
+          <button className='form__submit' type='submit'>
+            Track
+          </button>
         </form>
-      </div>
+      </>
     );
   }
 }
