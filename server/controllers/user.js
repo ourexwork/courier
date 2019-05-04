@@ -11,7 +11,7 @@ const registerUser = async(req, res) => {
     // check if email is unique
     const email = req.body.email;
     const emailExist = await User.findOne({ email });
-    if (emailExist) return res.send({ error: 'User with email already exists' });
+    if (emailExist) return res.status(400).send({ error: 'User with email already exists' });
 
     const newUser = _.pick(req.body, [
         'firstName',
@@ -78,7 +78,7 @@ const loginUser = async(req, res) => {
         if (!user) {
             return res.status(400).send({ error: 'username or password is wrong' });
         }
-        
+
         if (!user.isVerified) {
             return res.status(400).send({
                 error: `Please ${req.body.username} check your email to confirm your account `

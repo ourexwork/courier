@@ -5,6 +5,15 @@ import ScrollableAnchor from 'react-scrollable-anchor';
 import { withStyles } from '@material-ui/core/styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
+
+// Style for the svg icon
+const styles = theme => ({
+  icon: {
+    spacing: theme.spacing.unit,
+    fontSize: 32
+  }
+});
+
 class Header extends Component {
   state = {
     content: [
@@ -72,7 +81,9 @@ class Header extends Component {
             ))}
           </Slider>
           <a href='#about'>
-            <KeyboardArrowDownIcon className={classes.icon + ' arrow-down '} />
+            <KeyboardArrowDownIcon
+             className={classes.icon + ' arrow-down '} 
+             />
           </a>
         </div>
       </ScrollableAnchor>
@@ -80,13 +91,7 @@ class Header extends Component {
   }
 }
 
-// Style for the svg icon
-const styles = theme => ({
-  icon: {
-    spacing: theme.spacing.unit,
-    fontSize: 32
-  }
-});
+
 export default withStyles(styles)(Header);
 
 // <section>

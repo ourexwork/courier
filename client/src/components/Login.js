@@ -32,16 +32,20 @@ const styles = theme => ({
   textField: {
     display: 'flex'
   },
+  icontab:{
+    color:'white',
+    
+    },
+    
 });
 
 const validate = values => {
   const errors = {}
   const requiredFields = [
      
-      {name:'username',label:'username'},
+    {name:'username',label:'username'},
  
-      {name:'password',label:'password'},
-      
+    {name:'password',label:'password'}, 
   
   ]
   requiredFields.forEach(field => {
@@ -81,11 +85,13 @@ const renderTextField = ({
    error={error && touched}
   fullWidth={true}
    helperText={error &&touched?error:''}
-    {...input}
-    {...custom}
+ 
     // variant={"outlined"}
- InputProps={{style:{fontSize:13},endAdornment: <InputAdornment position="end"><Icon><AccountCircle /></Icon></InputAdornment> } }
- InputLabelProps={{style:{fontSize:13}}}
+ InputProps={{style:{fontSize:20},endAdornment: <InputAdornment position="end"><Icon><AccountCircle /></Icon></InputAdornment> } }
+ InputLabelProps={{style:{fontSize:17}}}
+
+ {...input}
+ {...custom}
 
   />
 )
@@ -105,10 +111,9 @@ const renderPasswordField = ({
           type={type}
           error={error && touched}
           helperText={error &&touched?error:''}
-          InputProps={{style:{fontSize:13}}}
-          InputLabelProps={{style:{fontSize:13}}}
           {...input}
-    {...custom}
+          {...custom}
+          InputLabelProps={{style:{fontSize:17}}}
         />
   )
 
@@ -128,15 +133,15 @@ class Login extends Component {
 
     
   render(){
-    const { classes , handleSubmit, user} = this.props;
+    const { classes , handleSubmit, auth} = this.props;
       return (
 <div className="contain">
 <div className="login-container">
 <div className="tab">
-<div className="sign-in-text">  Sign In </div> <div> <Icon><Https /></Icon></div>
+<div className="sign-in-text">  Sign In </div> <div> <Icon className={classNames(classes.icontab)}><Https /></Icon></div>
 </div>
 
-{ user.error != "" && <span className="error-text small alert-danger">{user.error}!!!</span>}
+{ auth && auth.error && auth.error!= "" && <span className="error-text small alert-danger">{auth.error}!!!</span>}
 <div className="login-form" >
 <form action="" onSubmit = { handleSubmit }>
 <div className="input-field">
@@ -153,7 +158,7 @@ class Login extends Component {
           component={renderPasswordField}
           label="password"
           type={this.state.showPassword ? 'text' : 'password'}
-          InputProps={{
+          InputProps={{ style:{fontSize:20},
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
@@ -199,7 +204,7 @@ Login =  reduxForm({
 const mapToStateProps = (state) => {
     return {
       
-        user: state.user
+        auth: state.auth
     };
   }
 

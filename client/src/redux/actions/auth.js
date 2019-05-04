@@ -1,9 +1,9 @@
 //import config from 'config';
 import axios from 'axios';
 
-export const login = (user) => ({
+export const login = (auth) => ({
     type: 'LOGIN_USER',
-    user
+    auth
 
 })
 

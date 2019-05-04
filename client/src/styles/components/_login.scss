@@ -1,3 +1,14 @@
+.box-layout {
+    background: url('/images/bg.jpg');
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    align-content: center
+}
+
 .contain {
     display: flex;
     width: 100%;
@@ -9,8 +20,10 @@
 }
 
 .login-container {
+    margin: $m-size;
     width: 40rem;
     height: 50rem;
+    opacity: 0.9;
     display: flex;
     flex-direction: column;
     align-content: center;
@@ -23,7 +36,8 @@
 .tab {
     display: flex;
     justify-content: space-between;
-    background: $light-blue;
+    // background: $light-blue;
+    background: 3px solid lighten($color: $blue, $amount: 0.5);
     // background: #ffd800;
     padding: 1rem;
     align-items: center;
@@ -44,6 +58,7 @@
     align-content: center;
     justify-content: center;
     padding: $m-size;
+    font-style: italic
 }
 
 .input-field {
@@ -57,4 +72,9 @@
     display: flex;
     align-content: center;
     justify-content: center;
+    color: $white;
+}
+
+.sign-in-text {
+    color: $white
 }

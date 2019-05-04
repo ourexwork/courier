@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect } from 'react-redux'
-import { startLogin} from '../redux/actions/users'
+import { startLogin} from '../redux/actions/auth'
 import Login from '../components/Login'
 
 
@@ -13,7 +13,7 @@ class LoginPage extends React.Component {
     render()
     {
         return(
-            <div>
+            <div className="box-layout">
    
     <Login onSubmit={this.onSubmit}/>
   </div>  
@@ -26,3 +26,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(undefined, mapDispatchToProps)(LoginPage);
+ 

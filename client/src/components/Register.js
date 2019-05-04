@@ -20,7 +20,9 @@ import {Https,
   VisibilityOff, 
    Email , 
    AccountCircle,
-  Home
+  Home,
+  PhoneAndroid,
+  PersonAdd
   } from '@material-ui/icons';
 
 //
@@ -39,16 +41,32 @@ const styles = theme => ({
   textField: {
     display: 'flex'
   },
+icontab:{
+color:'white',
+
+},
+
+iconfield:{
+color: '#1c88bf'
+},
+
+  
 });
 
 const validate = values => {
   const errors = {}
   const requiredFields = [
      
-      {name:'username',label:'username'},
- 
-      {name:'password',label:'password'},
+
       
+      {name:'firstName',label:'first name'},
+      {name:'lastName',label:'last name'},
+      {name:'email',label:'email'},
+      {name:'phoneNumber',label:'phone number'},
+      {name:'address',label:'address'},
+      {name:'password',label:'password'},
+      {name:'confirm_password',label:'password'},
+
   
   ]
   requiredFields.forEach(field => {
@@ -57,9 +75,30 @@ const validate = values => {
       console.log(errors)
     }
 
-    if (values.username && values.username.length <= 5){
+    if (values.firstName && values.firstName.length <= 5){
       errors.username = 'username or email length is not up to 6'
     }
+
+    if (values.address && values.address.length <= 11){
+      errors.username = 'username or email length is not up to 11'
+    }
+
+    if (
+    values.email &&
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+  ) {
+    errors.email = 'Invalid email address'
+  }
+
+   
+  // if(values.password && !/^((?=[a-z])(?=.*[A-Z))]))|((?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9])))|((?=.{6,}))$/i.test(values.password)){
+  //   errors.password = 'password should have atleast Uppercase, number and character'
+  // }
+
+  if (values.password !== values.confirm_password){
+    errors.confirm_password = 'Passwords do not match'
+
+  }
 
      if (values.password && values.password.length <= 5){
       errors.password = 'password length is not up to 6'
@@ -124,9 +163,7 @@ const renderPasswordField = ({
 
 class Register extends Component {
     state = {
-    username:'',
-    password:'',
-    confirm_password:'',
+   
     showPassword1: false,
     showPassword2: false,
     errors:''
@@ -147,23 +184,23 @@ class Register extends Component {
   render(){
     const { classes , handleSubmit, user} = this.props;
       return (
-<div className="contain">
+<div className="contain-reg">
 <div className="register-container">
 <div className="tab">
-<div className="sign-in-text"> Register </div> <div> <Icon><Https /></Icon></div>
-</div>
+<div className="sign-in-text-reg"> Register </div> <div className="sign-in-text-reg"> <Icon className={classNames(classes.icontab)}><PersonAdd /></Icon></div> 
+</div>  
 
-{ user.error != "" && <span className="error-text small alert-danger">{user.error}</span>}
+{ ( user.error && user.error!= "") && <span className="error-text small alert-danger">{user.error}</span>}
 <div className="register-form" >
 <form action="" onSubmit = { handleSubmit }>
 <div className="input-field-line">
 <Field
-          name="firstname"
+          name="firstName"
           component={renderTextField}
           label="firstname"
           InputProps={{style:{fontSize:20},endAdornment: 
           <InputAdornment position="end">
-          <Icon><AccountCircle /></Icon>
+          <Icon className={classNames(classes.iconfield)}><AccountCircle /></Icon>
           </InputAdornment> } }
         />
 <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -173,19 +210,19 @@ class Register extends Component {
           label="last name"
           InputProps={{style:{fontSize:20},endAdornment:
            <InputAdornment position="end">
-           <Icon><AccountCircle />
+           <Icon  className={classNames(classes.iconfield)}><AccountCircle />
            </Icon></InputAdornment> } }
         />
 </div>
 
 <div className="input-field">
         <Field
-          name="username"
+          name="phoneNumber"
           component={renderTextField}
-          label="username"
+          label="phone number"
           InputProps={{style:{fontSize:20},endAdornment: 
           <InputAdornment position="end">
-          <Icon><AccountCircle /></Icon>
+          <Icon className={classNames(classes.iconfield)}><PhoneAndroid /></Icon>
           </InputAdornment> } }
         />
 </div>
@@ -197,7 +234,7 @@ class Register extends Component {
           label="email"
           InputProps={{style:{fontSize:20},endAdornment: 
           <InputAdornment position="end">
-          <Icon><Email /></Icon>
+          <Icon className={classNames(classes.iconfield)}><Email /></Icon>
           </InputAdornment> } }
         />
 </div>
@@ -211,7 +248,7 @@ class Register extends Component {
           rows={2}
           InputProps={{style:{fontSize:20},endAdornment: 
           <InputAdornment position="end">
-          <Icon><Home /></Icon>
+          <Icon className={classNames(classes.iconfield)}><Home /></Icon>
           </InputAdornment> } }
         />
 </div>
@@ -227,6 +264,7 @@ class Register extends Component {
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
+                className={classNames(classes.iconfield)}
                   aria-label="Toggle password visibility"
                   onClick={this.handleClickShowPassword1}
                 >
@@ -250,6 +288,7 @@ class Register extends Component {
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
+                className={classNames(classes.iconfield)}
                   aria-label="Toggle password visibility"
                   onClick={this.handleClickShowPassword1}
                 >
@@ -261,11 +300,10 @@ class Register extends Component {
         />
 </div>
   
-
      <button type="submit" className="btn-block" >Submit</button>
 </form>
 </div>
-<div className="reg-text">
+<div className="reg-text-reg">
 <Link to="/login"><span className="small ">Click to Log in if Already Registered</span></Link> 
 </div>
  </div>

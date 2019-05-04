@@ -1,10 +1,11 @@
 import React from 'react';
 import {connect } from 'react-redux'
+import { startRegister} from '../redux/actions/user'
 import Register from '../components/Register'
 
 class RegisterPage extends React.Component {
     onSubmit = (user) => {
-     this.props.startLogin(user);
+     this.props.startRegister(user);
    
   };
     render()
@@ -19,7 +20,7 @@ class RegisterPage extends React.Component {
 }
   
 const mapDispatchToProps = (dispatch) => ({
-//   startLogin: (user) => dispatch(startLogin(user))
+startRegister: (user) => dispatch(startRegister(user))
 });
 
 export default connect(undefined, mapDispatchToProps)(RegisterPage);
