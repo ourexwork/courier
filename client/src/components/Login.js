@@ -10,6 +10,9 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import classNames from 'classnames';
+
+import Button from '@material-ui/core/Button';
+
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircle from '@material-ui/icons/AccountCircle'
@@ -36,6 +39,23 @@ const styles = theme => ({
     color:'white',
     
     },
+    
+    field: {
+  fontSize:13,
+  '@media (max-width:450px)':{
+    fontSize:12
+  }
+
+},
+iconfield:{
+color: '#1c88bf',
+fontSize:15,
+'@media (max-width:450px)':{
+  fontSize:11
+  }
+
+},
+
     
 });
 
@@ -74,6 +94,7 @@ const renderTextField = ({
   input,
   label,
   type,
+ 
 
 
   meta: { asyncValidating, touched, error },
@@ -86,9 +107,8 @@ const renderTextField = ({
   fullWidth={true}
    helperText={error &&touched?error:''}
  
-    // variant={"outlined"}
- InputProps={{style:{fontSize:20},endAdornment: <InputAdornment position="end"><Icon><AccountCircle /></Icon></InputAdornment> } }
- InputLabelProps={{style:{fontSize:17}}}
+     variant={"outlined"}
+ 
 
  {...input}
  {...custom}
@@ -113,7 +133,7 @@ const renderPasswordField = ({
           helperText={error &&touched?error:''}
           {...input}
           {...custom}
-          InputLabelProps={{style:{fontSize:17}}}
+          variant={"outlined"}
         />
   )
 
@@ -138,7 +158,11 @@ class Login extends Component {
 <div className="contain">
 <div className="login-container">
 <div className="tab">
-<div className="sign-in-text">  Sign In </div> <div> <Icon className={classNames(classes.icontab)}><Https /></Icon></div>
+<div className="sign-in-text">  Sign In </div> <div> 
+ <Icon className={classNames(classes.icontab)}>
+<Https />
+</Icon>
+</div>
 </div>
 
 { auth && auth.error && auth.error!= "" && <span className="error-text small alert-danger">{auth.error}!!!</span>}
@@ -149,6 +173,11 @@ class Login extends Component {
           name="username"
           component={renderTextField}
           label="username"
+             InputProps={{className: classes.field ,endAdornment:
+           <InputAdornment position="end">
+           <Icon ><AccountCircle className={classNames(classes.iconfield)} />
+           </Icon></InputAdornment> } }
+           InputLabelProps={{classNames: classes.field}}
         />
 </div>
 
@@ -158,23 +187,23 @@ class Login extends Component {
           component={renderPasswordField}
           label="password"
           type={this.state.showPassword ? 'text' : 'password'}
-          InputProps={{ style:{fontSize:20},
+          InputProps={{classNames: classes.field,
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                   aria-label="Toggle password visibility"
                   onClick={this.handleClickShowPassword}
                 >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                  {this.state.showPassword ? <VisibilityOff className={classNames(classes.iconfield)}/> : <Visibility className={classNames(classes.iconfield)}/>}
                 </IconButton>
               </InputAdornment>
             ),
           }}
+          InputLabelProps={{classNames: classes.field}}
         />
 </div>
-  
-
-     <button type="submit" className="btn-block" >Submit</button>
+<span classname="space">&nbsp;</span>
+        <Button type="submit" variant="contained" color='primary' className="btn-block" >Submit </Button>
 </form>
 </div>
 <div className="reg-text">

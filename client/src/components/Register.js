@@ -28,7 +28,7 @@ import {Https,
 //
 import {connect} from 'react-redux'
 import { Field, reduxForm , formValueSelector} from 'redux-form'
-
+var mql = (window.matchMedia("screen and (maxWidth:4500)"))
 
 const styles = theme => ({
   root: {
@@ -43,11 +43,32 @@ const styles = theme => ({
   },
 icontab:{
 color:'white',
+fontSize:25
+},
+
+
+field: {
+  fontSize:13,
+  '@media (max-width:450px)':{
+    fontSize:12
+  }
+
+},
+labelfield: {
+  fontSize:15,
+  '@media (max-width:450px)':{
+    fontSize:11
+  }
 
 },
 
 iconfield:{
-color: '#1c88bf'
+color: '#1c88bf',
+fontSize:15,
+'@media (max-width:450px)':{
+  fontSize:11
+  }
+
 },
 
   
@@ -127,12 +148,12 @@ const renderTextField = ({
    error={error && touched}
   fullWidth={true}
    helperText={error &&touched?error:''} 
-   InputLabelProps={{style:{fontSize:17}}}
+
 
     {...input}
     {...custom}
     // variant={"outlined"}
- 
+
 
 
   />
@@ -157,7 +178,7 @@ const renderPasswordField = ({
          
           {...input}
     {...custom}
-    InputLabelProps={{style:{fontSize:17}}}
+
         />
   )
 
@@ -182,12 +203,12 @@ class Register extends Component {
 
     
   render(){
-    const { classes , handleSubmit, user} = this.props;
+    const { classes , handleSubmit, user, submitting} = this.props;
       return (
-<div className="contain-reg">
+
 <div className="register-container">
 <div className="tab">
-<div className="sign-in-text-reg"> Register </div> <div className="sign-in-text-reg"> <Icon className={classNames(classes.icontab)}><PersonAdd /></Icon></div> 
+<div className="sign-in-text-reg">create an account </div> <div className="sign-in-text-reg">  <PersonAdd className={classNames(classes.icontab)} /></div> 
 </div>  
 
 { ( user.error && user.error!= "") && <span className="error-text small alert-danger">{user.error}</span>}
@@ -198,20 +219,22 @@ class Register extends Component {
           name="firstName"
           component={renderTextField}
           label="firstname"
-          InputProps={{style:{fontSize:20},endAdornment: 
+          InputProps={{className: classes.field  ,endAdornment: 
           <InputAdornment position="end">
-          <Icon className={classNames(classes.iconfield)}><AccountCircle /></Icon>
+          <Icon><AccountCircle className={classNames(classes.iconfield)} /></Icon>
           </InputAdornment> } }
+          InputLabelProps={{className: classes.labelfield}}
         />
-<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+<div className="space-between">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
         <Field
           name="lastName"
           component={renderTextField}
           label="last name"
-          InputProps={{style:{fontSize:20},endAdornment:
+          InputProps={{className: classes.field ,endAdornment:
            <InputAdornment position="end">
-           <Icon  className={classNames(classes.iconfield)}><AccountCircle />
+           <Icon ><AccountCircle  className={classNames(classes.iconfield)} />
            </Icon></InputAdornment> } }
+           InputLabelProps={{className: classes.labelfield}}
         />
 </div>
 
@@ -220,10 +243,11 @@ class Register extends Component {
           name="phoneNumber"
           component={renderTextField}
           label="phone number"
-          InputProps={{style:{fontSize:20},endAdornment: 
+          InputProps={{className: classes.field ,endAdornment: 
           <InputAdornment position="end">
-          <Icon className={classNames(classes.iconfield)}><PhoneAndroid /></Icon>
+          <Icon ><PhoneAndroid  className={classNames(classes.iconfield)}/></Icon>
           </InputAdornment> } }
+          InputLabelProps={{className: classes.labelfield}}
         />
 </div>
 
@@ -232,10 +256,11 @@ class Register extends Component {
           name="email"
           component={renderTextField}
           label="email"
-          InputProps={{style:{fontSize:20},endAdornment: 
+          InputProps={{className: classes.field  ,endAdornment: 
           <InputAdornment position="end">
-          <Icon className={classNames(classes.iconfield)}><Email /></Icon>
+          <Icon ><Email className={classNames(classes.iconfield)}/></Icon>
           </InputAdornment> } }
+          InputLabelProps={{className: classes.labelfield}}
         />
 </div>
 
@@ -246,10 +271,11 @@ class Register extends Component {
           label="address"
           multiline={true}
           rows={2}
-          InputProps={{style:{fontSize:20},endAdornment: 
+          InputProps={{className: classes.field  ,endAdornment: 
           <InputAdornment position="end">
-          <Icon className={classNames(classes.iconfield)}><Home /></Icon>
+          <Icon ><Home  className={classNames(classes.iconfield)}/></Icon>
           </InputAdornment> } }
+          InputLabelProps={{className: classes.labelfield}}
         />
 </div>
 
@@ -260,54 +286,55 @@ class Register extends Component {
           component={renderPasswordField}
           label="password"
           type={this.state.showPassword1 ? 'text' : 'password'}
-          InputProps={{ style:{fontSize:20},
+          InputProps={{className: classes.field  ,
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
-                className={classNames(classes.iconfield)}
+               
                   aria-label="Toggle password visibility"
                   onClick={this.handleClickShowPassword1}
                 >
-                  {this.state.showPassword1 ? <VisibilityOff /> : <Visibility />}
+                  {this.state.showPassword1 ? <VisibilityOff  className={classNames(classes.iconfield)}/> : <Visibility  className={classNames(classes.iconfield)}/>}
                 </IconButton>
               </InputAdornment>
             ),
           }}
+          InputLabelProps={{className: classes.labelfield}}
         />
 
         
 
 
-        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div className="space-between">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
         <Field
           name="confirm_password"
           component={renderPasswordField}
           label="confirm password"
           type={this.state.showPassword2 ? 'text' : 'password'}
-          InputProps={{ style:{fontSize:20},
+          InputProps={{className: classes.field  ,
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
-                className={classNames(classes.iconfield)}
                   aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword1}
+                  onClick={this.handleClickShowPassword2}
                 >
-                  {this.state.showPassword1 ? <VisibilityOff /> : <Visibility />}
+                  {this.state.showPassword2 ? <VisibilityOff  className={classNames(classes.iconfield)}/> : <Visibility  className={classNames(classes.iconfield)}/>}
                 </IconButton>
               </InputAdornment>
             ),
           }}
+          InputLabelProps={{className: classes.labelfield}}
         />
 </div>
-  
-     <button type="submit" className="btn-block" >Submit</button>
+  <span classname="space">&nbsp;</span>
+     <button variant="primary" type="submit"  className="butcus btn-block" >Submit {submitting &&  <p>l</p>}</button>
 </form>
 </div>
 <div className="reg-text-reg">
 <Link to="/login"><span className="small ">Click to Log in if Already Registered</span></Link> 
 </div>
  </div>
-    </div>
+
       )
   }
 

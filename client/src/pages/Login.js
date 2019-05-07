@@ -8,6 +8,8 @@ import Login from '../components/Login'
 class LoginPage extends React.Component {
     onSubmit = (user) => {
      this.props.startLogin(user);
+
+   
    
   };
     render()

@@ -3,10 +3,11 @@ const { User, Validate, loginValidate } = require('../models/User');
 const { sendMail } = require('../config/mailer');
 
 const registerUser = async(req, res) => {
+    // try {
     console.log(req.body);
     //validate the user coming from the req.body
     const { error } = Validate(req.body);
-    if (error) return res.send({ error: error.details[0].message });
+    if (error) return res.status(400).send({ error: error.details[0].message });
 
     // check if email is unique
     const email = req.body.email;
@@ -24,17 +25,28 @@ const registerUser = async(req, res) => {
 
     let user = new User(newUser);
     console.log(user.firstName);
-    await user.save();
+
 
     //   generate a verification token for the user with the referral
     const token = user.generateAuthToken();
 
     // send the verification email to the user
-    sendMail(user.email, token);
 
-    res.header('x-auth-token', token).send({
-        success: 'Account successfully registered, please check your email for verification'
-    });
+    // sendMail(user.email, token);
+
+
+    const data = await user.save();
+
+
+    // res.header('x-auth-token', token).send({
+    //     success: 'Account successfully registered, please check your email for verification'
+    // });
+
+    res.header('x-auth-token', token).send(data);
+
+    // } catch (err) {
+    //     res.status(500).send({ error: err.message })
+    // }
 };
 
 const confirmUser = async(req, res) => {

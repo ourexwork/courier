@@ -81,7 +81,7 @@ userSchema.statics.findByCredentials = async function(loginCredential) {
             // if password is valid
             return Promise.resolve(user);
         } else {
-            const errorc = new Error('Password Mismatch')
+            const errorc = new Error('Password is incorrect')
             return Promise.reject(errorc);
         }
     }

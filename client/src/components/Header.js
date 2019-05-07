@@ -4,15 +4,11 @@ import Navigation from './Navigation';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import { withStyles } from '@material-ui/core/styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import PropTypes from 'prop-types';
 
 
 // Style for the svg icon
-const styles = theme => ({
-  icon: {
-    spacing: theme.spacing.unit,
-    fontSize: 32
-  }
-});
+
 
 class Header extends Component {
   state = {
@@ -91,6 +87,17 @@ class Header extends Component {
   }
 }
 
+// Style for the svg icon
+const styles = theme => ({
+  icon: {
+    spacing: theme.spacing.unit,
+    fontSize: 32
+  }
+});
+
+Header.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(Header);
 

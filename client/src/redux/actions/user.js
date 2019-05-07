@@ -15,9 +15,9 @@ export const errorRegister = (error) => ({
 
 
 
-export const startRegister = (userData = {}) => {
+export const startRegister = async(userData = {}) => {
 
-    return (dispatch) => {
+    return async(dispatch) => {
 
         const {
             firstName = '',
@@ -43,16 +43,32 @@ export const startRegister = (userData = {}) => {
         };
 
         axios.post('api/users/register', user).then((data) => {
-
             dispatch(register(data))
         }).catch((e) => {
+            if (e.response) {
+                const errorreg = { error: e.response.data.error }
+                console.log(errorreg)
+                dispatch(errorRegister(errorreg))
+                    // console.log(error.response.data)
 
-            const errorreg = { error: e.response.data.error }
-            console.log(errorreg)
-            dispatch(errorRegister(errorreg))
-                // console.log(error.response.data)
-
+            }
         })
+
+        // try {
+        //     const apicall = await axios.post('api/users/register', user);
+        //     return apicall
+        // } catch (e) {
+
+        //     if (e.response) {
+        //         const errorreg = { error: e.response.data.error }
+        //         console.log(errorreg)
+        //         dispatch(errorRegister(errorreg))
+        //         console.log(e.response.data)
+        //     }
+
+        // }
+
+
 
     }
 
