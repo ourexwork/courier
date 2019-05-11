@@ -1,0 +1,11 @@
+.services {
+  background-color: $white;
+  // box-shadow: 0 4px 11px rgba(124, 146, 169, 0.5);
+  min-height: 100vh;
+  padding: $l-size 0;
+}
+
+.services__box {
+  min-height: 50rem;
+  padding: $l-size;
+}

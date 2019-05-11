@@ -9,3 +9,14 @@ body {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
 }
+
+// For all titles on the homepage
+.title {
+  font-size: 5rem;
+  text-align: center;
+  margin-bottom: 10rem;
+
+  @media (max-width: 575px) {
+    margin-bottom: 2rem;
+  }
+}

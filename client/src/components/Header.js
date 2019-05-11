@@ -49,7 +49,7 @@ class Header extends Component {
     return (
       <ScrollableAnchor id={'home'}>
         <div className='header'>
-          <Navigation />
+          {/*<Navigation /> */}
           <Slider
             previousButton
             nextButton

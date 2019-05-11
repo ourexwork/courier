@@ -3,9 +3,7 @@ import ScrollableAnchor from 'react-scrollable-anchor';
 
 const Testimonial = () => (
   <ScrollableAnchor id={'testimonial'}>
-    <div style={{ background: 'brown', height: '100vh' }}>
-      Testimonial Section
-    </div>
+    <div style={{ 'min-height': '100vh' }}>Testimonial Section</div>
   </ScrollableAnchor>
 );
 
