@@ -8,16 +8,20 @@ import Register from '../pages/Register';
 import LoginPage from '../pages/Login';
 import NotFoundPage from '../pages/NotFoundPage';
 import Thankyou from '../components/Thankyou'
-
+import ListUserPage from '../pages/ListUserPage'
+import EditUserPage from '../pages/EditUserPage'
 const AppRouter = () => (
   <BrowserRouter>
     <>
       <Switch>
         <Route path='/' component={Home} exact />
         <Route path='/register' component={Register} exact />
+       
         <Route path='/register/thankyou' component={Thankyou} exact />
         <Route path='/login' component={LoginPage} exact />
+        <Route path='/edit/:id' component={EditUserPage} exact />
         <Route path='/dashboard' component={Dashboard} exact />
+        <Route path='/listuser' component={ListUserPage} exact />
        
         <Route component={NotFoundPage} />
       </Switch>

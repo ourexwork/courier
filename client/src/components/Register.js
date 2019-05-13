@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link } from 'react-router-dom';
+
 
 //validation api
 import { validateAll} from 'indicative'
@@ -25,10 +25,11 @@ import {Https,
   PersonAdd
   } from '@material-ui/icons';
 
+ import Button from '@material-ui/core/Button';
 //
-import {connect} from 'react-redux'
-import { Field, reduxForm , formValueSelector} from 'redux-form'
-var mql = (window.matchMedia("screen and (maxWidth:4500)"))
+import {connect} from 'react-redux';
+import { Field, reduxForm , formValueSelector} from 'redux-form';
+// var mql = (window.matchMedia("screen and (maxWidth:4500)"))
 
 const styles = theme => ({
   root: {
@@ -71,22 +72,25 @@ fontSize:15,
 
 },
 
+button:{
+width:'100%',
+padding:'1.5rem'
+}
+
   
 });
 
-const validate = values => {
+const validateUpdate = values => {
   const errors = {}
   const requiredFields = [
-     
-
-      
+  
       {name:'firstName',label:'first name'},
       {name:'lastName',label:'last name'},
       {name:'email',label:'email'},
       {name:'phoneNumber',label:'phone number'},
       {name:'address',label:'address'},
-      {name:'password',label:'password'},
-      {name:'confirm_password',label:'password'},
+      // {name:'password',label:'password'},
+      // {name:'confirm_password',label:'password'},
 
   
   ]
@@ -115,7 +119,10 @@ const validate = values => {
   // if(values.password && !/^((?=[a-z])(?=.*[A-Z))]))|((?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9])))|((?=.{6,}))$/i.test(values.password)){
   //   errors.password = 'password should have atleast Uppercase, number and character'
   // }
-
+if (typeof values.password !== undefined){
+  if(!values.password){
+errors.password = 'Password is required'
+  }
   if (values.password !== values.confirm_password){
     errors.confirm_password = 'Passwords do not match'
 
@@ -124,6 +131,59 @@ const validate = values => {
      if (values.password && values.password.length <= 5){
       errors.password = 'password length is not up to 6'
     }
+}
+  
+
+  })
+ 
+  return errors
+}
+
+const validate = values => {
+  const errors = {}
+  const requiredFields = [
+  
+      {name:'firstName',label:'first name'},
+      {name:'lastName',label:'last name'},
+      {name:'email',label:'email'},
+      {name:'phoneNumber',label:'phone number'},
+      {name:'address',label:'address'},
+  
+  ]
+  requiredFields.forEach(field => {
+    if (!values[field.name]) {
+      errors[field.name] = `This ${field.label} is Required`;
+      console.log(errors)
+    }
+
+    if (values.firstName && values.firstName.length <= 5){
+      errors.username = 'username or email length is not up to 6'
+    }
+
+    if (values.address && values.address.length <= 11){
+      errors.username = 'username or email length is not up to 11'
+    }
+
+    if (
+    values.email &&
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+  ) {
+    errors.email = 'Invalid email address'
+  }
+
+  if (typeof values.password !== undefined){
+    if(!values.password){
+  errors.password = 'Password is required'
+    }
+    if (values.password !== values.confirm_password){
+      errors.confirm_password = 'Passwords do not match'
+  
+    }
+  
+       if (values.password && values.password.length <= 5){
+        errors.password = 'password length is not up to 6'
+      }
+  }
 
   })
  
@@ -182,7 +242,7 @@ const renderPasswordField = ({
         />
   )
 
-class Register extends Component {
+class UserForm extends Component {
     state = {
    
     showPassword1: false,
@@ -200,20 +260,17 @@ class Register extends Component {
 
   };
 
+  
 
     
   render(){
-    const { classes , handleSubmit, user, submitting} = this.props;
+    const { onSubmit , onSubmitFail, classes , handleSubmit, errors, Submit, submitting} = this.props;
       return (
 
-<div className="register-container">
-<div className="tab">
-<div className="sign-in-text-reg">create an account </div> <div className="sign-in-text-reg">  <PersonAdd className={classNames(classes.icontab)} /></div> 
-</div>  
+<span>
+{errors  && errors.error && errors.error!="" && <span className="error-text small alert-danger">{errors.error}</span>}
+<form  onSubmit = { handleSubmit(Submit) }>
 
-{ ( user.error && user.error!= "") && <span className="error-text small alert-danger">{user.error}</span>}
-<div className="register-form" >
-<form action="" onSubmit = { handleSubmit }>
 <div className="input-field-line">
 <Field
           name="firstName"
@@ -261,6 +318,7 @@ class Register extends Component {
           <Icon ><Email className={classNames(classes.iconfield)}/></Icon>
           </InputAdornment> } }
           InputLabelProps={{className: classes.labelfield}}
+          disabled= {this.props.edit ? true : false }
         />
 </div>
 
@@ -279,8 +337,8 @@ class Register extends Component {
         />
 </div>
 
-
-<div className="input-field-line">
+{ !(this.props.edit) && 
+  <div className="input-field-line">
 <Field
           name="password"
           component={renderPasswordField}
@@ -302,10 +360,8 @@ class Register extends Component {
           InputLabelProps={{className: classes.labelfield}}
         />
 
-        
-
-
         <div className="space-between">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+       
         <Field
           name="confirm_password"
           component={renderPasswordField}
@@ -326,14 +382,12 @@ class Register extends Component {
           InputLabelProps={{className: classes.labelfield}}
         />
 </div>
+      }
+
   <span classname="space">&nbsp;</span>
-     <button variant="primary" type="submit"  className="butcus btn-block" >Submit {submitting &&  <p>l</p>}</button>
+     <Button variant="contained" color="primary" type="submit" className={classNames(classes.button)} disabled={submitting} >{this.props.edit ? 'Update':'Submit'} </Button>
 </form>
-</div>
-<div className="reg-text-reg">
-<Link to="/login"><span className="small ">Click to Log in if Already Registered</span></Link> 
-</div>
- </div>
+</span>
 
       )
   }
@@ -341,21 +395,41 @@ class Register extends Component {
 } 
 
 
-Register.propTypes = {
+UserForm.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-Register =  reduxForm({
-  form: 'register', // a unique identifier for this form
-  validate
+
+UserForm =  reduxForm({
+  form : {
+    
+    create: {
+      form: 'register', // a unique identifier for this form
   // ,asyncValidate
-})(Register);
+    },
+    update: {
+      form: 'update', // a unique identifier for this form
+  // ,asyncValidate
+  },
+
+  },
+  validate,
+  enableReinitialize:true
+
+})(UserForm);
+
+// EditUser =  reduxForm({
+//   form: 'editUser', // a unique identifier for this form
+//   enableReinitialize:true,
+ 
+//   // ,asyncValidate
+// })(UserForm);
 
 const mapToStateProps = (state) => {
     return {
       
-        user: state.user
+        errors: state.error
     };
   }
 
-export default connect(mapToStateProps)(withStyles(styles)(Register))
+export  default connect(mapToStateProps)(withStyles(styles)(UserForm));

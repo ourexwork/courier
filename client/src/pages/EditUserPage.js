@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link } from 'react-router-dom';
 import {connect } from 'react-redux'
-import { startRegister} from '../redux/actions/user'
+import { startEditUser} from '../redux/actions/user'
 import UserForm from '../components/Register'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -65,31 +65,31 @@ fontSize:15,
 }
   })
 
-class RegisterPage extends React.Component {
-    onSubmit =   (user) => {
-   return this.props.startRegister(user).then((a)=>{
-    this.props.history.push('/')
-    }).catch((error)=>{
-console.log(error.message)
-    })
-    
-  };
-    render()
+class EditUserPage extends React.Component {
+
+  
+    render()  
     {
-        const { classes } = this.props;
+        const { classes,user , dispatch } = this.props;
         return(
             <div className="box-layout">
             <div className="register-container">
 <div className="tab">
-<div className="sign-in-text-reg">create an account </div> <div className="sign-in-text-reg">  <PersonAdd className={classNames(classes.icontab)} /></div> 
+<div className="sign-in-text-reg">Update your profile </div> <div className="sign-in-text-reg">  <PersonAdd className={classNames(classes.icontab)} /></div> 
 </div>  
 
 
 <div className="register-form" >        
-    <UserForm form="create" Submit={this.onSubmit}/>
-    <div className="reg-text-reg">
-<Link to="/login"><span className="small ">Click to Log in if Already Registered</span></Link> 
-</div>
+    <UserForm
+    form="update" 
+    edit='a'
+    initialValues={user}
+    Submit={ async (data)=>{
+        const a = await this.props.startEditUser(user._id, data).then((a)=>{
+        })
+         
+    }}/>
+
   </div>  
   </div>
  </div>
@@ -98,15 +98,21 @@ console.log(error.message)
 }
   
 
-RegisterPage.propTypes = {
+EditUserPage.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-const mapDispatchToProps = (dispatch) => ({
-startRegister:  (user) => dispatch(startRegister(user)),
 
+const mapStateToProps = (state, props) => ({
+user: state.users.find((data)=>{
+    return data._id === props.match.params.id
+})
 });
 
-export default connect(undefined,mapDispatchToProps)(withStyles(styles)(RegisterPage))
+const mapDispatchToProps = (dispatch) => ({ 
+  startEditUser: (userid, data) => dispatch(startEditUser(userid, data)) 
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(EditUserPage))
 
 
 

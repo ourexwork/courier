@@ -26,7 +26,9 @@ router.get('/getprice', authenticateUser, getDistanceAndPrice);
 router.post('/save-shipment', authenticateUser, saveShipment);
 
 //this route gets details of all the shipment for the admin
-router.get('/all-shipment', adminAuth, getAllShipment);
+router.get('/all-shipment',
+    // adminAuth,
+    getAllShipment);
 
 router.get('/shipment', adminAuth, getOneShipment);
 

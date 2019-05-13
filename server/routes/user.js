@@ -24,8 +24,15 @@ router.post('/login', loginUser);
 // get the current user
 router.get('/me', authenticateUser, currentUser);
 
+// get the current user
+router.get('/allusers',
+    // authenticateUser,
+    allUsers);
+
 // route to edit user profile
-router.put('/edit/:id', authenticateUser, editUser);
+router.put('/edit/:id',
+    // authenticateUser,
+    editUser);
 
 
 
