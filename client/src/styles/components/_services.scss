@@ -1,11 +1,30 @@
 .services {
   background-color: $white;
-  // box-shadow: 0 4px 11px rgba(124, 146, 169, 0.5);
-  min-height: 100vh;
-  padding: $l-size 0;
+  box-shadow: 0 4px 11px rgba(124, 146, 169, 0.5);
+  padding: $xl-size-pc 0;
+
+  p {
+    margin-bottom: $l-size;
+  }
+
+  @media (max-width: 575px) {
+    padding: $l-size 0;
+  }
 }
 
 .services__box {
   min-height: 50rem;
-  padding: $l-size;
+}
+.row .col-md-4:nth-child(3) .services__box img {
+  margin-bottom: $xl-size;
+}
+
+.services__box img {
+  margin-bottom: $l-size;
+}
+
+.services__box p {
+  font-size: 1.8rem;
+  font-weight: 100;
+  // text-align: justify;
 }

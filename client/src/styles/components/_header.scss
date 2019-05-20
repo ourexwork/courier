@@ -6,7 +6,9 @@
 .arrow-down {
   animation: animateCaret 0.5s ease-in-out infinite;
   bottom: 20px;
+  border: 2px solid $white;
   color: $white;
+  display: inline-block;
   left: 50%;
   position: absolute;
   text-align: center;
@@ -15,25 +17,37 @@
   -moz-transform: translateX(-50%);
   -ms-transform: translateX(-50%);
   -o-transform: translateX(-50%);
-  -webkit-animation: animateCaret 2s ease-in infinite;
+  -webkit-animation: animateCaret 2.5s ease-in infinite;
+  transition: background 0.2s ease-in;
+  -webkit-transition: background 0.2s ease-in;
+  -moz-transition: background 0.2s ease-in;
+  -ms-transition: background 0.2s ease-in;
+  -o-transition: background 0.2s ease-in;
+}
+
+.arrow-down:hover {
+  background: $blue;
+  border-color: $blue;
+  color: white;
+  text-decoration: none;
 }
 
 @keyframes animateCaret {
   0% {
     opacity: 0;
-    transform: translateY(0);
-    -webkit-transform: translateY(0);
-    -moz-transform: translateY(0);
-    -ms-transform: translateY(0);
-    -o-transform: translateY(0);
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    -o-transform: translate(-50%, 0);
   }
 
   100% {
     opacity: 1;
-    transform: translateY(-5px);
-    -webkit-transform: translateY(-5px);
-    -moz-transform: translateY(-5px);
-    -ms-transform: translateY(-5px);
-    -o-transform: translateY(-5px);
+    transform: translate(-50%, -5px);
+    -webkit-transform: translate(-50%, -5px);
+    -moz-transform: translate(-50%, -5px);
+    -ms-transform: translate(-50%, -5px);
+    -o-transform: translate(-50%, -5px);
   }
 }

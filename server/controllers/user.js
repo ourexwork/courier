@@ -3,15 +3,16 @@ const { User, Validate, loginValidate } = require('../models/User');
 const { sendMail } = require('../config/mailer');
 
 const registerUser = async(req, res) => {
+    // try {
     console.log(req.body);
     //validate the user coming from the req.body
     const { error } = Validate(req.body);
-    if (error) return res.send({ error: error.details[0].message });
+    if (error) return res.status(400).send({ error: error.details[0].message });
 
     // check if email is unique
     const email = req.body.email;
     const emailExist = await User.findOne({ email });
-    if (emailExist) return res.send({ error: 'User with email already exists' });
+    if (emailExist) return res.status(400).send({ error: 'User with email already exists' });
 
     const newUser = _.pick(req.body, [
         'firstName',
@@ -24,17 +25,28 @@ const registerUser = async(req, res) => {
 
     let user = new User(newUser);
     console.log(user.firstName);
-    await user.save();
+
 
     //   generate a verification token for the user with the referral
     const token = user.generateAuthToken();
 
     // send the verification email to the user
-    sendMail(user.email, token);
 
-    res.header('x-auth-token', token).send({
-        success: 'Account successfully registered, please check your email for verification'
-    });
+    // sendMail(user.email, token);
+
+
+    const data = await user.save();
+
+
+    // res.header('x-auth-token', token).send({
+    //     success: 'Account successfully registered, please check your email for verification'
+    // });
+
+    res.header('x-auth-token', token).send(data);
+
+    // } catch (err) {
+    //     res.status(500).send({ error: err.message })
+    // }
 };
 
 const confirmUser = async(req, res) => {
@@ -67,6 +79,7 @@ const loginUser = async(req, res) => {
     // validate the username/email and password
     const { error } = loginValidate(req.body);
     if (error) return res.status(400).send({ error: error.details[0].message });
+    // validate the username/email and password
 
     // find the user by credential
     const userCredential = _.pick(req.body, ['username', 'password']);
@@ -74,9 +87,13 @@ const loginUser = async(req, res) => {
     try {
         const user = await User.findByCredentials(userCredential);
         // check if the user's account has been verified
+        if (!user) {
+            return res.status(400).send({ error: 'username or password is wrong' });
+        }
+
         if (!user.isVerified) {
             return res.status(400).send({
-                error: 'your account has to be verified before you can log in'
+                error: `Please ${req.body.username} check your email to confirm your account `
             });
             // create a button on the client side the resends the token for account confirmation
         }
@@ -86,8 +103,11 @@ const loginUser = async(req, res) => {
             .send(_.pick(user, ['_id', 'email']));
     } catch (error) {
         res.status(400).send({ error: error.message });
+
         // log the error
     }
+
+
 };
 
 // this function gets the current user

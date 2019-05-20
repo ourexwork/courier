@@ -1,20 +1,22 @@
 import React from 'react';
 import {connect } from 'react-redux'
-import { startLogin} from '../redux/actions/users'
+import { startLogin} from '../redux/actions/auth'
 import Login from '../components/Login'
-import Navigation from '../components/Navigation';
+
 
 
 class LoginPage extends React.Component {
-    onSubmit = (userData) => {
-    this.props.startLogin(userData);
-    // this.props.history.push('/');
+    onSubmit = (user) => {
+     this.props.startLogin(user);
+
+   
+   
   };
     render()
     {
         return(
-            <div>
-     <Navigation />
+            <div className="box-layout">
+   
     <Login onSubmit={this.onSubmit}/>
   </div>  
         )
@@ -22,7 +24,8 @@ class LoginPage extends React.Component {
 }
   
 const mapDispatchToProps = (dispatch) => ({
-  startLogin: (userData) => dispatch(startLogin(userData))
+  startLogin: (user) => dispatch(startLogin(user))
 });
 
 export default connect(undefined, mapDispatchToProps)(LoginPage);
+ 

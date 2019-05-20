@@ -7,7 +7,7 @@ const About = () => (
       <div className='container'>
         <h3 className='title'>About Us</h3>
         <div className='row'>
-          <div className='col-xs-12 col-sm-6 col-md-7'>
+          <div className='col-xs-12 col-sm-12 col-md-6 order-2 order-md-1 '>
             <p>
               Speedex is a courier service created to simplify movement of your
               goods all over the world. We operate base on integrity and trust,
@@ -16,7 +16,7 @@ const About = () => (
               your business and questions.
             </p>
           </div>
-          <div className='col-xs-12 col-sm-6 col-md-5'>
+          <div className='col-xs-12 col-sm-12 col-md-6 order-1'>
             <img
               className='img-fluid'
               src='/svgs/logistics.svg'

@@ -1,10 +1,22 @@
 .about {
-  min-height: 100vh;
-  padding: $l-size 0;
+  padding: $xl-size-pc 0;
+  @media (max-width: 575px) {
+    padding: $xl-size 0;
+  }
+}
+
+.about img {
+  @media (max-width: 575px) {
+    margin-bottom: $m-size;
+  }
 }
 
 .about p {
   font-size: 3rem;
   font-weight: 100;
   line-height: 1.6;
+
+  @media (max-width: 575px) {
+    font-size: 1.8rem;
+  }
 }

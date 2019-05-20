@@ -124,14 +124,13 @@
 /************* SLIDER CONTENT ******************
 **************************************************
 ***************************************************/
-@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
 // body {
 //   font-family: 'Lato', sans-serif;
 //   box-sizing: border-box;
 //   padding-top: 75px;
 // }
-
 // header {
 //   position: fixed;
 //   top: 0;
@@ -141,7 +140,6 @@
 //   background: #000000;
 //   z-index: 10;
 // }
-
 header section {
   max-width: 1300px;
   margin: auto;
@@ -168,33 +166,31 @@ header section a {
   outline: none;
 }
 
-button {
-  -webkit-appearance: none;
-  appearance: none;
-  -webkit-filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
-  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
-  -webkit-transition: all 0.5s ease;
-  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  border: none;
-  background: #ffd800;
-  border-radius: 30px;
-  text-transform: uppercase;
-  box-sizing: border-box;
-  padding: 15px 40px;
-  font-weight: 400;
-  font-size: 13px;
-  cursor: cursor;
-}
-
-button:hover {
-  color: #ffffff;
-  background: #222222;
-  -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
-}
-
+// button {
+//     -webkit-appearance: none;
+//     appearance: none;
+//     -webkit-filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+//     filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+//     -webkit-transition: all 0.5s ease;
+//     filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+//     -webkit-transition: all 0.5s ease;
+//     transition: all 0.5s ease;
+//     border: none;
+//     background: #ffd800;
+//     border-radius: 30px;
+//     text-transform: uppercase;
+//     box-sizing: border-box;
+//     padding: 15px 40px;
+//     font-weight: 400;
+//     font-size: 13px;
+//     cursor: cursor;
+// }
+// button:hover {
+//     color: #ffffff;
+//     background: #222222;
+//     -webkit-filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+//     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.2));
+// }
 .wrapper {
   max-width: 1335px;
   box-sizing: border-box;
@@ -253,23 +249,19 @@ button:hover {
 //   text-indent: -9999px;
 //   cursor: pointer;
 // }
-
 // .previousButton:hover,
 // .nextButton:hover {
 //   background: url('http://svgshare.com/i/41_.svg') no-repeat center center /
 //     16px;
 // }
-
 // .previousButton {
 //   left: 0;
 //   -webkit-transform: rotate(180deg) translateY(calc(50% + 0px));
 //   transform: rotate(180deg) translateY(calc(50% + 0px));
 // }
-
 // .previousButton:hover {
 //   left: -10px;
 // }
-
 .nextButton {
   right: 0;
 }
@@ -352,14 +344,16 @@ button:hover {
 @media (max-height: 500px) {
   .slider-wrapper,
   .slide {
-    height: calc(100vh - 75px);
+    // height: calc(100vh - 75px);
+    height: 100vh;
   }
 }
 
 @media (max-width: 640px) {
   .slider-wrapper,
   .slide {
-    height: calc(80vh - 75px);
+    // height: calc(80vh - 75px);
+    height: 100vh;
   }
 }
 

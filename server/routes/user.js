@@ -13,7 +13,7 @@ const authenticateUser = require('../middleware/authenticateUser');
 
 
 //  route to register user
-router.post('/register', authenticateUser, registerUser);
+router.post('/register', registerUser);
 
 //route to confirm user
 router.get('/confirmation/:token', confirmUser);
