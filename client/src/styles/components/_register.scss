@@ -11,6 +11,10 @@
 //         // padding: $s-size
 //     }
 // }
+.butcus {
+    padding: $s-size;
+}
+
 .register-container {
   background: rgb(252, 252, 252);
   border-bottom: 0.6rem solid darken($light-grey, 10%);
@@ -71,6 +75,7 @@
 }
 
 .input-field-line {
+<<<<<<< HEAD
   display: flex;
   justify-self: center;
   align-self: center;
@@ -78,6 +83,15 @@
   @media (max-width: 45rem) {
     flex-direction: column;
   }
+=======
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    margin: 1rem;
+    @media (max-width: 45rem) {
+        flex-direction: column;
+    }
+>>>>>>> bd452d805f920d6ae1ef6bd2f6f6659df7342760
 }
 
 .reg-text-reg {
@@ -108,7 +122,18 @@
 }
 
 .space-between {
+<<<<<<< HEAD
   @media (max-width: 45rem) {
     display: none;
   }
 }
+=======
+    @media (max-width: 45rem) {
+        display: none
+    }
+}
+
+.Field {
+    line-height: 3px
+}
+>>>>>>> bd452d805f920d6ae1ef6bd2f6f6659df7342760

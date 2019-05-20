@@ -232,7 +232,6 @@ Login =  reduxForm({
 
 const mapToStateProps = (state) => {
     return {
-      
         auth: state.auth
     };
   }

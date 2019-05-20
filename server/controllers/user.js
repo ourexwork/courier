@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const { User, Validate, loginValidate } = require('../models/User');
 const { sendMail } = require('../config/mailer');
-
+const mongoose = require('mongoose');
 const registerUser = async(req, res) => {
     // try {
     console.log(req.body);
@@ -116,9 +116,16 @@ const currentUser = async(req, res) => {
     res.send({ user });
 };
 
+// this function gets the all user
+const allUsers = async(req, res) => {
+    const user = await User.find().select('-password');
+    res.send(user);
+};
+
+
 const editUser = async(req, res) => {
-    const { error } = Validate(req.body);
-    if (error) return res.status(400).send({ error: error.details[0].message });
+    // const { error } = Validate(req.body);
+    // if (error) return res.status(400).send({ error: error.details[0].message });
 
     // validate req.params.id
     if (!mongoose.Types.ObjectId.isValid(req.params.id))
@@ -146,5 +153,5 @@ module.exports = {
     loginUser,
     currentUser,
     editUser,
-
+    allUsers
 };

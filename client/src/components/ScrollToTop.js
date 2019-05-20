@@ -1,20 +1,23 @@
 import React from 'react';
 import ScrollableAnchor from 'react-scrollable-anchor';
-
-const ScrollToTop = () => (
+import { ArrowUpwardSharp } from '@material-ui/icons'
+const ScrollToTop = (props) => (
   <ScrollableAnchor id={'scrolltotop'}>
-    <a href='#header'>
+    <a href='#home'>
       <div
         style={{
-          background: 'rebeccapurple',
+          background: 'white',
           top: '60rem',
           height: '3rem',
-          width: '12rem',
+          // width: '12rem',
           position: 'fixed',
-          right: '2rem'
+          right: '2rem',
+          borderRadius:'50%',
+          opacity:'0.6'
         }}
+
       >
-        scrolltotopicon
+       <ArrowUpwardSharp  />
       </div>
     </a>
   </ScrollableAnchor>

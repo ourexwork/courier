@@ -34,7 +34,7 @@ export default class Navigation extends Component {
     const offset = window.scrollY;
     if (offset > 100) {
       this.setState(() => ({
-        scroll: true
+        scroll: true 
       }));
     } else {
       this.setState(() => ({ scroll: false }));

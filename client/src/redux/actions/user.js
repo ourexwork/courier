@@ -7,17 +7,47 @@ export const register = (user) => ({
 
 })
 
-export const errorRegister = (error) => ({
+export const errorRegister = (errors) => ({
     type: 'ERROR_USER',
-    error
+    errors
 
 })
 
+export const editUser = (id, updates) => ({
+    type: 'EDIT_USER',
+    id,
+    updates
+
+})
+
+export const setUsers = (users) => {
+    return {
+        type: 'SET_USERS',
+        users
+    }
+}
 
 
-export const startRegister = async(userData = {}) => {
+export const startEditUser = (id, updates) => {
 
-    return async(dispatch) => {
+    return (dispatch) => {
+        return axios.put(`/api/users/edit/${id}`, updates).then((data) => {
+            return dispatch(editUser(data))
+        }).catch((e) => {
+            if (e.response) {
+                const errorreg = { error: e.response.data.error }
+                console.log(errorreg)
+                dispatch(errorRegister(errorreg))
+                    // console.log(error.response.data)
+
+            }
+        })
+    }
+}
+
+export const startRegister = (userData = {}) => {
+
+    return (dispatch) => {
 
         const {
             firstName = '',
@@ -42,7 +72,7 @@ export const startRegister = async(userData = {}) => {
             confirm_password
         };
 
-        axios.post('api/users/register', user).then((data) => {
+        return axios.post('api/users/register', user).then((data) => {
             dispatch(register(data))
         }).catch((e) => {
             if (e.response) {
@@ -54,22 +84,27 @@ export const startRegister = async(userData = {}) => {
             }
         })
 
-        // try {
-        //     const apicall = await axios.post('api/users/register', user);
-        //     return apicall
-        // } catch (e) {
 
-        //     if (e.response) {
-        //         const errorreg = { error: e.response.data.error }
-        //         console.log(errorreg)
-        //         dispatch(errorRegister(errorreg))
-        //         console.log(e.response.data)
-        //     }
+    }
 
-        // }
+}
 
 
 
+export const startSetUsers = () => {
+    return (dispatch, getState) => {
+        // const uid = getState().auth.uid
+        return axios.get('/api/users/allusers').then((snapshot) => {
+            console.log(snapshot.data)
+
+            const users = [];
+            snapshot.data.forEach((childSnapshot) => {
+                users.push({
+                    ...childSnapshot
+                })
+            })
+            dispatch(setUsers(users))
+        })
     }
 
 }
