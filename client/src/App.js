@@ -22,12 +22,11 @@ store.dispatch(startSetShipments())
 class App extends Component {
   render() {
     return (
-      <Provider store = {store} >
-      <div className='App'>
-        <AppRouter />
-      </div>
+      <Provider store={store}>
+        <div className='App'>
+          <AppRouter />
+        </div>
       </Provider>
-
     );
   }
 }

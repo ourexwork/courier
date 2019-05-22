@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 export default class SearchTrack extends Component {
   state = {
@@ -31,19 +32,23 @@ export default class SearchTrack extends Component {
   render() {
     return (
       <>
-        <form className='form' onSubmit={this._onSubmit}>
-          <input
-            className='form__input'
-            value={this.state.trackid}
-            onChange={this._validateTrackId}
-            type='text'
-            placeholder='Track your shipment(FXED1234)'
-          />
-          {this.state.trackError && <span>{this.state.trackError}</span>}
-          <button className='form__submit' type='submit'>
+        <Form inline onSubmit={this._onSubmit}>
+          <FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
+            <Input
+              type='text'
+              className='form__input'
+              value={this.state.trackid}
+              onChange={this._validateTrackId}
+              id='searchTrack'
+              placeholder='Track your shipment(FXED1234)'
+            />
+          </FormGroup>
+          <Button outline size='lg'>
             Track
-          </button>
-        </form>
+          </Button>
+        </Form>
+
+        {this.state.trackError && <span>{this.state.trackError}</span>}
       </>
     );
   }

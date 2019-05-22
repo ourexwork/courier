@@ -1,11 +1,32 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import {
+  Container,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink as RsNavLink,
+  Row,
+  Col
+} from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import SearchTrack from './SearchTrack';
 
 export default class Navigation extends Component {
   state = {
-    scroll: false
+    scroll: false,
+    isOpen: false
+  };
+
+  // toggle the state of the navigation
+  toggleNavbar = () => {
+    this.setState(() => ({
+      isOpen: !this.state.isOpen
+    }));
   };
 
   addScroll = () => {
@@ -32,52 +53,53 @@ export default class Navigation extends Component {
     const navScroll = this.state.scroll ? 'nav--scroll' : '';
     return (
       // navigation components go in here
-      <nav className={' nav  fixed-top ' + navScroll}>
-        <div className='container'>
-          <div className='navigation'>
-            <a className='navbar-brand' href='#Brand'>
-              brand
-            </a>
+      <Navbar expand='md' className={'nav fixed-top ' + navScroll}>
+        <Container>
+          <NavbarBrand>brand</NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} className='mr-2' />
 
-            <div className='navigation__search'>
-              <SearchTrack />
-            </div>
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <SearchTrack />
 
-            <ul class='navigation__menu'>
-              <li className='navigation__menu-item'>
-                <a className='navigation__link ' href='#home'>
+            <Nav navbar className='ml-auto '>
+              <NavItem>
+                <RsNavLink className='navigation__link' href='#home'>
                   Home
-                </a>
-              </li>
-              <li className='navigation__menu-item'>
-                <a className='navigation__link' href='#about'>
+                </RsNavLink>
+              </NavItem>
+              <NavItem>
+                <RsNavLink className='navigation__link' href='#about'>
                   About
-                </a>
-              </li>
-              <li className='navigation__menu-item'>
-                <a className='navigation__link' href='#services'>
+                </RsNavLink>
+              </NavItem>
+              <NavItem>
+                <RsNavLink className='navigation__link' href='#services'>
                   Services
-                </a>
-              </li>
-              <li className='navigation__menu-item'>
-                <a className='navigation__link' href='#testimonial'>
+                </RsNavLink>
+              </NavItem>
+              <NavItem>
+                <RsNavLink className='navigation__link' href='#testimonial'>
                   Testimonial
-                </a>
-              </li>
-              <li className='navigation__menu-item '>
+                </RsNavLink>
+              </NavItem>
+              <NavItem>
                 <NavLink className='loginButton' to='/login'>
                   Login
                 </NavLink>
-              </li>
-              <li className='navigation__menu-item'>
+              </NavItem>
+              <NavItem>
                 <NavLink className='registerButton' to='/register'>
                   Register
                 </NavLink>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Container>
+      </Navbar>
     );
   }
 }
+
+Navbar.propTypes = {
+  expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+};

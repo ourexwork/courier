@@ -1,0 +1,12 @@
+footer {
+  background-color: $dark-blue;
+  color: $white;
+  overflow-x: hidden;
+  padding: $l-size 0;
+}
+
+hr.socket {
+  border-top: 0.2rem solid #666b71;
+  margin-top: $l-size;
+  width: 100%;
+}

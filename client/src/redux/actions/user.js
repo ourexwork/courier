@@ -75,8 +75,8 @@ export const startRegister = (userData = {}) => {
         };
 
         return axios.post('api/users/register', user).then((snapshot) => {
-
             dispatch(register(snapshot.data))
+            return { success: true }
         }).catch((e) => {
             if (e.response) {
                 const errorreg = { error: e.response.data.error }

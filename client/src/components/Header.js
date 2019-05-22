@@ -6,9 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import PropTypes from 'prop-types';
 
-
 // Style for the svg icon
-
 
 class Header extends Component {
   state = {
@@ -19,10 +17,6 @@ class Header extends Component {
           'We transfer goods as soon as you tell us to , we are at your service , lets put a smile on your face',
         button: 'Make A Shipment Order',
         image: '/images/slider/moving-truck.jpg'
-        // image: 'https://i.imgur.com/ZXBtVw7.jpg',
-        // user: 'Luan Gjokaj',
-
-        // userProfile: 'https://i.imgur.com/JSW6mEk.png'
       },
       {
         title:
@@ -31,9 +25,6 @@ class Header extends Component {
           'We understand the value of time, so we try to get to to work as soon as possible',
         button: 'Make A Shipment Order',
         image: '/images/slider/person-moving.jpg'
-        // image: 'https://i.imgur.com/DCdBXcq.jpg',
-        // user: 'Erich Behrens',
-        // userProfile: 'https://i.imgur.com/0Clfnu7.png'
       },
       {
         title: 'Your Cargo Is Always Safe With Us',
@@ -41,9 +32,6 @@ class Header extends Component {
           'Security of your goods is top priority, sit back and Relax',
         button: 'Make A Shipment Order',
         image: '/images/slider/plane.jpg'
-        // image: 'https://i.imgur.com/DvmN8Hx.jpg',
-        // user: 'Bruno Vizovskyy',
-        // userProfile: 'https://i.imgur.com/4KeKvtH.png'
       }
     ]
   };
@@ -71,15 +59,13 @@ class Header extends Component {
                 <div className='inner'>
                   <h1>{item.title}</h1>
                   <p>{item.description}</p>
-                  <button>{item.button}</button>
                 </div>
               </div>
             ))}
           </Slider>
-          <a href='#about'>
-            <KeyboardArrowDownIcon
-             className={classes.icon + ' arrow-down '} 
-             />
+
+          <a href='#about' className='arrow-down'>
+            <KeyboardArrowDownIcon className={classes.icon} />
           </a>
         </div>
       </ScrollableAnchor>

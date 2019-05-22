@@ -1,21 +1,18 @@
 const authDefaultState = {
-    _id: '',
-    username: '',
-    email: '',
-    error: ''
+  _id: '',
+  username: '',
+  email: '',
+  error: ''
 };
 
 export const authReducer = (state = authDefaultState, action) => {
-    switch (action.type) {
+  switch (action.type) {
+    case 'LOGIN_USER':
+      return {
+        ...action.auth
+      };
 
-        case 'LOGIN_USER':
-            return {
-                ...action.auth
-            };
-
-
-        default:
-            return state
-
-    }
-}
+    default:
+      return state;
+  }
+};

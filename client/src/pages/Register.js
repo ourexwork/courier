@@ -88,8 +88,12 @@ class RegisterPage extends React.Component {
     <span className="add-padding">
     <UserForm form="create" 
     Submit={ (user) => {
-    const a = startRegister(user).then(()=>{
-      this.props.history.push('/listuser')
+    return startRegister(user).then((d)=>{
+      console.log(d);
+      if (d.success === true ){
+        this.props.history.push('/listuser')
+      }
+     
     })
     
   }}/>
