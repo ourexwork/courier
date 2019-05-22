@@ -9,7 +9,7 @@ import ScrollToTop from '../components/ScrollToTop';
 
 export default class Home extends Component {
    state = {
-    scroll: false
+    scroll: true
   };
 
   Scroll =() =>{

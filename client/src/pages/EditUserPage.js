@@ -1,25 +1,15 @@
 import React from 'react';
-import {Link } from 'react-router-dom';
 import {connect } from 'react-redux'
 import { startEditUser} from '../redux/actions/user'
 import UserForm from '../components/Register'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
+
 import classNames from 'classnames';
-import {startSubmit,stopSubmit } from 'redux-form'
+
 //icons used
 
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
-import {Https, 
-  Visibility, 
-  VisibilityOff, 
-   Email , 
-   AccountCircle,
-  Home,
-  PhoneAndroid,
+import {
   PersonAdd
   } from '@material-ui/icons';
 
@@ -70,10 +60,14 @@ class EditUserPage extends React.Component {
   
     render()  
     {
-        const { classes,user , dispatch } = this.props;
+        const { classes,user , dispatch} = this.props;
         return(
-            <div className="box-layout">
-            <div className="register-container">
+          <div className="box-layout">
+            <div className="container ">
+            <div className="row center">
+            
+            <div className="edit-container">
+        
 <div className="tab">
 <div className="sign-in-text-reg">Update your profile </div> <div className="sign-in-text-reg">  <PersonAdd className={classNames(classes.icontab)} /></div> 
 </div>  
@@ -85,13 +79,15 @@ class EditUserPage extends React.Component {
     edit='a'
     initialValues={user}
     Submit={ async (data)=>{
-        const a = await this.props.startEditUser(user._id, data).then((a)=>{
-        })
+      const a = await dispatch(startEditUser(data._id, data ))
+      this.props.history.push(`/viewprofile/${data._id}`)
          
     }}/>
 
   </div>  
   </div>
+  </div>
+ </div>
  </div>
         )
     }
@@ -108,11 +104,9 @@ user: state.users.find((data)=>{
 })
 });
 
-const mapDispatchToProps = (dispatch) => ({ 
-  startEditUser: (userid, data) => dispatch(startEditUser(userid, data)) 
-});
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(EditUserPage))
+
+export default connect(mapStateToProps)(withStyles(styles)(EditUserPage))
 
 
 

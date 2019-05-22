@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect } from 'react-redux';
-import { startLogin} from '../redux/actions/auth';
-import ListUser from '../components/ListUser';
+
+
 import MaterialTable from 'material-table';
 import { SaveAlt , 
   Delete, 
@@ -12,7 +12,9 @@ LastPage,
  ChevronLeft,
 ChevronRight,
 FilterList, Remove, ViewColumn, ClearAll,
-ViewCompactOutlined
+Visibility,
+
+
 }  from '@material-ui/icons';
 
 
@@ -20,12 +22,13 @@ class ListUserPage extends React.Component {
    
     render()
     {
-      const { Users ,  dispatch } = this.props
+      const { Users ,  dispatch, classes } = this.props
         return(
         
             <div className="container mt-5">
-            {console.log(Users)}
+      
             <MaterialTable
+           
             icons ={{
               Search,
               Check,
@@ -42,32 +45,57 @@ class ListUserPage extends React.Component {
               ThirdStateCheck:Remove,
 
             }}
-        title="Speedex Users Table"
+           
+     
+        // headerStyle={{
+        //   color:'blue'
+        // }}
+title = { <div style={{fontSize:'2rem', color:'#1c88b' , fontStyle:'italic'}}>Speedex Users Data</div>}
         columns={[
-          { title: 'Name', field: 'name' },
-          { title: 'Email', field: 'email' },
-          { title: 'Status', field: 'status' },
+       
+          { title: 'Name', field: 'name',filtering:false},
+          { title: 'Email', field: 'email', filtering:false },
+          { title: 'Status', field: 'status' , },
           
         ]}
 // data = a.map(()=>{
 //   return {[]}
 // })
      data =  {Users.map((data)=>{
-       return  { name: `${data.firstName} ${data.lastName}`, email: data.email, status: String(data.isVerified), _id: data._id }
+       return  { name: `${data.firstName} ${data.lastName}`, email: data.email, status: data.isVerified ? 'Verified User': 'Not Verified', _id: data._id }
      })}
              
         actions={[
           {
-            icon: ViewCompactOutlined,
+            icon:Visibility,
             tooltip: 'View User',
-            onClick: (event, rowData) => this.props.history.push(`/edit/${rowData._id}`)
-          },
-          // {
-          //   icon: Delete,
-          //   tooltip: 'Delete User',
-          //   onClick: (event, rowData) => alert("You want to delete " + rowData.name)
-          // }
+            iconProps:{style:{color:'white'}},
+            onClick: (event, rowData) => this.props.history.push(`/viewprofile/${rowData._id}`)
+          }
         ]}
+        options={{
+          headerStyle: {
+            backgroundColor: '#1c88bf',
+            fontSize:'1.5rem',
+            color: '#FFF'
+          },
+          rowStyle: {
+            backgroundColor: '#f7f7f7',
+          
+          },
+          titleStyle:{
+            color:'#1c88bf',
+            backgroundColor: '#1c88bf',
+            fontSize: '5rem'
+          },
+          actionsCellStyle:{
+            backgroundColor: '#1c88bf',
+  
+          },
+          filtering:true
+
+
+        }}
       />
 
   </div>  

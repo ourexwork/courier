@@ -5,21 +5,14 @@ import { startRegister} from '../redux/actions/user'
 import UserForm from '../components/Register'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
+
 import classNames from 'classnames';
-import {startSubmit,stopSubmit } from 'redux-form'
+import Icon from '@material-ui/core/Icon';
 //icons used
 
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
-import {Https, 
-  Visibility, 
-  VisibilityOff, 
-   Email , 
-   AccountCircle,
-  Home,
-  PhoneAndroid,
+
+import {
+  
   PersonAdd
   } from '@material-ui/icons';
 
@@ -55,6 +48,15 @@ labelfield: {
 
 },
 
+icontab:{
+    color:'red',
+    display:'flex',
+    
+'@media (max-width:992px)':{
+  fontSize:23
+  }
+    },
+
 iconfield:{
 color: '#1c88bf',
 fontSize:15,
@@ -66,33 +68,38 @@ fontSize:15,
   })
 
 class RegisterPage extends React.Component {
-    onSubmit =   (user) => {
-   return this.props.startRegister(user).then((a)=>{
-    this.props.history.push('/')
-    }).catch((error)=>{
-console.log(error.message)
-    })
     
-  };
     render()
     {
-        const { classes } = this.props;
+        const { classes , startRegister} = this.props;
         return(
-            <div className="box-layout">
-            <div className="register-container">
-<div className="tab">
-<div className="sign-in-text-reg">create an account </div> <div className="sign-in-text-reg">  <PersonAdd className={classNames(classes.icontab)} /></div> 
-</div>  
 
+<div className="register-container register-form">
+ <div className="tab">
+<div className="sign-in-text"> <div className="logo">Speedex Logo</div>  </div>
 
-<div className="register-form" >        
-    <UserForm form="create" Submit={this.onSubmit}/>
+</div>
+<div className="icon-div"> 
+ <Icon className={classNames(classes.icontab)}>
+<PersonAdd />
+
+</Icon>
+</div> 
+    <span className="add-padding">
+    <UserForm form="create" 
+    Submit={ (user) => {
+    const a = startRegister(user).then(()=>{
+      this.props.history.push('/listuser')
+    })
+    
+  }}/>
+    </span>   
+   
     <div className="reg-text-reg">
 <Link to="/login"><span className="small ">Click to Log in if Already Registered</span></Link> 
 </div>
   </div>  
-  </div>
- </div>
+
         )
     }
 }

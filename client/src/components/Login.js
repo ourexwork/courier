@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import {Link } from 'react-router-dom';
 
-//validation api
-import { validateAll} from 'indicative'
+
 
 //material ui components
 import PropTypes from 'prop-types';
@@ -21,13 +20,20 @@ import Icon from '@material-ui/core/Icon';
 import Https from '@material-ui/icons/Https';
 //
 import {connect} from 'react-redux'
-import { Field, reduxForm , formValueSelector} from 'redux-form'
+import { Field, reduxForm } from 'redux-form'
 
 
 const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
+  },
+  loginButton:{
+    display: 'block',
+    width: '100%',
+    padding:'1rem',
+    background:'#364051'
+
   },
   margin: {
     margin: theme.spacing.unit,
@@ -36,25 +42,34 @@ const styles = theme => ({
     display: 'flex'
   },
   icontab:{
-    color:'white',
+    color:'red',
+    display:'flex',
     
+'@media (max-width:992px)':{
+  fontSize:23
+  }
     },
     
     field: {
   fontSize:13,
+  color:'#364051',
   '@media (max-width:450px)':{
     fontSize:12
   }
 
 },
 iconfield:{
-color: '#1c88bf',
+color: '#364051',
 fontSize:15,
 '@media (max-width:450px)':{
   fontSize:11
   }
 
 },
+link :{
+  textDecoration:'none'
+}
+
 
     
 });
@@ -107,7 +122,7 @@ const renderTextField = ({
   fullWidth={true}
    helperText={error &&touched?error:''}
  
-     variant={"outlined"}
+    //  variant={"outlined"}
  
 
  {...input}
@@ -133,7 +148,7 @@ const renderPasswordField = ({
           helperText={error &&touched?error:''}
           {...input}
           {...custom}
-          variant={"outlined"}
+          // variant={"outlined"}
         />
   )
 
@@ -151,23 +166,23 @@ class Login extends Component {
 
   };
 
-    
   render(){
-    const { classes , handleSubmit, auth} = this.props;
+    const { classes ,Submit, handleSubmit, auth, submitting} = this.props;
       return (
-<div className="contain">
+
 <div className="login-container">
 <div className="tab">
-<div className="sign-in-text">  Sign In </div> <div> 
+<div className="sign-in-text"> <div className="logo">Speedex Logo</div>  </div>
+
+</div>
+{ auth && auth.error && auth.error!= "" && <span className="error-text small alert-danger">{auth.error}!!!</span>}
+<div className="icon-div"> 
  <Icon className={classNames(classes.icontab)}>
 <Https />
 </Icon>
 </div>
-</div>
 
-{ auth && auth.error && auth.error!= "" && <span className="error-text small alert-danger">{auth.error}!!!</span>}
-<div className="login-form" >
-<form action="" onSubmit = { handleSubmit }>
+<form action="" className="login-form" onSubmit = { handleSubmit(Submit) }>
 <div className="input-field">
 <Field
           name="username"
@@ -202,18 +217,19 @@ class Login extends Component {
           InputLabelProps={{classNames: classes.field}}
         />
 </div>
+<Link className={classes.link} to="/register"><span className="small ">Forgot Password?</span></Link>
 <span classname="space">&nbsp;</span>
-        <Button type="submit" variant="contained" color='primary' className="btn-block" >Submit </Button>
+        <Button type="submit" variant="contained" color='primary' disabled={submitting} className={classes.loginButton} >Submit </Button>
 </form>
-</div>
+
 <div className="reg-text">
-<Link to="/register"><span className="small ">Click to Register</span></Link> 
-<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<Link to="/register"><span className="small ">Forgot Password?</span></Link> 
+ <Link to="/register"><span className="small ">Click to Register</span></Link> 
+
+ 
   
 </div>
  </div>
-    </div>
+   
       )
   }
 

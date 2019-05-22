@@ -15,20 +15,21 @@ import classNames from 'classnames';
 
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
-import {Https, 
+
+import { 
   Visibility, 
   VisibilityOff, 
    Email , 
    AccountCircle,
   Home,
   PhoneAndroid,
-  PersonAdd
   } from '@material-ui/icons';
 
  import Button from '@material-ui/core/Button';
 //
 import {connect} from 'react-redux';
 import { Field, reduxForm , formValueSelector} from 'redux-form';
+import { CircularProgress } from '@material-ui/core';
 // var mql = (window.matchMedia("screen and (maxWidth:4500)"))
 
 const styles = theme => ({
@@ -385,7 +386,7 @@ class UserForm extends Component {
       }
 
   <span classname="space">&nbsp;</span>
-     <Button variant="contained" color="primary" type="submit" className={classNames(classes.button)} disabled={submitting} >{this.props.edit ? 'Update':'Submit'} </Button>
+     <Button variant="contained" color="primary" type="submit" className={classNames(classes.button)} disabled={submitting} > {this.props.edit ? 'Update':'Submit'} &nbsp; {submitting  ? <CircularProgress  />:''} </Button>
 </form>
 </span>
 

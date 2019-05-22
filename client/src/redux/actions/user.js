@@ -31,8 +31,10 @@ export const setUsers = (users) => {
 export const startEditUser = (id, updates) => {
 
     return (dispatch) => {
-        return axios.put(`/api/users/edit/${id}`, updates).then((data) => {
-            return dispatch(editUser(data))
+        return axios.put(`/api/users/edit/${id}`, updates).then(() => {
+            console.log(updates._id)
+            console.log(id)
+            dispatch(editUser(id, updates))
         }).catch((e) => {
             if (e.response) {
                 const errorreg = { error: e.response.data.error }
@@ -72,8 +74,9 @@ export const startRegister = (userData = {}) => {
             confirm_password
         };
 
-        return axios.post('api/users/register', user).then((data) => {
-            dispatch(register(data))
+        return axios.post('api/users/register', user).then((snapshot) => {
+
+            dispatch(register(snapshot.data))
         }).catch((e) => {
             if (e.response) {
                 const errorreg = { error: e.response.data.error }
