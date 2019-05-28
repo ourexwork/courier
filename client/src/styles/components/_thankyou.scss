@@ -1,0 +1,36 @@
+.thankyou-background {
+    background: $white;
+    background: url('/images/smileonface.jpg') no-repeat center center/cover;
+    overflow: hidden;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.2)
+}
+
+.thankyou-text {
+    font-size: 3rem;
+    font-weight: 5rem;
+    line-height: 3rem;
+    padding: 2rem;
+    color: $white;
+}
+
+.thankyou-text.small {
+    font-size: 1.5rem
+}
+
+.thankyou-button {
+    border: 2px solid $dark-blue;
+    color: $dark-blue;
+    background-color: transparent;
+    transition: all 2s;
+    &:hover {
+        background-color: $blue;
+    }
+}
+
+.thank-you-align {
+    display: flex;
+    flex-direction: column;
+}

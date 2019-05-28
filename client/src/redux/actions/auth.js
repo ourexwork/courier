@@ -22,15 +22,20 @@ export const startLogin = (userData = {}) => {
 
         const user = { username, password };
 
-        axios.post('api/users/login', user).then((data) => {
+        return axios.post('api/users/login', user).then((snapshot) => {
+                console.log(snapshot)
 
-                localStorage.setItem('x-auth-token', data)
-                dispatch(login(data))
+                console.log(snapshot.headers.xauthtoken)
+
+                localStorage.setItem('x-auth-token', snapshot.headers.xauthtoken)
+                dispatch(login(snapshot.data))
+                return { success: true }
             }).catch((e) => {
 
                 const user = { _id: '', username: '', email: '', error: e.response.data.error }
                 dispatch(login(user))
-                    // console.log(error.response.data)
+                return { success: false }
+                // console.log(error.response.data)
 
             })
             // try {

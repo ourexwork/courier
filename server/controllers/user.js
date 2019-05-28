@@ -99,7 +99,7 @@ const loginUser = async(req, res) => {
         }
         // generate an authentication token for the user
         res
-            .header('x-auth-token', user.generateAuthToken())
+            .header('xAuthToken', user.generateAuthToken())
             .send(_.pick(user, ['_id', 'email']));
     } catch (error) {
         res.status(400).send({ error: error.message });
@@ -111,6 +111,7 @@ const loginUser = async(req, res) => {
 };
 
 // this function gets the current user
+//note the user id is sent from the header file to  from authentication
 const currentUser = async(req, res) => {
     const user = await User.findById(req.user._id).select('-password');
     res.send({ user });

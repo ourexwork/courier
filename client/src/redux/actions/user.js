@@ -83,7 +83,7 @@ export const startRegister = (userData = {}) => {
                 console.log(errorreg)
                 dispatch(errorRegister(errorreg))
                     // console.log(error.response.data)
-
+                return { success: false }
             }
         })
 

@@ -1,37 +1,45 @@
 html {
-  font-size: 62.5%;
+    font-size: 62.5%;
+}
+
+.button {
+    border: 0px;
+    border-color: none;
 }
 
 // the roboto font is not installed yet
 body {
-  background-color: $light-grey;
-  box-sizing: border-box;
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
-  font-size: 1.6rem;
+    background-color: $light-grey;
+    box-sizing: border-box;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+}
+
+.MuiTab-textColorPrimary-240 {
+    color: $blue
 }
 
 .section {
-  height: 100%;
-  padding: $l-size;
+    height: 100%;
+    padding: $l-size;
 }
 
 // For all titles on the homepage
 h3.title {
-  font-size: 3rem;
-  margin-bottom: 5.5rem;
-  text-transform: uppercase;
-
-  @media (max-width: 575px) {
     font-size: 3rem;
-    margin-bottom: 2rem;
-  }
+    margin-bottom: 5.5rem;
+    text-transform: uppercase;
+    @media (max-width: 575px) {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+    }
 }
 
 .title::after {
-  content: '';
-  width: 10rem;
-  height: 0.6rem;
-  display: block;
-  background-color: $blue;
-  margin-top: 0.2rem;
+    content: '';
+    width: 10rem;
+    height: 0.6rem;
+    display: block;
+    background-color: $blue;
+    margin-top: 0.2rem;
 }

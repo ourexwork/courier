@@ -2297,11 +2297,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-<<<<<<< HEAD
-classnames@^2.2.3, classnames@^2.2.5:
-=======
-classnames@^2.2.5, classnames@^2.2.6:
->>>>>>> bd452d805f920d6ae1ef6bd2f6f6659df7342760
+classnames@^2.2.3, classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
 
@@ -2649,7 +2645,6 @@ create-react-class@^15.6.0:
 create-react-context@<=0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/create-react-context/-/create-react-context-0.2.2.tgz#9836542f9aaa22868cd7d4a6f82667df38019dca"
-  integrity sha512-KkpaLARMhsTsgp0d2NA/R94F/eDLbhXERdIq3LvX2biCAXcDvHYoOqHfWCHf1+OLj+HKBotLG3KqaOOf+C1C+A==
   dependencies:
     fbjs "^0.8.0"
     gud "^1.0.0"
@@ -5647,6 +5642,10 @@ jump.js@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/jump.js/-/jump.js-1.0.1.tgz#0de2b1631ba9a1c2c6b8572ad277d877e8503600"
 
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+
 killable@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -5810,12 +5809,10 @@ lodash.debounce@^4.0.8:
 lodash.isfunction@^3.0.9:
   version "3.0.9"
   resolved "https://registry.yarnpkg.com/lodash.isfunction/-/lodash.isfunction-3.0.9.tgz#06de25df4db327ac931981d1bdb067e5af68d051"
-  integrity sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==
 
 lodash.isobject@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/lodash.isobject/-/lodash.isobject-3.0.2.tgz#3c8fb8d5b5bf4bf90ae06e14f2a530a4ed935e1d"
-  integrity sha1-PI+41bW/S/kK4G4U8qUwpO2TXh0=
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
@@ -5853,7 +5850,6 @@ lodash.throttle@^4.1.1:
 lodash.tonumber@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/lodash.tonumber/-/lodash.tonumber-4.0.3.tgz#0b96b31b35672793eb7f5a63ee791f1b9e9025d9"
-  integrity sha1-C5azGzVnJ5Prf1pj7nkfG56QJdk=
 
 lodash.uniq@^4.5.0:
   version "4.5.0"
@@ -7822,18 +7818,15 @@ react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
-<<<<<<< HEAD
-react-easy-swipe@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/react-easy-swipe/-/react-easy-swipe-0.0.16.tgz#5a3d949a8f975d05be92a818254315d1318a81ea"
-  integrity sha1-Wj2Umo+XXQW+kqgYJUMV0TGKgeo=
-  dependencies:
-    prop-types "^15.5.8"
-=======
 react-double-scrollbar@0.0.15:
   version "0.0.15"
   resolved "https://registry.yarnpkg.com/react-double-scrollbar/-/react-double-scrollbar-0.0.15.tgz#e915ab8cb3b959877075f49436debfdb04288fe4"
->>>>>>> bd452d805f920d6ae1ef6bd2f6f6659df7342760
+
+react-easy-swipe@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/react-easy-swipe/-/react-easy-swipe-0.0.16.tgz#5a3d949a8f975d05be92a818254315d1318a81ea"
+  dependencies:
+    prop-types "^15.5.8"
 
 react-error-overlay@^5.1.4:
   version "5.1.4"
@@ -7858,7 +7851,6 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
 react-popper@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-1.3.3.tgz#2c6cef7515a991256b4f0536cd4bdcb58a7b6af6"
-  integrity sha512-ynMZBPkXONPc5K4P5yFWgZx5JGAUIP3pGGLNs58cfAPgK67olx7fmLp+AdpZ0+GoQ+ieFDa/z4cdV6u7sioH6w==
   dependencies:
     "@babel/runtime" "^7.1.2"
     create-react-context "<=0.2.2"
@@ -7887,7 +7879,6 @@ react-redux@^7.0.2:
 react-responsive-carousel@^3.1.49:
   version "3.1.49"
   resolved "https://registry.yarnpkg.com/react-responsive-carousel/-/react-responsive-carousel-3.1.49.tgz#5a074c09965533f49163d79c7f86a46e0c0eaea2"
-  integrity sha512-mudzwtDUWY4Apl00V6ycYJxVdiggXF46GegGFdeR72FL9Km8RDyFPQFBqsaKWCX5uTxWkLEw5qgn2uHsn2gnJA==
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.5.8"
@@ -7987,17 +7978,13 @@ react-scrollable-anchor@^0.6.1:
     jump.js "1.0.1"
     prop-types "^15.5.10"
 
-<<<<<<< HEAD
-react-transition-group@^2.2.1, react-transition-group@^2.3.1:
-=======
 react-text-mask@^5.4.3:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/react-text-mask/-/react-text-mask-5.4.3.tgz#991efb4299e30c2e6c2c46d13f617169463e0d2d"
   dependencies:
     prop-types "^15.5.6"
 
-react-transition-group@^2.2.1, react-transition-group@^2.5.3:
->>>>>>> bd452d805f920d6ae1ef6bd2f6f6659df7342760
+react-transition-group@^2.2.1, react-transition-group@^2.3.1, react-transition-group@^2.5.3:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-2.9.0.tgz#df9cdb025796211151a436c69a8f3b97b5b07c8d"
   dependencies:
@@ -8028,7 +8015,6 @@ react@^16.4.1, react@^16.8.6:
 reactstrap@^8.0.0:
   version "8.0.0"
   resolved "https://registry.yarnpkg.com/reactstrap/-/reactstrap-8.0.0.tgz#db24d0127e58db89baa743dc660b65f611fe9b84"
-  integrity sha512-Rd7MyaFnZZXe1lbeBlgkxzyv+u7Z/ots0yYoO6ijT7/0uGsNwB1ch2h2t7Tf6u05jpbTFlLD+lyBEER0eibcQw==
   dependencies:
     "@babel/runtime" "^7.2.0"
     classnames "^2.2.3"
@@ -9413,7 +9399,6 @@ type-is@~1.6.16:
 typed-styles@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/typed-styles/-/typed-styles-0.0.7.tgz#93392a008794c4595119ff62dde6809dbc40a3d9"
-  integrity sha512-pzP0PWoZUhsECYjABgCGQlRGL1n7tOHsgwYv3oIiEpJwGhFTuty/YNeduxQYzXXa3Ge5BdT6sHYIQYpl4uJ+5Q==
 
 typedarray@^0.0.6:
   version "0.0.6"

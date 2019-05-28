@@ -29,10 +29,11 @@ const styles = theme => ({
     flexWrap: 'wrap',
   },
   loginButton:{
-    display: 'block',
-    width: '100%',
-    padding:'1rem',
-    background:'#364051'
+    width:'20rem',
+padding:'1.2rem',
+backgroundColor:'red',
+borderRadius:'30px',
+background:'transparent',
 
   },
   margin: {
@@ -171,10 +172,7 @@ class Login extends Component {
       return (
 
 <div className="login-container">
-<div className="tab">
-<div className="sign-in-text"> <div className="logo">Speedex Logo</div>  </div>
 
-</div>
 { auth && auth.error && auth.error!= "" && <span className="error-text small alert-danger">{auth.error}!!!</span>}
 <div className="icon-div"> 
  <Icon className={classNames(classes.icontab)}>
@@ -219,15 +217,16 @@ class Login extends Component {
 </div>
 <Link className={classes.link} to="/register"><span className="small ">Forgot Password?</span></Link>
 <span classname="space">&nbsp;</span>
-        <Button type="submit" variant="contained" color='primary' disabled={submitting} className={classes.loginButton} >Submit </Button>
+<span classname="space">&nbsp;</span>
+<span classname="space">&nbsp;</span>
+<div className="reglogintext-div">
+     <div>
+        <Button type="submit" variant="contained" color='primary' disabled={submitting} className={classes.loginButton} >  <span className="button-text">Sign In  </span> </Button>
+        </div>
+        </div>
 </form>
 
-<div className="reg-text">
- <Link to="/register"><span className="small ">Click to Register</span></Link> 
 
- 
-  
-</div>
  </div>
    
       )

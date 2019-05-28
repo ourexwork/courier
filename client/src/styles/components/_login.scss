@@ -1,192 +1,185 @@
-        .n {
-            display: flex;
-            justify-content: center;
-            align-self: flex-start;
-            align-content: center;
-            align-items: center;
-        }
-        
-        .align {
-            height: 100vh;
-            width: 100vw;
-            // background-color: rgba($color: $dark-blue, $alpha: 0.5) // margin-top: 10rem;
-            // margin-bottom: 10rem;
-        }
-        
-        .center {
-            display: flex;
-            justify-content: center;
-            align-self: center;
-            align-content: center;
-            align-items: center;
-            height: 100vh
-        }
-        
-        .center-view {
-            // display: flex;
-            // justify-content: center;
-            // align-self: flex-start;
-            // align-content: flex-start;
-            // align-items: center;
-            // height: 100vh
-        }
-        
-        .img {
-            // background-image: linear-gradient(#cdc8ec, #dfd6c6);
-            background: white;
-            // background: url('/images/smileonface.jpg');
-            height: 100vh;
-            width: 100vw;
-        }
-        
-        .image-right {
-            height: 100vh;
-            width: 100vw;
-            background: url('/images/smileonface.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            overflow: hidden;
-            // @media(max-width: 992px) {
-            //     display: none
-            // }
-        }
-        
-        .login-container {
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-            border-radius: 10px;
-            opacity: 0.9;
-            width: 25rem;
-            display: flex;
-            flex-direction: column;
-            align-content: space-between;
-            padding: 0rem 0rem 5rem 0rem;
-            justify-content: space-between;
-            background: rgb(252, 252, 252);
-            // height: 100%;
-            // border-bottom: .6rem solid darken($light-grey, 10%);
-            @media (max-width: 45rem) {
-                width: 25rem;
-            }
-        }
-        
-        .login-container:hover {
-            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-        }
-        
-        .tab {
-            align-items: center;
-            border-radius: 10px 10px 0 0;
-            background: $dark-blue;
-            display: flex;
-            justify-content: center;
-            padding: 1rem;
-            box-shadow: 0 4px 8px 0 rgba(58, 54, 54, 0.2);
-            transform: translate(2px, 2px);
-        }
-        
-        .login-form {
-            // margin-top: $s-size;
-            padding: $s-size;
-        }
-        
-        .logo {
-            -webkit-transition: all 2s ease-in-out;
-            -moz-transition: all 2s ease-in-out;
-            transition: all 2s ease-in-out;
-        }
-        
-        .logo:hover {
-            -webkit-transform: rotateY(360deg);
-            transform: rotateY(360deg)
-        }
-        
-        .error-text {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            padding: $m-size;
-            font-style: italic
-        }
-        
-        .input-field {
-            display: flex;
-            align-self: center;
-            justify-self: center;
-            margin-bottom: $s-size;
-        }
-        
-        .icon-div {
-            align-self: center;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background-color: rgb(184, 181, 177);
-            display: flex;
-            width: 5rem;
-            height: 5rem;
-            margin: 7px;
-            perspective: 500px;
-            @media(max-width: 992px) {
-                width: 3.5rem;
-                height: 3.5rem;
-            }
-        }
-        
-        .n {
-            display: flex;
-            justify-content: flex-start
-        }
-        
-        .reg-text {
-            display: flex;
-            align-content: center;
-            justify-content: center;
-            color: $white;
-        }
-        
-        .sign-in-text {
-            color: $white;
-            perspective: 500px
-        }
-        
-        .text {
-            text-transform: uppercase;
-            // font-family: verdana;
-            font-size: 5rem;
-            font-weight: 6;
-            opacity: 0.9;
-            // color: #f5f5f5;
-            color: $light-grey;
-            text-shadow: 0.5px 0.5px 0.5px #919191, 0.5px 1px 0.5px #919191, 0.5px 1px 0.5px #919191, 0.5px 1.5px 0.5px #919191, 0.5px 2px 0.5px #919191, 0.5px 2px 0.5px #919191, 0.5px 2px 1px #919191, 0.5px 3px 0.5px #919191, 0.5px 3px 0.5px #919191, 0.5px 3px 1px #919191, 0.5px 4px 2px rgba(16, 16, 16, 0.4), 0.5px 2px 2px rgba(16, 16, 16, 0.2), 0.5px 2px 2px rgba(16, 16, 16, 0.2), 0.5px 5px 10px rgba(16, 16, 16, 0.4);
-            // text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 60px rgba(16, 16, 16, 0.4);
-            @media(max-width: 992px) {
-                font-size: 1.5rem;
-                font-weight: 4;
-            }
-        }
-        
-        .text-div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-self: center;
-            margin-right: 8rem // left: 3rem // align-self: center;
-            // align-items: center;
-        }
-        
-        .text-center {
-            display: flex;
-            justify-content: center;
-            align-self: center;
-            align-content: center;
-            align-items: center;
-            margin: 0;
-        }
-        
-        .reg-button {
-            border-color: red;
-            opacity: 0.5;
-            width: 30rem;
-            padding: 1px;
-        }
+                .n {
+                    display: flex;
+                    justify-content: center;
+                    align-self: flex-start;
+                    align-content: center;
+                    align-items: center;
+                }
+                
+                .align {
+                    height: 100%;
+                    width: 100vw;
+                    // background-color: rgba($color: $dark-blue, $alpha: 0.5) // margin-top: 10rem;
+                    // margin-bottom: 10rem;
+                }
+                
+                .center {
+                    display: flex;
+                    justify-content: center;
+                    align-self: center;
+                    align-content: center;
+                    align-items: center;
+                    height: 100%;
+                    padding: 0
+                }
+                
+                .center.black {
+                    background: $white
+                }
+                
+                .img {
+                    // background-image: linear-gradient(#cdc8ec, #dfd6c6);
+                    background: white;
+                    // background: url('/images/smileonface.jpg');
+                    height: 100vh;
+                    width: 100vw;
+                }
+                
+                .image-right {
+                    height: 100vh;
+                    width: 100vw;
+                    background: url('/images/smileonface.jpg');
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    overflow: hidden;
+                    // @media(max-width: 992px) {
+                    //     display: none
+                    // }
+                }
+                
+                .login-container {
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                    transition: 0.3s;
+                    width: 100%; //new
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    background: $white;
+                    @media (max-width: 45rem) {
+                        // width: 25rem;
+                    }
+                }
+                
+                .login-container:hover {
+                    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+                }
+                
+                .login-form {
+                    padding: 0 5rem 4.8rem 5rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-content: center;
+                    align-content: center;
+                    position: absolute;
+                    top: 175px;
+                    width: 100%;
+                    // align-items: flex-end;
+                    @media (max-width: 45rem) {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+                
+                .logo {
+                    -webkit-transition: all 2s ease-in-out;
+                    -moz-transition: all 2s ease-in-out;
+                    transition: all 2s ease-in-out;
+                }
+                
+                .logo:hover {
+                    -webkit-transform: rotateY(360deg);
+                    transform: rotateY(360deg)
+                }
+                
+                .error-text {
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
+                    padding: $m-size;
+                    font-style: italic
+                }
+                
+                .input-field {
+                    display: flex;
+                    align-self: center;
+                    justify-self: center;
+                    // margin-bottom: $s-size;
+                }
+                
+                .icon-div {
+                    align-self: center;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    background-color: rgb(184, 181, 177);
+                    display: flex;
+                    width: 4rem;
+                    height: 4rem;
+                    margin: 5px;
+                    position: absolute;
+                    top: 50px;
+                    perspective: 500px;
+                    @media(max-width: 992px) {
+                        width: 3.5rem;
+                        height: 3.5rem;
+                    }
+                }
+                
+                .n {
+                    display: flex;
+                    justify-content: flex-start
+                }
+                
+                .reg-text {
+                    display: flex;
+                    align-content: center;
+                    justify-content: center;
+                    color: $white;
+                }
+                
+                .sign-in-text {
+                    color: $white;
+                    perspective: 500px
+                }
+                
+                .text {
+                    text-transform: uppercase;
+                    // font-family: verdana;
+                    font-size: 5rem;
+                    font-weight: 6;
+                    opacity: 0.9;
+                    // color: #f5f5f5;
+                    color: $light-grey;
+                    text-shadow: 0.5px 0.5px 0.5px #919191, 0.5px 1px 0.5px #919191, 0.5px 1px 0.5px #919191, 0.5px 1.5px 0.5px #919191, 0.5px 2px 0.5px #919191, 0.5px 2px 0.5px #919191, 0.5px 2px 1px #919191, 0.5px 3px 0.5px #919191, 0.5px 3px 0.5px #919191, 0.5px 3px 1px #919191, 0.5px 4px 2px rgba(16, 16, 16, 0.4), 0.5px 2px 2px rgba(16, 16, 16, 0.2), 0.5px 2px 2px rgba(16, 16, 16, 0.2), 0.5px 5px 10px rgba(16, 16, 16, 0.4);
+                    // text-shadow: 1px 1px 1px #919191, 1px 2px 1px #919191, 1px 3px 1px #919191, 1px 4px 1px #919191, 1px 5px 1px #919191, 1px 6px 1px #919191, 1px 7px 1px #919191, 1px 8px 1px #919191, 1px 9px 1px #919191, 1px 10px 1px #919191, 1px 18px 6px rgba(16, 16, 16, 0.4), 1px 22px 10px rgba(16, 16, 16, 0.2), 1px 25px 35px rgba(16, 16, 16, 0.2), 1px 30px 60px rgba(16, 16, 16, 0.4);
+                    @media(max-width: 992px) {
+                        font-size: 1.5rem;
+                        font-weight: 4;
+                    }
+                }
+                
+                .text-div {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-self: center;
+                    margin-right: 8rem // left: 3rem // align-self: center;
+                    // align-items: center;
+                }
+                
+                .text-center {
+                    display: flex;
+                    justify-content: center;
+                    align-self: center;
+                    align-content: center;
+                    align-items: center;
+                    margin: 0;
+                }
+                
+                .reg-button {
+                    border-color: red;
+                    opacity: 0.5;
+                    width: 30rem;
+                    padding: 1px;
+                }
