@@ -30,7 +30,7 @@ const styles = theme => ({
   },
   loginButton:{
     width:'20rem',
-padding:'1.2rem',
+padding:'1rem',
 backgroundColor:'red',
 borderRadius:'30px',
 background:'transparent',
@@ -45,6 +45,9 @@ background:'transparent',
   icontab:{
     color:'red',
     display:'flex',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     
 '@media (max-width:992px)':{
   fontSize:23

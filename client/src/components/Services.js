@@ -1,9 +1,9 @@
 import React from 'react';
-import ScrollableAnchor from 'react-scrollable-anchor';
+
 
 const Services = () => (
-  <ScrollableAnchor id={'services'}>
-    <section className='services'>
+
+    <section id='services' className='services'>
       <div className='container'>
         <div className='row'>
           <div className='col-xs-12 col-md-12'>
@@ -65,7 +65,7 @@ const Services = () => (
         </div>
       </div>
     </section>
-  </ScrollableAnchor>
+ 
 );
 
 export default Services;

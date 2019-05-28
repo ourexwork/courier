@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-animated-slider';
 import Navigation from './Navigation';
-import ScrollableAnchor from 'react-scrollable-anchor';
+
 import { withStyles } from '@material-ui/core/styles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import PropTypes from 'prop-types';
@@ -39,36 +39,34 @@ class Header extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <ScrollableAnchor id={'home'}>
-        <div className='header'>
-          <Navigation />
-          <Slider
-            previousButton
-            nextButton
-            autoplay={5000}
-            className='slider-wrapper'
-          >
-            {this.state.content.map((item, index) => (
-              <div
-                key={index}
-                className='slider-content'
-                style={{
-                  background: `url('${item.image}') no-repeat center center`
-                }}
-              >
-                <div className='inner'>
-                  <h1>{item.title}</h1>
-                  <p>{item.description}</p>
-                </div>
+      <section id='home' className='header'>
+        <Navigation />
+        <Slider
+          previousButton
+          nextButton
+          autoplay={5000}
+          className='slider-wrapper'
+        >
+          {this.state.content.map((item, index) => (
+            <div
+              key={index}
+              className='slider-content'
+              style={{
+                background: `url('${item.image}') no-repeat center center`
+              }}
+            >
+              <div className='inner'>
+                <h1>{item.title}</h1>
+                <p>{item.description}</p>
               </div>
-            ))}
-          </Slider>
+            </div>
+          ))}
+        </Slider>
 
-          <a href='#about' className='arrow-down'>
-            <KeyboardArrowDownIcon className={classes.icon} />
-          </a>
-        </div>
-      </ScrollableAnchor>
+        <a href='#about' className='arrow-down'>
+          <KeyboardArrowDownIcon className={classes.icon} />
+        </a>
+      </section>
     );
   }
 }
