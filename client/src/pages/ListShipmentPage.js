@@ -24,7 +24,6 @@ class ListShipmentPage extends React.Component {
         return(
         
             <div className="container mt-5">
-            {console.log(Users)}
             <MaterialTable
             icons ={{
               Search,
@@ -42,18 +41,18 @@ class ListShipmentPage extends React.Component {
               ThirdStateCheck:Remove,
 
             }}
-        title="Speedex Users Table"
+        title="Speedex Shipment Table"
         columns={[
+          { title: 'S/N', field: 'index' },
           { title: 'Name', field: 'name' },
-          { title: 'Email', field: 'email' },
           { title: 'Status', field: 'status' },
           
         ]}
 // data = a.map(()=>{
 //   return {[]}
 // })
-     data =  {Shipments.map((data)=>{
-       return  { name: `${data.firstName} ${data.lastName}`, email: data.email, status: String(data.isVerified), _id: data._id }
+     data =  {Shipments.map((data, index)=>{
+       return  { index:index + 1,  name: data.name , status: data.shipmentStatus, _id: data._id }
      })}
              
         actions={[
@@ -77,7 +76,7 @@ class ListShipmentPage extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-   Shipments: state.shipmets
+   Shipments: state.shipments
     };
 }
 

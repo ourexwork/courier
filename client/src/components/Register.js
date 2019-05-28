@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 
 //validation api
@@ -15,20 +16,21 @@ import classNames from 'classnames';
 
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
-import {Https, 
+
+import { 
   Visibility, 
   VisibilityOff, 
    Email , 
    AccountCircle,
   Home,
   PhoneAndroid,
-  PersonAdd
   } from '@material-ui/icons';
 
  import Button from '@material-ui/core/Button';
 //
 import {connect} from 'react-redux';
 import { Field, reduxForm , formValueSelector} from 'redux-form';
+import { CircularProgress } from '@material-ui/core';
 // var mql = (window.matchMedia("screen and (maxWidth:4500)"))
 
 const styles = theme => ({
@@ -50,6 +52,7 @@ fontSize:25
 
 field: {
   fontSize:13,
+  color: '#364051',
   '@media (max-width:450px)':{
     fontSize:12
   }
@@ -57,6 +60,7 @@ field: {
 },
 labelfield: {
   fontSize:15,
+  color: '#364051',
   '@media (max-width:450px)':{
     fontSize:11
   }
@@ -64,7 +68,7 @@ labelfield: {
 },
 
 iconfield:{
-color: '#1c88bf',
+  color: '#364051',
 fontSize:15,
 '@media (max-width:450px)':{
   fontSize:11
@@ -73,8 +77,12 @@ fontSize:15,
 },
 
 button:{
-width:'100%',
-padding:'1.5rem'
+width:'20rem',
+padding:'1rem',
+backgroundColor:'red',
+borderRadius:'30px',
+
+
 }
 
   
@@ -207,15 +215,10 @@ const renderTextField = ({
  label={label}
    error={error && touched}
   fullWidth={true}
-   helperText={error &&touched?error:''} 
-
-
+   helperText={error &&touched?error:''}  yyy
     {...input}
     {...custom}
     // variant={"outlined"}
-
-
-
   />
 )
 const renderPasswordField = ({
@@ -264,12 +267,12 @@ class UserForm extends Component {
 
     
   render(){
-    const { onSubmit , onSubmitFail, classes , handleSubmit, errors, Submit, submitting} = this.props;
+    const { pristine, invalid,  classes , handleSubmit, errors, Submit, submitting} = this.props;
       return (
 
-<span>
+<span className="register-form">
 {errors  && errors.error && errors.error!="" && <span className="error-text small alert-danger">{errors.error}</span>}
-<form  onSubmit = { handleSubmit(Submit) }>
+<form   onSubmit = { handleSubmit(Submit) }>
 
 <div className="input-field-line">
 <Field
@@ -327,8 +330,8 @@ class UserForm extends Component {
           name="address"
           component={renderTextField}
           label="address"
-          multiline={true}
-          rows={2}
+          // multiline={true}
+          // rows={2}
           InputProps={{className: classes.field  ,endAdornment: 
           <InputAdornment position="end">
           <Icon ><Home  className={classNames(classes.iconfield)}/></Icon>
@@ -359,9 +362,7 @@ class UserForm extends Component {
           }}
           InputLabelProps={{className: classes.labelfield}}
         />
-
         <div className="space-between">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
-       
         <Field
           name="confirm_password"
           component={renderPasswordField}
@@ -384,9 +385,19 @@ class UserForm extends Component {
 </div>
       }
 
-  <span classname="space">&nbsp;</span>
-     <Button variant="contained" color="primary" type="submit" className={classNames(classes.button)} disabled={submitting} >{this.props.edit ? 'Update':'Submit'} </Button>
+  <span >&nbsp;</span>
+  <div className="reglogintext-div">
+     <div>
+     <Button variant="contained" color="primary" type="submit" 
+     className={classNames(classes.button)} disabled={pristine || submitting} >
+      <span className="button-text">{this.props.edit ? 'Update':'Sign Up Now'} 
+      &nbsp;</span>  {submitting  ?
+       <CircularProgress  />:''}
+       </Button>
+     </div>
+     </div>
 </form>
+
 </span>
 
       )

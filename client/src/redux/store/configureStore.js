@@ -17,10 +17,10 @@ export default () => {
   const store = createStore(
     combineReducers({
       auth: authReducer,
+      users: userReducer,
+      shipments: shipmentReducer,
       error: errorReducer,
       form: formReducer,
-      shipments: shipmentReducer,
-      users: userReducer,
       testimonials: testimonialsReducer
     }),
     composeEnhancers(applyMiddleware(thunk))

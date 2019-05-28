@@ -1,0 +1,91 @@
+#left {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    outline: none;
+    background-color: transparent;
+    border: 2px solid $dark-blue;
+    &:hover {
+        background-color: $dark-blue
+    }
+}
+
+#right {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    outline: none;
+    background-color: transparent;
+    border: 2px solid $dark-blue;
+    &:hover {
+        background-color: $dark-blue
+    }
+}
+
+.myslider {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.myslide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out
+}
+
+.myslide.current {
+    opacity: 1;
+}
+
+.myslide .content {
+    background-color: rgba(255, 255, 255, 0.8);
+    bottom: 50px;
+    color: $dark-blue;
+    position: absolute;
+    opacity: 0;
+    width: 30rem;
+    right: -600px;
+    padding: 1rem;
+    font-size: 1rem
+}
+
+@media(max-width:45rem) {
+    .myslide.current .content {
+        opacity: 1;
+        transform: translateX(-700px);
+        transition: all 0.7s ease-in-out 0.3s;
+    }
+}
+
+.myslide.current .content {
+    opacity: 1;
+    transform: translateX(-830px);
+    transition: all 0.7s ease-in-out 0.3s;
+    @media(max-width: 45rem) {
+        transform: translateX(-650px);
+        transition: all 0.7s ease-in-out 0.3s;
+    }
+}
+
+.myslide .content h1 {
+    margin-bottom: 5px;
+}
+
+.myslide:first-child {
+    background: url('/images/boxgirl.jpg') no-repeat center center/cover;
+    overflow: hidden;
+}
+
+.myslide:nth-child(2) {
+    background: url('/images/update.jpg') no-repeat center top/cover;
+}
+
+// .slide:nth-child(3) {
+//     background: url('/images/smile.png') no-repeat center top/cover;
+// }

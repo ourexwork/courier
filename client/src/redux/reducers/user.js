@@ -16,13 +16,13 @@ export const userReducer = (state = userDefaultState, action) => {
             ]
 
         case 'EDIT_USER':
-            return state.map((data) => {
-                if (data.id === action.id) {
+            return state.map((user) => {
+                if (user._id === action.id) {
                     return {
-                        ...data,
+                        ...user,
                         ...action.updates
                     }
-                } else { return data }
+                } else { return user }
 
             })
 
