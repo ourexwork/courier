@@ -12,7 +12,7 @@
 //     }
 // }
 .butcus {
-    padding: $s-size;
+  padding: $s-size;
 }
 
 .register-container {
@@ -75,23 +75,13 @@
 }
 
 .input-field-line {
-<<<<<<< HEAD
   display: flex;
   justify-self: center;
   align-self: center;
-  // margin: 1rem;
+  margin: 1rem;
   @media (max-width: 45rem) {
     flex-direction: column;
   }
-=======
-    display: flex;
-    justify-self: center;
-    align-self: center;
-    margin: 1rem;
-    @media (max-width: 45rem) {
-        flex-direction: column;
-    }
->>>>>>> bd452d805f920d6ae1ef6bd2f6f6659df7342760
 }
 
 .reg-text-reg {
@@ -122,18 +112,11 @@
 }
 
 .space-between {
-<<<<<<< HEAD
   @media (max-width: 45rem) {
     display: none;
   }
 }
-=======
-    @media (max-width: 45rem) {
-        display: none
-    }
-}
 
 .Field {
-    line-height: 3px
+  line-height: 3px;
 }
->>>>>>> bd452d805f920d6ae1ef6bd2f6f6659df7342760

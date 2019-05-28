@@ -7,11 +7,11 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink as RsNavLink,
-  Row,
-  Col
+  NavItem
 } from 'reactstrap';
+
+import { animateScroll, Link } from 'react-scroll';
+
 import PropTypes from 'prop-types';
 
 import SearchTrack from './SearchTrack';
@@ -29,12 +29,23 @@ export default class Navigation extends Component {
     }));
   };
 
+  handleSetActive = () => {
+    // Check if the isOpen state is true
+    if (this.state.isOpen) {
+      setTimeout(() => {
+        this.setState(() => ({
+          isOpen: false
+        }));
+      }, 1500);
+    }
+  };
+
   addScroll = () => {
     // get the window scroll
     const offset = window.scrollY;
     if (offset > 100) {
       this.setState(() => ({
-        scroll: true 
+        scroll: true
       }));
     } else {
       this.setState(() => ({ scroll: false }));
@@ -63,31 +74,63 @@ export default class Navigation extends Component {
 
             <Nav navbar className='ml-auto '>
               <NavItem>
-                <RsNavLink className='navigation__link' href='#home'>
+                <Link
+                  className='navigation__link'
+                  to='home'
+                  spy
+                  smooth='easeInOutQuart'
+                  duration={2000}
+                  activeClass='nav__linkActive'
+                >
                   Home
-                </RsNavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <RsNavLink className='navigation__link' href='#about'>
+                <Link
+                  className='navigation__link'
+                  to='about'
+                  spy
+                  smooth='easeInOutQuart'
+                  duration={2000}
+                  activeClass='nav__linkActive'
+                  offset={-18}
+                  onSetActive={this.handleSetActive}
+                >
                   About
-                </RsNavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <RsNavLink className='navigation__link' href='#services'>
+                <Link
+                  className='navigation__link'
+                  to='services'
+                  spy
+                  smooth='easeInOutQuart'
+                  duration={2000}
+                  activeClass='nav__linkActive'
+                  onSetActive={this.handleSetActive}
+                >
                   Services
-                </RsNavLink>
+                </Link>
               </NavItem>
               <NavItem>
-                <RsNavLink className='navigation__link' href='#testimonial'>
+                <Link
+                  className='navigation__link'
+                  to='testimonial'
+                  spy
+                  smooth='easeInOutQuart'
+                  duration={2000}
+                  activeClass='nav__linkActive'
+                  onSetActive={this.handleSetActive}
+                >
                   Testimonial
-                </RsNavLink>
+                </Link>
               </NavItem>
-              <NavItem>
+              <NavItem style={{ textAlign: 'center' }}>
                 <NavLink className='loginButton' to='/login'>
                   Login
                 </NavLink>
               </NavItem>
-              <NavItem>
+              <NavItem style={{ textAlign: 'center' }}>
                 <NavLink className='registerButton' to='/register'>
                   Register
                 </NavLink>

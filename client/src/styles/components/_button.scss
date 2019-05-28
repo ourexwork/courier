@@ -17,7 +17,13 @@
   -moz-transition: all 0.5s ease-in-out;
   -ms-transition: all 0.5s ease-in-out;
   -o-transition: all 0.5s ease-in-out;
-  width: 100%;
+
+  @media (max-width: 767px) {
+    display: inline-block;
+    width: 20rem;
+    margin: 0 auto;
+  }
+
   &:hover {
     background-color: lighten($color: $blue, $amount: 5);
     border-color: lighten($color: $blue, $amount: 5);
