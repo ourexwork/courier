@@ -1,6 +1,4 @@
 import React from 'react';
-import { IconButton } from "@material-ui/core";
-import { ArrowLeft, ArrowRight } from "@material-ui/icons";
 class Slider extends React.Component {
 state = {
     auto :true,
@@ -28,7 +26,6 @@ componentWillUnmount(){
   myNextslide(){
       //get current myslide
       const current = document.querySelector('.current');
-      const myslide = document.querySelector('.myslide');
       const myslides =  document.querySelectorAll('.myslide');
       //remove current class
     

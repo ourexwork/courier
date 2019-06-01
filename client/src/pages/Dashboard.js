@@ -63,9 +63,9 @@ class Dashboard extends Component {
 
   componentDidMount(){
     
-    if (this.props.customers == true){
+    if (this.props.customers === true){
         this.showCustomers()
-    } if (this.props.shipment == true){
+    } if (this.props.shipment === true){
         this.showShipments()
     }
 
@@ -164,6 +164,7 @@ showDashboard (args){
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };
+
 
 export default withStyles(dashboardStyle)(Dashboard);
 

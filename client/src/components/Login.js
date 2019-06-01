@@ -46,7 +46,6 @@ background:'transparent',
   icontab:{
     color:'red',
     display:'flex',
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     fontSize:20,
@@ -178,7 +177,7 @@ class Login extends Component {
 
 <div className="login-container">
 
-{ auth && auth.error && auth.error!= "" && <span className="error-text small alert-danger">{auth.error}!!!</span>}
+{ auth && auth.error && auth.error!== "" && <span className="error-text small alert-danger">{auth.error}!!!</span>}
 
 
 <form action="" className="login-form" onSubmit = { handleSubmit(Submit) }>

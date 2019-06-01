@@ -5,27 +5,22 @@ import clsx from 'clsx';
 
 // Material-Ui Core
 import { withStyles } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
 
-import Typography from '@material-ui/core/Typography';
-
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+
 
 //Stylesheet
  import { dashboardStyle } from '../components/MaterialUi/jss/dashboardStyle';
  import Chart from '../components/MaterialUi/Chart';
 import Deposits from '../components/MaterialUi/Deposits';
 import Orders from '../components/MaterialUi/Orders';
-import ListUserPage from '../pages/ListUserPage';
-import ListShipmentPage from '../pages/ListShipmentPage';
+
 
 
 function  DashboardInner  (props)  {
    
-   const { match ,classes} = props;
+   const {classes} = props;
    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 return (
 

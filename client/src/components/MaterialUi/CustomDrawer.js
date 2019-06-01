@@ -32,9 +32,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 //
 
 import {history} from '../../routers/AppRouter';
-import { Link} from 'react-router-dom';
 
-import { MainListItems, secondaryListItems } from './listItems';
 
 class  CustomDrawer extends React.Component {
 
@@ -61,7 +59,7 @@ render()
       <Divider />
       <List>
       <div>
-   <ListItem button button  onClick={()=>{
+   <ListItem button onClick={()=>{
       history.push('/dashboard');
   }}>
       <ListItemIcon>
@@ -71,7 +69,7 @@ render()
     </ListItem>
  
  
-    <ListItem button button  onClick={()=>{
+    <ListItem button onClick={()=>{
       history.push('/dashboard/listshipment');
      }} >
       <ListItemIcon>

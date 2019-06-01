@@ -76,7 +76,7 @@ class EditUserPage extends React.Component {
 <div className="register-form" >        
     <UserForm
     form="update" 
-    edit='a'
+    // edit='a'
     initialValues={user}
     Submit={ async (data)=>{
       const a = await dispatch(startEditUser(data._id, data ))

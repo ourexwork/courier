@@ -3,15 +3,14 @@ import {connect } from 'react-redux';
 
 
 import MaterialTable from 'material-table';
-import { SaveAlt , 
-  Delete, 
+import { SaveAlt ,  
    Search, 
    Check, Clear, 
    FirstPage, 
 LastPage,
  ChevronLeft,
 ChevronRight,
-FilterList, Remove, ViewColumn, ClearAll,
+FilterList, Remove, ViewColumn, 
 ViewCompactOutlined
 }  from '@material-ui/icons';
 
@@ -20,7 +19,7 @@ class ListShipmentPage extends React.Component {
    
     render()
     {
-      const { Shipments ,  dispatch } = this.props
+      const { Shipments  } = this.props
         return(
         
             <div className="container mt-5">

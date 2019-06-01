@@ -11,7 +11,9 @@ import {
   NavItem
 } from 'reactstrap';
 
-import { animateScroll, Link } from 'react-scroll';
+ import { 
+  //animateScroll,
+   Link } from 'react-scroll';
 
 import PropTypes from 'prop-types';
 

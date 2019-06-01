@@ -2,7 +2,7 @@ import React  from 'react';
 import Login from './Login';
 import Register from './Register'
 import Slider from '../components/Slider'
-import { Link } from 'react-router-dom'
+
 
  import {connect } from 'react-redux';
 
@@ -19,11 +19,11 @@ constructor(props){
 
 
 componentDidMount(){
-    if (this.props.login == true){
+    if (this.props.login === true){
         this.showLogin()
     }
 
-    if (this.props.register == true){
+    if (this.props.register === true){
         this.showRegister()
     }
 
@@ -47,7 +47,7 @@ redirectToLogin(){
 
 
 render(){
-     const {user } = this.props
+
     return (
         <div className="container-fluid align img">
         

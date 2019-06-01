@@ -1,7 +1,7 @@
-import React,{Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import {Router, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './configureAnchor';
 import {connect } from 'react-redux';
 import { store } from '../App'
@@ -21,7 +21,7 @@ import ListShipmentPage from '../pages/ListShipmentPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import { startSetUsers } from '../redux/actions/user';
 import { startSetShipments } from '../redux/actions/shipment';
-import PrivateUserRoute from './PrivateUserRoute'
+import PrivateAdminRoute from './PrivateAdminRoute'
 
 export const dashboardStyle = theme => ({
     root: {
@@ -85,9 +85,9 @@ render ()
           <div className={classes.appBarSpacer} />
           <Container maxWidth='lg' className={classes.container}>
       <Switch>
-      <PrivateUserRoute path={match.url} exact={true} component={DashboardInner} />
-      <PrivateUserRoute path={match.url+'/listuser'}  exact={true} component={ListUserPage} />
-      <PrivateUserRoute path={match.url+'/listshipment'}  exact={true} component={ListShipmentPage} />
+      <PrivateAdminRoute path={match.url} exact={true} component={DashboardInner} />
+      <PrivateAdminRoute path={match.url+'/listuser'}  exact={true} component={ListUserPage} />
+      <PrivateAdminRoute path={match.url+'/listshipment'}  exact={true} component={ListShipmentPage} />
       <Route  component={NotFoundPage} />
       </Switch>
       </Container>

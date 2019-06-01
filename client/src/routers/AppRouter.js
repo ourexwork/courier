@@ -1,35 +1,16 @@
-import React,{Component} from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 
-import classNames from 'classnames';
 import {Router, Route, Switch } from 'react-router-dom';
 import './configureAnchor';
 import {createBrowserHistory} from 'history';
-import {connect } from 'react-redux';
 
-
-import CssBaseline from '@material-ui/core/CssBaseline';
-
-
-import Typography from '@material-ui/core/Typography';
-
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 
 import Home from '../pages/Home';
-import Dashboard from '../pages/Dashboard';
-import Register from '../pages/Register';
-import LoginPage from '../pages/Login';
+
 import LoginRegisterPage from '../pages/loginRegisterPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ThankyouPage from '../pages/ThankYouPage' ;
-import ListUserPage from '../pages/ListUserPage';
-import ListShipmentPage from '../pages/ListShipmentPage';
-import EditUserPage from '../pages/EditUserPage';
-import ViewUserPage from '../pages/ViewUserPage';
+
 import DashboardRouter from './DashboardRouter'
 
 // Stylesheet

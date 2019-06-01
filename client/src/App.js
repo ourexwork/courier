@@ -12,7 +12,7 @@ import './styles/App.scss';
 // import './setupProxy'
 
 // Routing
-import AppRouter, { history } from './routers/AppRouter';
+import AppRouter from './routers/AppRouter';
 
 export const store = configureStore();
 

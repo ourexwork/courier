@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 
 // Material-Ui Core
 import { withStyles } from '@material-ui/core/styles';
 
-import Typography from '@material-ui/core/Typography';
-
-import Link from '@material-ui/core/Link';
 
 // Custom Material Components
 import AppBar from '../components/MaterialUi/CustomAppBar';
@@ -32,13 +29,10 @@ class DashboardNav extends Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+    // const { classes } = this.props;
 
     return (
         <React.Fragment>
-    
-
         <AppBar open={this.state.open} toggleDrawer={this.toggleDrawer} />
 
         <Drawer 

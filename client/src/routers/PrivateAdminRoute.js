@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
 
- const PrivateUserRoute = ({
+ const PrivateAdminRoute = ({
   isAuthenticated,
   component: Component,
   ...rest
@@ -20,7 +20,7 @@ import { Route, Redirect } from 'react-router-dom';
   );
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth._id !== ''
+  isAuthenticated: !!state.auth._id && state.auth.isAdmin
 });
 
-export default connect(mapStateToProps)(PrivateUserRoute)
+export default connect(mapStateToProps)(PrivateAdminRoute)

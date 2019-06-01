@@ -4,14 +4,13 @@ import {connect } from 'react-redux';
 
 import MaterialTable from 'material-table';
 import { SaveAlt , 
-  Delete, 
    Search, 
    Check, Clear, 
    FirstPage, 
 LastPage,
  ChevronLeft,
 ChevronRight,
-FilterList, Remove, ViewColumn, ClearAll,
+FilterList, Remove, ViewColumn, 
 Visibility,
 
 
@@ -22,7 +21,7 @@ class ListUserPage extends React.Component {
    
     render()
     {
-      const { Users ,  dispatch, classes } = this.props
+      const { Users  } = this.props
         return(
         
             <div className="container mt-5">
@@ -126,10 +125,6 @@ title = { <div style={{fontSize:'1rem', color:'#1c88b' , fontStyle:'italic'}}>Sp
             backgroundColor: '#0248ff',
   
           },
-
-         rowStyle:{
-          backgroundColor: '#1c88bf'
-         },
           rowData:{
             backgroundColor: '#fff',
             fontSize:'3rem'
