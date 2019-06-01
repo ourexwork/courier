@@ -13,6 +13,7 @@ export const startSetShipments = () => {
                 })
             })
             dispatch(setShipments(shipments))
+
         })
     }
 

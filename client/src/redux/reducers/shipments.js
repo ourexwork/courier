@@ -9,7 +9,7 @@ export const shipmentReducer = (state = shipmentDefaultState, action) => {
             ]
 
         default:
-            return shipmentDefaultState
+            return state
 
     }
 }

@@ -30,7 +30,6 @@ import ListUserPage from '../pages/ListUserPage';
 import ListShipmentPage from '../pages/ListShipmentPage';
 import EditUserPage from '../pages/EditUserPage';
 import ViewUserPage from '../pages/ViewUserPage';
-import DashboardTop from '../pages/dashboardtop';
 import DashboardRouter from './DashboardRouter'
 
 // Stylesheet
@@ -60,6 +59,7 @@ const HomeRoute = ({match}) => {
 
         )}
         />
+        <Route path={match.url+'register/thankyou'} exact={true}  component={ThankyouPage} />
         <Route component={NotFoundPage} />
     </Switch>
   );

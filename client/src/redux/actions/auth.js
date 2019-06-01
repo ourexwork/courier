@@ -32,7 +32,7 @@ export const startLogin = (userData = {}) => {
                 return { success: true }
             }).catch((e) => {
 
-                const user = { _id: '', username: '', email: '', error: e.response.data.error }
+                const user = { _id: '', username: '', isAdmin: false, email: '', error: e.response.data.error }
                 dispatch(login(user))
                 return { success: false }
                 // console.log(error.response.data)

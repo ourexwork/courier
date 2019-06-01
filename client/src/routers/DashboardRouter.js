@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import {Router, Route, Switch } from 'react-router-dom';
 import './configureAnchor';
 import {connect } from 'react-redux';
-
+import { store } from '../App'
 
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -19,6 +19,9 @@ import ListUserPage from '../pages/ListUserPage';
 import ListShipmentPage from '../pages/ListShipmentPage';
 // dashboard Notfound text will still be customized or redirected//
 import NotFoundPage from '../pages/NotFoundPage';
+import { startSetUsers } from '../redux/actions/user';
+import { startSetShipments } from '../redux/actions/shipment';
+import PrivateUserRoute from './PrivateUserRoute'
 
 export const dashboardStyle = theme => ({
     root: {
@@ -58,10 +61,20 @@ function MadeWithLove() {
       </Typography>
     );
   }
-    function  DashboardRoute  (props)  {
-   
-      const { match ,classes} = props;
- 
+    class  DashboardRoute extends React.Component  {
+
+
+   componentDidMount(){
+       if (this.props.user.isAdmin){
+ store.dispatch(startSetShipments());
+ store.dispatch(startSetUsers());  
+   }
+}
+     
+render ()
+
+{
+    const { match ,classes} = this.props; 
   return (
 
     <div className={classes.root}>
@@ -72,9 +85,10 @@ function MadeWithLove() {
           <div className={classes.appBarSpacer} />
           <Container maxWidth='lg' className={classes.container}>
       <Switch>
-      <Route path={match.url} exact={true} component={DashboardInner} />
-      <Route path={match.url+'/listuser'}  exact={true} component={ListUserPage} />
-      <Route path={match.url+'/listshipment'}  exact={true} component={ListShipmentPage} />
+      <PrivateUserRoute path={match.url} exact={true} component={DashboardInner} />
+      <PrivateUserRoute path={match.url+'/listuser'}  exact={true} component={ListUserPage} />
+      <PrivateUserRoute path={match.url+'/listshipment'}  exact={true} component={ListShipmentPage} />
+      <Route  component={NotFoundPage} />
       </Switch>
       </Container>
        <MadeWithLove />
@@ -83,12 +97,16 @@ function MadeWithLove() {
 
       ) 
     }
-  
-  
+}
+  const mapStateToProps = (state)=>{
+      return {
+    user : state.auth
+  }
+}
   
   DashboardRoute.propTypes = {
     classes: PropTypes.object.isRequired
   };
   
    
-   export default withStyles(dashboardStyle)(DashboardRoute);
+   export default connect(mapStateToProps)(withStyles(dashboardStyle)(DashboardRoute));

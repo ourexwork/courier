@@ -100,7 +100,7 @@ const loginUser = async(req, res) => {
         // generate an authentication token for the user
         res
             .header('xAuthToken', user.generateAuthToken())
-            .send(_.pick(user, ['_id', 'email']));
+            .send(_.pick(user, ['_id', 'email', 'isAdmin']));
     } catch (error) {
         res.status(400).send({ error: error.message });
 
