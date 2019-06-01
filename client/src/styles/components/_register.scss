@@ -1,249 +1,258 @@
 .butcus {
-  padding: $s-size;
+    padding: $s-size;
 }
 
 .button-text {
-  color: aliceblue;
-  font-size: 1.5rem;
-  font-weight: 1rem;
+    color: aliceblue;
+    font-size: 1.5rem;
+    font-weight: 1rem;
 }
 
 .reglogin-text {
-  color: $blue;
-  font-size: 1.5rem;
-  font-weight: 1rem;
-  display: flex;
-  justify-self: center;
-  justify-items: center;
-  align-items: center;
+    color: $blue;
+    font-size: 1.5rem;
+    font-weight: 1rem;
+    display: flex;
+    justify-self: center;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.5s;
+    padding: 2rem;
+    margin: 1rem;
+    &:hover {
+        color: $light-blue;
+        font-size: 1.7rem;
+        font-weight: 1.3rem;
+    }
 }
 
 .register-container {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  // border-radius: 10px;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  // margin: 2rem;
-  flex-direction: column;
-  background: #ffffff;
-  @media (max-width: 45rem) {
-    // width: 45rem; new
-  }
-  // @media (max-height: 341px) {
-  //     padding: 0 0 180px 0
-  // }
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    // border-radius: 10px;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    // margin: 2rem;
+    flex-direction: column;
+    background: #ffffff;
+    @media (max-width: 45rem) {
+        // width: 45rem; new
+    }
+    // @media (max-height: 341px) {
+    //     padding: 0 0 180px 0
+    // }
 }
 
 .register-container:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .edit-container {
-  background: rgb(252, 252, 252);
-  opacity: 0.9;
-  border-bottom: 0.6rem solid darken($light-grey, 10%);
-  max-width: 100rem;
-  width: 50rem; // height: 50rem;
-  justify-content: space-between;
-  @media (max-width: 45rem) {
-    margin: 3rem;
-    // height: 30rem;
-  }
-  @media (max-height: 640px) {
-  }
+    background: rgb(252, 252, 252);
+    opacity: 0.9;
+    border-bottom: 0.6rem solid darken($light-grey, 10%);
+    max-width: 100rem;
+    width: 50rem; // height: 50rem;
+    justify-content: space-between;
+    @media (max-width: 45rem) {
+        margin: 3rem;
+        // height: 30rem;
+    }
+    @media (max-height: 640px) {}
 }
 
 .tab {
-  align-items: center;
-  box-shadow: 2px;
-  background: $dark-blue;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin-bottom: $s-size;
+    align-items: center;
+    box-shadow: 2px;
+    background: $dark-blue;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: $s-size;
 }
 
 .register-form {
-  padding: 0 5rem 4.8rem 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  @media (max-width: 45rem) {
+    padding: 0 5rem 4.8rem 5rem;
     display: flex;
     flex-direction: column;
-  }
+    justify-content: center;
+    @media (max-width: 45rem) {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .add-padding {
-  margin: 0 $s-size 0 $s-size;
+    margin: 0 $s-size 0 $s-size;
 }
 
 .input-field {
-  margin: 0.5rem;
-  width: 100%;
+    margin: 0.5rem;
+    width: 100%;
 }
 
 .error-text {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: $m-size;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: $m-size;
 }
 
 .input-field-line {
-  display: flex;
-  width: 100%;
-  margin: 0 0.5rem 0 0.5rem;
-  @media (max-width: 45rem) {
-    flex-direction: column;
-  }
+    display: flex;
+    width: 100%;
+    margin: 0 0.5rem 0 0.5rem;
+    @media (max-width: 45rem) {
+        flex-direction: column;
+    }
 }
 
 .sign-in-text-reg {
-  font-weight: $m-size;
-  font-size: $m-size;
-  font-family: Helvetica;
-  color: $white;
-  // margin-bottom: $m-size;
+    font-weight: $m-size;
+    font-size: $m-size;
+    font-family: Helvetica;
+    color: $white;
+    // margin-bottom: $m-size;
 }
 
 .space {
-  margin-bottom: $xs-size;
+    margin-bottom: $xs-size;
 }
 
 .space-between {
-  @media (max-width: 45rem) {
-    display: none;
-  }
+    @media (max-width: 45rem) {
+        display: none;
+    }
 }
 
 .typewriter {
-  overflow: hidden;
-  border-right: 0.15em solid orange;
-  white-space: nowrap;
-  margin: 0 auto;
-  letter-spacing: 0.15em;
-  animation: typing 7.1s steps(40, end), blink-caret 0.75s step-end infinite;
-  @keyframes typing {
-    from {
-      width: 0;
+    overflow: hidden;
+    border-right: 0.15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typing 7.1s steps(40, end), blink-caret 0.75s step-end infinite;
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
     }
-    to {
-      width: 100%;
-    }
-  }
 }
 
 .pad {
-  padding: 0 0 100px 0;
+    padding: 0 0 100px 0;
 }
 
 .typewriter2 {
-  overflow: hidden;
-  border-right: 0.15em solid orange;
-  white-space: nowrap;
-  margin: 0 auto;
-  letter-spacing: 0.15em;
-  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
-  @keyframes typing {
-    from {
-      width: 0;
+    overflow: hidden;
+    border-right: 0.15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: 0.15em;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    @keyframes typing {
+        from {
+            width: 0;
+        }
+        to {
+            width: 100%;
+        }
     }
-    to {
-      width: 100%;
+    @keyframes blink-caret {
+        from,
+        to {
+            border-color: transparent;
+        }
+        50% {
+            border-color: none;
+        }
     }
-  }
-  @keyframes blink-caret {
-    from,
-    to {
-      border-color: transparent;
-    }
-    50% {
-      border-color: none;
-    }
-  }
 }
 
 .Field {
-  line-height: 3px;
+    line-height: 3px;
 }
 
 .butcus {
-  padding: $s-size;
+    padding: $s-size;
 }
 
 .error-text {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  padding: $m-size;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: $m-size;
 }
 
 .input-field {
-  align-self: center;
-  display: flex;
-  justify-self: center;
-  // margin: 1rem; // padding: $s-size
+    align-self: center;
+    display: flex;
+    justify-self: center;
+    // margin: 1rem; // padding: $s-size
 }
 
 .input-field-line {
-  display: flex;
-  justify-self: center;
-  align-self: center;
-  // margin: 1rem;
-  @media (max-width: 45rem) {
-    flex-direction: column;
-  }
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    // margin: 1rem;
+    @media (max-width: 45rem) {
+        flex-direction: column;
+    }
 }
 
 .sign-in-text-reg {
-  font-weight: $m-size;
-  font-size: $m-size;
-  font-family: Helvetica;
-  color: $white;
-  // margin-bottom: $m-size;
+    font-weight: $m-size;
+    font-size: $m-size;
+    font-family: Helvetica;
+    color: $white;
+    // margin-bottom: $m-size;
 }
 
 .space {
-  margin-top: $l-size;
-  margin-bottom: $l-size;
+    margin-top: $l-size;
+    margin-bottom: $l-size;
 }
 
 .space-between {
-  @media (max-width: 45rem) {
-    display: none;
-  }
+    @media (max-width: 45rem) {
+        display: none;
+    }
 }
 
 .sign-in {
-  position: absolute;
-  bottom: 100px;
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  @media (max-width: 992px) {
-    bottom: 60px;
-  }
-  @media (max-height: 501px) {
-    bottom: 0px;
-  }
+    position: absolute;
+    bottom: 100px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    @media (max-width: 992px) {
+        bottom: 60px;
+    }
+    @media (max-height: 501px) {
+        bottom: 0px;
+    }
 }
 
 .sign-in.login {
-  @media (max-width: 992px) {
-    bottom: 200px;
-  }
-  @media screen and (max-height: 812px) and (max-width: 767.98px) {
-    bottom: 110px;
-  }
+    @media (max-width: 992px) {
+        bottom: 200px;
+    }
+    @media screen and (max-height: 812px) and (max-width: 767.98px) {
+        bottom: 110px;
+    }
 }
 
 .reglogintext-div {
-  display: flex;
-  flex-direction: row;
-  align-content: space-around;
-  justify-content: center;
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: center;
 }

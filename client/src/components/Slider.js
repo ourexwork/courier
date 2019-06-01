@@ -10,11 +10,11 @@ state = {
 }
 
   componentDidMount(){
-   const prev =  document.querySelector('#left');
-   prev.addEventListener('click', e=> {this.myPrevslide()});
+//    const prev =  document.querySelector('#left');
+//    prev.addEventListener('click', e=> {this.myPrevslide()});
 
-   const next =  document.querySelector('#right');
- next.addEventListener('click', e=> {this.myNextslide()});
+//    const next =  document.querySelector('#right');
+//  next.addEventListener('click', e=> {this.myNextslide()});
 
  if (this.state.auto){
      this.state.setinterval = setInterval(this.myNextslide, this.state.intervalTime)
@@ -22,7 +22,9 @@ state = {
 
   };
 
-
+componentWillUnmount(){
+    
+}
   myNextslide(){
       //get current myslide
       const current = document.querySelector('.current');
@@ -89,10 +91,7 @@ setTimeout(() => {
 
 
 </div>
-<div class="buttons">
-<button id="left" ><ArrowLeft /> </button>
-<button id="right"><ArrowRight /> </button>
-</div>
+
 </>
 
 );

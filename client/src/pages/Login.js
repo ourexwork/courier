@@ -22,7 +22,7 @@ class LoginPage extends React.Component {
     {
         return(
             <React.Fragment>
-            <Login Submit={this.onSubmit}/>
+            <Login register={this.props.register} Submit={this.onSubmit}/>
           </React.Fragment>
            
             

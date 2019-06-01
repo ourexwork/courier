@@ -61,6 +61,7 @@ class RegisterPage extends React.Component {
     return (
       <div>
         <UserForm
+          login={this.props.login}
           form='create'
           Submit={user => {
             return startRegister(user).then(d => {

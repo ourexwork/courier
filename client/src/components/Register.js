@@ -31,8 +31,7 @@ import {
 import {connect} from 'react-redux';
 import { Field, reduxForm , formValueSelector} from 'redux-form';
 import { CircularProgress } from '@material-ui/core';
-// var mql = (window.matchMedia("screen and (maxWidth:4500)"))
-
+import {history} from '../routers/AppRouter';
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -278,7 +277,7 @@ class UserForm extends Component {
 <Field
           name="firstName"
           component={renderTextField}
-          label="firstname"
+          label="first name"
           InputProps={{className: classes.field  ,endAdornment: 
           <InputAdornment position="end">
           <Icon><AccountCircle className={classNames(classes.iconfield)} /></Icon>
@@ -398,6 +397,10 @@ class UserForm extends Component {
      </div>
 </form>
 
+<div className="reglogin-text"onClick={()=>{
+  history.replace('/login');
+  this.props.login();
+}}>Already have an account? Sign In. </div>
 </span>
 
       )

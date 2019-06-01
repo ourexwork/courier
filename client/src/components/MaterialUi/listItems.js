@@ -13,8 +13,10 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import { history } from "../../routers/AppRouter";
+import {Link } from 'react-router-dom';
 
-export const mainListItems = (
+export const MainListItems = (
   <div>
     <ListItem button>
       <ListItemIcon>
@@ -28,11 +30,15 @@ export const mainListItems = (
       </ListItemIcon>
       <ListItemText primary='Orders' />
     </ListItem>
-    <ListItem button>
+    <ListItem button  onClick={()=> {
+      history.goForward(history.push('/dashboard/listuser',{c:true}))
+    
+    
+    }}>
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary='Customers' />
+    <ListItemText primary='Customers'  />
     </ListItem>
     <ListItem button>
       <ListItemIcon>

@@ -50,19 +50,42 @@ class ListUserPage extends React.Component {
         // headerStyle={{
         //   color:'blue'
         // }}
-title = { <div style={{fontSize:'2rem', color:'#1c88b' , fontStyle:'italic'}}>Speedex Users Data</div>}
+title = { <div style={{fontSize:'1rem', color:'#1c88b' , fontStyle:'italic'}}>Speedex Users Data</div>}
         columns={[
+          { title: 'S/N', field: 'index',cellStyle:{
+            backgroundColor:'red',
+            width:'5px',
+            fontSize:'1.2rem',
+            color:'#fff'
+          }, filtering:true},
+          { title: 'Name', field: 'name',filtering:false,cellStyle:{
+            fontSize:'1.2rem',
+            color:'#fff'
+          }},
+          { title: 'Email', field: 'email', filtering:false ,cellStyle:{
+            fontSize:'1.2rem',
+            color:'#fff'
+          }},
+          { title: 'Status', field: 'status' ,cellStyle:{
+            fontSize:'1.2rem',
+            color:'#fff'
+          } },
+        
+         ]
+         
        
-          { title: 'Name', field: 'name',filtering:false},
-          { title: 'Email', field: 'email', filtering:false },
-          { title: 'Status', field: 'status' , },
-          
-        ]}
+        }
 // data = a.map(()=>{
 //   return {[]}
 // })
-     data =  {Users.map((data)=>{
-       return  { name: `${data.firstName} ${data.lastName}`, email: data.email, status: data.isVerified ? 'Verified User': 'Not Verified', _id: data._id }
+     data = {Users.map((data,index)=>{
+       return  { index:index + 1, name:<span>{data.firstName}</span>, 
+       email: data.email,
+        status: 
+        data.isVerified ? 'Verified User': 
+         'Not Verified' , _id: data._id
+        }
+        
      })}
              
         actions={[
@@ -73,30 +96,62 @@ title = { <div style={{fontSize:'2rem', color:'#1c88b' , fontStyle:'italic'}}>Sp
             onClick: (event, rowData) => this.props.history.push(`/viewprofile/${rowData._id}`)
           }
         ]}
+
+      
         options={{
           headerStyle: {
-            backgroundColor: '#1c88bf',
-            fontSize:'1.5rem',
+            backgroundColor: '#0248ff',
+            fontSize:'1.2rem',
             color: '#FFF'
           },
-          rowStyle: {
-            backgroundColor: '#f7f7f7',
+          rowStyle:
+           rowData => ({
+// fontSize:'5px',backgroundColor:'blue',
+
+
+          }),
+          fontSize:'5px'
           
-          },
+          ,
+
+        
+          
+      
           titleStyle:{
             color:'#1c88bf',
             backgroundColor: '#1c88bf',
-            fontSize: '5rem'
+            fontSize: '3rem'
           },
           actionsCellStyle:{
-            backgroundColor: '#1c88bf',
+            backgroundColor: '#0248ff',
   
+          },
+
+         rowStyle:{
+          backgroundColor: '#1c88bf'
+         },
+          rowData:{
+            backgroundColor: '#fff',
+            fontSize:'3rem'
+          },
+          filterCellStyle: {
+            backgroundColor: '#fff',
+            fontSize:'3rem'
+          },
+          columnStyle:{
+            backgroundColor: '#fff',
+            fontSize:'3rem',
+            textAlign:'center'
           },
           filtering:true
 
 
         }}
+     
+
       />
+
+      
 
   </div>  
         )

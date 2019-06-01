@@ -19,8 +19,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import Https from '@material-ui/icons/Https';
 //
-import {connect} from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
+import {connect} from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
+import {history} from '../routers/AppRouter';
 
 
 const styles = theme => ({
@@ -48,6 +49,7 @@ background:'transparent',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    fontSize:20,
     
 '@media (max-width:992px)':{
   fontSize:23
@@ -66,7 +68,7 @@ iconfield:{
 color: '#364051',
 fontSize:15,
 '@media (max-width:450px)':{
-  fontSize:11
+  fontSize:13
   }
 
 },
@@ -177,13 +179,14 @@ class Login extends Component {
 <div className="login-container">
 
 { auth && auth.error && auth.error!= "" && <span className="error-text small alert-danger">{auth.error}!!!</span>}
-<div className="icon-div"> 
+
+
+<form action="" className="login-form" onSubmit = { handleSubmit(Submit) }>
+<div className="icon-div "> 
  <Icon className={classNames(classes.icontab)}>
 <Https />
 </Icon>
 </div>
-
-<form action="" className="login-form" onSubmit = { handleSubmit(Submit) }>
 <div className="input-field">
 <Field
           name="username"
@@ -227,8 +230,13 @@ class Login extends Component {
         <Button type="submit" variant="contained" color='primary' disabled={submitting} className={classes.loginButton} >  <span className="button-text">Sign In  </span> </Button>
         </div>
         </div>
-</form>
 
+        <div className="reglogin-text"onClick={()=>{
+  history.replace('/register');
+  this.props.register();
+}}>Register to get started </div>
+
+</form>
 
  </div>
    
