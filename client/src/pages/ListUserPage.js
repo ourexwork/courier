@@ -105,7 +105,7 @@ title = { <div style={{fontSize:'1rem', color:'#1c88b' , fontStyle:'italic'}}>Sp
           },
           rowStyle:
            rowData => ({
-// fontSize:'5px',backgroundColor:'blue',
+ fontSize:'5px',backgroundColor:'blue',
 
 
           }),
