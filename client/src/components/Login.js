@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 import Button from '@material-ui/core/Button';
 
@@ -182,7 +182,7 @@ class Login extends Component {
 
 <form action="" className="login-form" onSubmit = { handleSubmit(Submit) }>
 <div className="icon-div "> 
- <Icon className={classNames(classes.icontab)}>
+ <Icon className={classnames(classes.icontab)}>
 <Https />
 </Icon>
 </div>
@@ -193,9 +193,9 @@ class Login extends Component {
           label="username"
              InputProps={{className: classes.field ,endAdornment:
            <InputAdornment position="end">
-           <Icon ><AccountCircle className={classNames(classes.iconfield)} />
+           <Icon ><AccountCircle className={classnames(classes.iconfield)} />
            </Icon></InputAdornment> } }
-           InputLabelProps={{classNames: classes.field}}
+           InputLabelProps={{classnames: classes.field}}
         />
 </div>
 
@@ -205,25 +205,24 @@ class Login extends Component {
           component={renderPasswordField}
           label="password"
           type={this.state.showPassword ? 'text' : 'password'}
-          InputProps={{classNames: classes.field,
+          InputProps={{classnames: classes.field,
             endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                   aria-label="Toggle password visibility"
                   onClick={this.handleClickShowPassword}
                 >
-                  {this.state.showPassword ? <VisibilityOff className={classNames(classes.iconfield)}/> : <Visibility className={classNames(classes.iconfield)}/>}
+                  {this.state.showPassword ? <VisibilityOff className={classnames(classes.iconfield)}/> : <Visibility className={classnames(classes.iconfield)}/>}
                 </IconButton>
               </InputAdornment>
             ),
           }}
-          InputLabelProps={{classNames: classes.field}}
+          InputLabelProps={{classnames: classes.field}}
         />
 </div>
 <Link className={classes.link} to="/register"><span className="small ">Forgot Password?</span></Link>
-<span classname="space">&nbsp;</span>
-<span classname="space">&nbsp;</span>
-<span classname="space">&nbsp;</span>
+<span className="space">&nbsp;</span>
+
 <div className="reglogintext-div">
      <div>
         <Button type="submit" variant="contained" color='primary' disabled={submitting} className={classes.loginButton} >  <span className="button-text">Sign In  </span> </Button>

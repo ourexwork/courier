@@ -28,11 +28,11 @@ componentWillUnmount(){
       const current = document.querySelector('.current');
       const myslides =  document.querySelectorAll('.myslide');
       //remove current class
-    
+    //   current.classList.remove('current'); 
 if ( myslides.length >1 ) {
-   
+ 
     if(current.nextElementSibling){
-        current.classList.remove('current');
+        
           current.nextElementSibling.classList.add('current');
       }
 else{
@@ -41,7 +41,7 @@ else{
 setTimeout(() => {
     current.classList.remove('current');
  
-});
+},5000);
 }
      
 

@@ -23,33 +23,55 @@ hasRendered= true;
 
 ReactDOM.render(<p> Loading.. </p>, document.getElementById('root'));
 
+const checkAuth =  ()=>{
+    try {
+        const token = localStorage.getItem('x-auth-token');
+      const user = jwtDecode(token);
+      return Promise.resolve(user);
+    }
 
-  const setReduxAuth = async()=>{
-    const token = localStorage.getItem('x-auth-token');
-if (token) {
-    const user = jwtDecode(token);
-  store.dispatch(login(user));
-
-
-    if (user.isAdmin) {
-    await store.dispatch(startSetShipments());
-   await store.dispatch(startSetUsers());
-  return { state:true}
-  }
-else{
-  return {state:false}
+    catch(e) {
+      
+            return Promise.reject(e);
+    }
+  
 }
-  }
-  }
+
+ checkAuth().then((user)=>{
+    if (user) {
+    store.dispatch(login(user));
+        if (!!user.isAdmin) {
+     store.dispatch(startSetShipments());
+     store.dispatch(startSetUsers());
+   if(history.location.pathname==='/login' ){
+        history.push('/dashboard')  
+    }
+    else if (!user.isAdmin){
+        if(history.location.pathname==='/login' ){
+        history.push(`/dashboard/${user._id}`)   
+    }
+}
+    }
+    renderApp();
+
+
+}
+
+ }).catch((e)=>{
+     console.log(e)
+    renderApp();
+})
+ 
+
+ 
+
+
   
 
-  setReduxAuth().then(()=>{
-renderApp();
-    if(history.location.pathname==='/login'){
-        history.push('/dashboard')  
-    };
-    return
-})
+
+
+
+
 
 
 
