@@ -19,10 +19,6 @@ const styles = theme => ({
   textField: {
     display: 'flex'
   },
-  icontab: {
-    color: 'white',
-    fontSize: 25
-  },
 
   field: {
     fontSize: 13,
@@ -57,15 +53,16 @@ const styles = theme => ({
 
 class RegisterPage extends React.Component {
   render() {
-    const { classes, startRegister } = this.props;
+    const { startRegister } = this.props;
     return (
       <div>
         <UserForm
+          login={this.props.login}
           form='create'
           Submit={user => {
             return startRegister(user).then(d => {
               if (typeof d !== undefined && d.success === true) {
-                this.props.history.push('/thankyou');
+                this.props.history.push('/register/thankyou');
               } else {
                 console.log('error');
               }

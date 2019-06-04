@@ -85,10 +85,10 @@ class Slider extends React.Component {
         </div>
         <div class='buttons'>
           <button id='left'>
-            <ArrowLeft />{' '}
+            <ArrowLeft />
           </button>
           <button id='right'>
-            <ArrowRight />{' '}
+            <ArrowRight />
           </button>
         </div>
       </>

@@ -1,46 +1,58 @@
-import React from 'react';
-import {Router, Route, Switch } from 'react-router-dom';
+import React, { Suspense } from 'react';
+
+import { Router, Route, Switch } from 'react-router-dom';
 import './configureAnchor';
-import {createBrowserHistory} from 'history';
-import Home from '../pages/Home';
-import Dashboard from '../pages/Dashboard';
-import Register from '../pages/Register';
-import LoginPage from '../pages/Login';
+import { createBrowserHistory } from 'history';
+
 import LoginRegisterPage from '../pages/loginRegisterPage';
 import NotFoundPage from '../pages/NotFoundPage';
-import ThankyouPage from '../pages/ThankYouPage' ;
-import ListUserPage from '../pages/ListUserPage';
-import ListShipmentPage from '../pages/ListShipmentPage';
-import EditUserPage from '../pages/EditUserPage';
-import ViewUserPage from '../pages/ViewUserPage';
+import ThankyouPage from '../pages/ThankYouPage';
+
+import DashboardRouter from './DashboardRouter';
+import PublicRoute from './PublicRoute';
+import Preloader from '../components/Preloader';
+
+const Home = React.lazy(() => import('../pages/Home'));
+// Stylesheet
+// import { dashboardStyle } from '../components/MaterialUi/jss/dashboardStyle';
 
 export const history = createBrowserHistory();
-const AppRouter = () => (
-  <Router history ={history}>
-    <>
-      <Switch>
-        <Route path='/' component={Home} exact />
-        <Route path='/login'
-        render = {(props)=>(
-          <LoginRegisterPage {...props} login={true}/>
-        )}
-        />
-        <Route path='/register'
-        render = {(props)=>(
-          <LoginRegisterPage {...props} register={true}/>
 
-        )}
+const HomeRoute = ({ match }) => {
+  return (
+    <Suspense fallback={<Preloader />}>
+      <Switch>
+        <Route path={match.url} exact={true} component={Home} />
+
+        <PublicRoute
+          path={match.url + 'login'}
+          component={() => <LoginRegisterPage login={true} />}
         />
-        <Route path='/thankyou' component={ThankyouPage} exact />
-        <Route path='/edit/:id' component={EditUserPage} exact />
-        <Route path='/dashboard' component={Dashboard} exact />
-        <Route path='/listuser' component={ListUserPage} />
-        <Route path='/viewprofile/:id' component={ViewUserPage} />
-        <Route path='/listshipment' component={ListShipmentPage} exact />
+        <Route
+          path={match.url + 'register'}
+          exact={true}
+          render={props => <LoginRegisterPage {...props} register={true} />}
+        />
+        <Route
+          path={match.url + 'register/thankyou'}
+          exact={true}
+          component={ThankyouPage}
+        />
         <Route component={NotFoundPage} />
       </Switch>
-    </>
+    </Suspense>
+  );
+};
+
+const AppRouter = props => (
+  <Router history={history}>
+    <React.Fragment>
+      <Switch>
+        <Route path='/dashboard/' {...props} component={DashboardRouter} />
+        <Route path='/' component={HomeRoute} />
+      </Switch>
+    </React.Fragment>
   </Router>
 );
 
-export default AppRouter; 
+export default AppRouter;

@@ -9,11 +9,13 @@ const ScrollToTop = (props) => (
           background: 'white',
           top: '60rem',
           height: '3rem',
+          width:'3rem',
           // width: '12rem',
           position: 'fixed',
           right: '2rem',
           borderRadius:'50%',
-          opacity:'0.6'
+          opacity:'0.6',
+          textAlign:'center'
         }}
 
       >

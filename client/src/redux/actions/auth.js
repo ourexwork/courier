@@ -27,6 +27,7 @@ export const startLogin = (userData = {}) => {
         const user = {
           _id: '',
           username: '',
+          isAdmin: false,
           email: '',
           error: e.response.data.error
         };

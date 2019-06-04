@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
 
-
-//validation api
-import { validateAll} from 'indicative'
 
 //material ui components
 import PropTypes from 'prop-types';
@@ -29,10 +25,9 @@ import {
  import Button from '@material-ui/core/Button';
 //
 import {connect} from 'react-redux';
-import { Field, reduxForm , formValueSelector} from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { CircularProgress } from '@material-ui/core';
-// var mql = (window.matchMedia("screen and (maxWidth:4500)"))
-
+import {history} from '../routers/AppRouter';
 const styles = theme => ({
   root: {
     display: 'flex',
@@ -88,65 +83,7 @@ borderRadius:'30px',
   
 });
 
-const validateUpdate = values => {
-  const errors = {}
-  const requiredFields = [
-  
-      {name:'firstName',label:'first name'},
-      {name:'lastName',label:'last name'},
-      {name:'email',label:'email'},
-      {name:'phoneNumber',label:'phone number'},
-      {name:'address',label:'address'},
-      // {name:'password',label:'password'},
-      // {name:'confirm_password',label:'password'},
-
-  
-  ]
-  requiredFields.forEach(field => {
-    if (!values[field.name]) {
-      errors[field.name] = `This ${field.label} is Required`;
-      console.log(errors)
-    }
-
-    if (values.firstName && values.firstName.length <= 5){
-      errors.username = 'username or email length is not up to 6'
-    }
-
-    if (values.address && values.address.length <= 11){
-      errors.username = 'username or email length is not up to 11'
-    }
-
-    if (
-    values.email &&
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-  ) {
-    errors.email = 'Invalid email address'
-  }
-
-   
-  // if(values.password && !/^((?=[a-z])(?=.*[A-Z))]))|((?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9])))|((?=.{6,}))$/i.test(values.password)){
-  //   errors.password = 'password should have atleast Uppercase, number and character'
-  // }
-if (typeof values.password !== undefined){
-  if(!values.password){
-errors.password = 'Password is required'
-  }
-  if (values.password !== values.confirm_password){
-    errors.confirm_password = 'Passwords do not match'
-
-  }
-
-     if (values.password && values.password.length <= 5){
-      errors.password = 'password length is not up to 6'
-    }
-}
-  
-
-  })
- 
-  return errors
-}
-
+// 
 const validate = values => {
   const errors = {}
   const requiredFields = [
@@ -207,7 +144,7 @@ const renderTextField = ({
   type,
 
 
-  meta: { asyncValidating, touched, error },
+  meta: {  touched, error },
   ...custom
 }) => (
 
@@ -267,18 +204,18 @@ class UserForm extends Component {
 
     
   render(){
-    const { pristine, invalid,  classes , handleSubmit, errors, Submit, submitting} = this.props;
+    const { pristine, classes , handleSubmit, errors, Submit, submitting} = this.props;
       return (
 
 <span className="register-form">
-{errors  && errors.error && errors.error!="" && <span className="error-text small alert-danger">{errors.error}</span>}
+{errors  && errors.error && errors.error!=="" && <span className="error-text small alert-danger">{errors.error}</span>}
 <form   onSubmit = { handleSubmit(Submit) }>
 
 <div className="input-field-line">
 <Field
           name="firstName"
           component={renderTextField}
-          label="firstname"
+          label="first name"
           InputProps={{className: classes.field  ,endAdornment: 
           <InputAdornment position="end">
           <Icon><AccountCircle className={classNames(classes.iconfield)} /></Icon>
@@ -398,6 +335,10 @@ class UserForm extends Component {
      </div>
 </form>
 
+<div className="reglogin-text"onClick={()=>{
+  history.replace('/login');
+  this.props.login();
+}}>Already have an account? Sign In. </div>
 </span>
 
       )

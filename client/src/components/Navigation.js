@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {
   Container,
@@ -10,13 +11,15 @@ import {
   NavItem
 } from 'reactstrap';
 
-import { animateScroll, Link } from 'react-scroll';
+ import { 
+  //animateScroll,
+   Link } from 'react-scroll';
 
 import PropTypes from 'prop-types';
 
 import SearchTrack from './SearchTrack';
 
-export default class Navigation extends Component {
+class Navigation extends Component {
   state = {
     scroll: false,
     isOpen: false
@@ -124,8 +127,18 @@ export default class Navigation extends Component {
                 >
                   Testimonial
                 </Link>
+                
               </NavItem>
-              <NavItem style={{ textAlign: 'center' }}>
+        
+              {this.props.user ?  
+                <NavItem style={{ textAlign: 'center' }}>
+                <NavLink className='loginButton' to='/dashboard'>
+                dashboard
+                </NavLink>
+              </NavItem>
+                :
+                <React.Fragment>
+                <NavItem style={{ textAlign: 'center' }}>
                 <NavLink className='loginButton' to='/login'>
                   Login
                 </NavLink>
@@ -134,7 +147,10 @@ export default class Navigation extends Component {
                 <NavLink className='registerButton' to='/register'>
                   Register
                 </NavLink>
-              </NavItem>
+                </NavItem>
+                </React.Fragment>
+              }
+             
             </Nav>
           </Collapse>
         </Container>
@@ -146,3 +162,10 @@ export default class Navigation extends Component {
 Navbar.propTypes = {
   expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
+const mapStateToProps= (state)=>{
+  return{
+    user : !!state.auth._id
+  }
+}
+
+export default connect(mapStateToProps)(Navigation)
