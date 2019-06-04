@@ -40,10 +40,10 @@ class ListShipmentPage extends React.Component {
               ThirdStateCheck:Remove,
 
             }}
-        title="Speedex Shipment Table"
+            title = { <div style={{fontSize:'1rem', color:'#1c88b'}}>Speedex Shipment Data</div>}
         columns={[
           { title: 'S/N', field: 'index',cellStyle:{
-            backgroundColor:'red',
+            backgroundColor:'#1c88bf',
             fontSize:'1.2rem',
             color:'#fff',
             width:'10px'
@@ -66,7 +66,7 @@ class ListShipmentPage extends React.Component {
             color:'#fff'
           }
         },
-       
+   
           
         ]}
 // data = a.map(()=>{
@@ -92,22 +92,22 @@ class ListShipmentPage extends React.Component {
 
         options={{
           headerStyle: {
-            backgroundColor: '#0248ff',
+            backgroundColor: '#364051',
             fontSize:'1.2rem',
             color: '#FFF'
           },
         
             rowStyle:{
-          backgroundColor: '#1c88bf'
+          backgroundColor: '#364051'
          },
       
           titleStyle:{
-            color:'#1c88bf',
-            backgroundColor: '#1c88bf',
-            fontSize: '3rem'
+            color:'#364051',
+            backgroundColor: '#364051',
+            fontSize: '1rem'
           },
           actionsCellStyle:{
-            backgroundColor: '#0248ff',
+            backgroundColor: '#364051',
   
           },
 

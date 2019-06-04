@@ -42,23 +42,20 @@ const HomeRoute = ({match}) => {
         )}
         />
         <Route path={match.url+'register/thankyou'} exact={true}  component={ThankyouPage} />
-        <Route component={NotFoundPage} />
+        <Route  component={NotFoundPage}  />
     </Switch>
   );
 };
-
-
-
-
-
 
 
  const AppRouter = (props) => (
   <Router history ={history}>
     <React.Fragment>
       <Switch>
-      <Route path='/dashboard/' {...props} component={DashboardRouter}  />
-      <Route path='/' component={HomeRoute} />  
+      <Route path='/dashboard/' {...props} component={DashboardRouter}   />
+      <Route path='/' component={HomeRoute}  />  
+     
+      
     </Switch>
     </React.Fragment>
   </Router>

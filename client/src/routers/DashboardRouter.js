@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Route, Switch } from 'react-router-dom';
+import {Router, Route, Switch, Redirect } from 'react-router-dom';
 import './configureAnchor';
 import {connect } from 'react-redux';
 import { store } from '../App'
-
+import {history } from './AppRouter'
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 
@@ -77,6 +77,7 @@ render ()
     const { match ,classes} = this.props; 
   return (
 
+<React.Fragment>
     <div className={classes.root}>
         <CssBaseline />
       <DashboardTop />
@@ -88,12 +89,16 @@ render ()
       <PrivateAdminRoute path={match.url} exact={true} component={DashboardInner} />
       <PrivateAdminRoute path={match.url+'/listuser'}  exact={true} component={ListUserPage} />
       <PrivateAdminRoute path={match.url+'/listshipment'}  exact={true} component={ListShipmentPage} />
-      <Route  component={NotFoundPage} />
+      <Redirect to='/kfkfkfkf'><Route  component={NotFoundPage}  />  </Redirect>
       </Switch>
       </Container>
        <MadeWithLove />
         </main>
   </div>
+  
+  </React.Fragment>
+
+
 
       ) 
     }
