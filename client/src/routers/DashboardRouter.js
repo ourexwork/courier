@@ -117,8 +117,14 @@ import PrivateAdminRoute from './PrivateAdminRoute'
    
 //    export default connect(mapStateToProps)(withStyles(dashboardStyle)(DashboardRoute));
 
-  const  Droute  = ({match}) => {
-
+  const  Droute  = ({match,user}) => {
+  React.useEffect(()=>{
+    if (user.isAdmin){
+ store.dispatch(startSetShipments());
+ store.dispatch(startSetUsers());  
+   }
+})
+  
  return (
        <div>
       <Switch>
@@ -133,6 +139,15 @@ import PrivateAdminRoute from './PrivateAdminRoute'
  
    }
 
-   export const DashboardRouter =  Dashboard(Droute);
+     const mapStateToProps = (state)=>{
+      return {
+    user : state.auth
+  }
+}
+    //
+  const Droutes = connect(mapStateToProps)(Droute);
+
+
+   export const DashboardRouter =  Dashboard(Droutes);
 
   //  export default DashboardRouter

@@ -13,6 +13,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import Person from '@material-ui/icons/Person';
 import { history } from "../../routers/AppRouter";
 
 
@@ -69,7 +70,7 @@ export const UserMainListItems = (
 
 <div>
 <ListItem button onClick={()=>{
-history.push('/dashboard');
+// history.push('/dashboard');
 }}>
 <ListItemIcon>
   <DashboardIcon />
@@ -79,7 +80,7 @@ history.push('/dashboard');
 
 
 <ListItem button onClick={()=>{
-history.push('/dashboard/listshipment');
+// history.push('/dashboard/listshipment');
 }} >
 <ListItemIcon>
   <ShoppingCartIcon />
@@ -89,10 +90,10 @@ history.push('/dashboard/listshipment');
 
 
 <ListItem button  onClick={()=>{
-history.push('/dashboard/listuser');
+history.push('/dashboard/viewprofile');
 }}>
 <ListItemIcon>
-  <PeopleIcon />
+  <Person />
 </ListItemIcon>
 <ListItemText primary='Customers'  />
 </ListItem>
