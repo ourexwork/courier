@@ -49,10 +49,10 @@ class ListUserPage extends React.Component {
         // headerStyle={{
         //   color:'blue'
         // }}
-title = { <div style={{fontSize:'1rem', color:'#1c88b' , fontStyle:'italic'}}>Speedex Users Data</div>}
+title = { <div style={{fontSize:'1rem', color:'#1c88b'}}>Speedex Users Data</div>}
         columns={[
           { title: 'S/N', field: 'index',cellStyle:{
-            backgroundColor:'red',
+            backgroundColor:'#364051',
             width:'5px',
             fontSize:'1.2rem',
             color:'#fff'
@@ -94,39 +94,31 @@ title = { <div style={{fontSize:'1rem', color:'#1c88b' , fontStyle:'italic'}}>Sp
             iconProps:{style:{color:'white'}},
             onClick: (event, rowData) => this.props.history.push(`/viewprofile/${rowData._id}`)
           }
-        ]}
-
-      
+        ]}   
         options={{
           headerStyle: {
-            backgroundColor: '#0248ff',
+            backgroundColor: '#364051',
             fontSize:'1.2rem',
             color: '#FFF'
           },
           rowStyle:
            rowData => ({
- fontSize:'5px',backgroundColor:'blue',
-
+ fontSize:'5px',backgroundColor:'#364051',
 
           }),
           fontSize:'5px'
-          
-          ,
-
-        
-          
-      
+                    ,
           titleStyle:{
-            color:'#1c88bf',
-            backgroundColor: '#1c88bf',
+            color:'#364051',
+            backgroundColor: '#364051',
             fontSize: '3rem'
           },
           actionsCellStyle:{
-            backgroundColor: '#0248ff',
+            backgroundColor: '#364051',
   
           },
           rowData:{
-            backgroundColor: '#fff',
+            backgroundColor: '#364051',
             fontSize:'3rem'
           },
           filterCellStyle: {
@@ -134,20 +126,14 @@ title = { <div style={{fontSize:'1rem', color:'#1c88b' , fontStyle:'italic'}}>Sp
             fontSize:'3rem'
           },
           columnStyle:{
-            backgroundColor: '#fff',
+            backgroundColor: '#364051',
             fontSize:'3rem',
             textAlign:'center'
           },
           filtering:true
-
-
         }}
-     
-
+    
       />
-
-      
-
   </div>  
         )
     }

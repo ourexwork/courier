@@ -1,28 +1,32 @@
 import axios from 'axios';
 
 export const startSetShipments = () => {
-    return (dispatch, getState) => {
-        // const uid = getState().auth.uid
-        return axios.get('/api/shipment/all-shipment').then((snapshot) => {
-            console.log(snapshot.data)
+  return (dispatch, getState) => {
+    // const uid = getState().auth.uid
+    return axios.get('/api/shipment/all-shipment').then(snapshot => {
+      console.log(snapshot.data);
 
-            const shipments = [];
-            snapshot.data.forEach((childSnapshot) => {
-                shipments.push({
-                    ...childSnapshot
-                })
-            })
-            dispatch(setShipments(shipments))
+      const shipments = [];
+      snapshot.data.forEach(childSnapshot => {
+        shipments.push({
+          ...childSnapshot
+        });
+      });
+      dispatch(setShipments(shipments));
+    });
+  };
+};
 
-        })
-    }
+export const setShipments = shipments => {
+  return {
+    type: 'SET_SHIPMENTS',
+    shipments
+  };
+};
 
-}
+export const startCreateShipment = () => {};
 
-
-export const setShipments = (shipments) => {
-    return {
-        type: 'SET_SHIPMENTS',
-        shipments
-    }
-}
+export const createShipment = shipment => ({
+  type: 'CREATE_SHIPMENT',
+  shipment
+});

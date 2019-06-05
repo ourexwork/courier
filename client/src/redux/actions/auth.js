@@ -21,7 +21,7 @@ export const startLogin = (userData = {}) => {
 
         localStorage.setItem('x-auth-token', snapshot.headers.xauthtoken);
         dispatch(login(snapshot.data));
-        return { success: true };
+        return snapshot.data;
       })
       .catch(e => {
         const user = {

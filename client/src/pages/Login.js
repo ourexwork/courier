@@ -8,13 +8,16 @@ import {history } from '../routers/AppRouter'
 
 class LoginPage extends React.Component {
     onSubmit =  (user) => {
-      return this.props.startLogin(user).then((d)=>{
-     
-     if (typeof d !== undefined && d.success === true ){
+      return this.props.startLogin(user).then((user)=>{
+     console.log(user)
+     if (typeof user !== undefined && !!user.isAdmin ){
       history.push('/dashboard')
      }
-     else{
-      console.log('error')
+     else if (typeof user !== undefined && !!user._id){
+      history.push('/dashboard/....')// or whatever
+     }
+     else {
+       console.log('error')
      }
   })
 }
@@ -29,10 +32,17 @@ class LoginPage extends React.Component {
         )
     }
 }
+
+const mapToStateProps = (state) => {
+  return {
+      auth: state.auth
+  };
+}
+
   
 const mapDispatchToProps = (dispatch) => ({
   startLogin: (user) => dispatch(startLogin(user))
 });
 
-export default connect(undefined, mapDispatchToProps)(LoginPage);
+export default connect(mapToStateProps, mapDispatchToProps)(LoginPage);
 
