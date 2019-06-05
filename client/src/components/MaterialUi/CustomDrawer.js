@@ -16,22 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { userDrawerStyle } from './jss/drawerStyle';
 
 
-//
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-
-// Material-ui icons
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-//
-
-import {history} from '../../routers/AppRouter';
+import { MainListItems, secondaryListItems, UserMainListItems} from './listItems'
 
 
 class  CustomDrawer extends React.Component {
@@ -57,75 +42,15 @@ render()
         </IconButton>
       </div>
       <Divider />
-      <List>
-      <div>
-   <ListItem button onClick={()=>{
-      history.push('/dashboard');
-  }}>
-      <ListItemIcon>
-        <DashboardIcon />
-      </ListItemIcon>
-      <ListItemText primary='Dashboard' />
-    </ListItem>
- 
- 
-    <ListItem button onClick={()=>{
-      history.push('/dashboard/listshipment');
-     }} >
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary='Orders' />
-    </ListItem>
-  
-
-    <ListItem button  onClick={()=>{
-      history.push('/dashboard/listuser');
-     }}>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-    <ListItemText primary='Customers'  />
-    </ListItem>
-   
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary='Reports' />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary='Integrations' />
-    </ListItem>
-  </div>
-      </List>
-      <Divider />
-      <List>
-      <div>
-    <ListSubheader inset>Saved reports</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary='Current month' />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary='Last quarter' />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary='Year-end sale' />
-    </ListItem>
-  </div>
-      </List>
+      {this.props.isAdmin ? 
+        <React.Fragment>
+        <List> {MainListItems}  </List>
+         <Divider />
+        <List> {secondaryListItems}</List>  
+        </React.Fragment> : 
+        <List> {UserMainListItems}</List> 
+        }
+    
     </Drawer>
   );
 };
