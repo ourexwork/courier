@@ -14,7 +14,7 @@ class LoginPage extends React.Component {
       history.push('/dashboard')
      }
      else if (typeof user !== undefined && !!user._id){
-      history.push('/dashboard/....')// or whatever
+      history.push('/user')// or whatever
      }
      else {
        console.log('error')

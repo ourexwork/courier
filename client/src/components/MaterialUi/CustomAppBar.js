@@ -18,7 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { useAppBarStyle } from './jss/appBarStyle';
 
 const CustomAppBar = props => {
-  const { classes } = props;
+  const { classes,isAdmin } = props;
 
   return (
     <AppBar
@@ -45,7 +45,7 @@ const CustomAppBar = props => {
           noWrap
           className={classes.title}
         >
-          Dashboard
+          {isAdmin ? 'Admin Dashboard' : 'User '}
         </Typography>
         <IconButton color='inherit'>
           <Badge badgeContent={4} color='secondary'>

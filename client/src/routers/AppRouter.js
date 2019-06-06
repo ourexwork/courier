@@ -8,7 +8,8 @@ import LoginRegisterPage from '../pages/loginRegisterPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import ThankyouPage from '../pages/ThankYouPage';
 
-import DashboardRouter from './DashboardRouter';
+import { DashboardRouter } from './DashboardRouter';
+import { UserDashboardRouter } from './UserDashboardRouter';
 import PublicRoute from './PublicRoute';
 import Preloader from '../components/Preloader';
 
@@ -49,11 +50,19 @@ const HomeRoute = ({ match }) => {
   );
 };
 
-const AppRouter = props => (
+const AppRouter = ({ match }) => (
   <Router history={history}>
     <React.Fragment>
       <Switch>
-        <Route path='/dashboard/' {...props} component={DashboardRouter} />
+        <Route
+          path='/dashboard/'
+          render={props => <DashboardRouter {...props} isAdmin={true} />}
+        />
+
+        <Route
+          path='/user/'
+          render={props => <UserDashboardRouter {...props} isAdmin={false} />}
+        />
         <Route path='/' component={HomeRoute} />
       </Switch>
     </React.Fragment>
