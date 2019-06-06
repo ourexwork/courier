@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {connect } from 'react-redux'
 import {Router, Route, Switch } from 'react-router-dom';
 import './configureAnchor';
 import {createBrowserHistory} from 'history';
@@ -14,12 +14,6 @@ import ThankyouPage from '../pages/ThankYouPage' ;
 import {DashboardRouter} from './DashboardRouter';
 import {UserDashboardRouter} from './UserDashboardRouter';
 import PublicRoute from './PublicRoute';
-
-
-// Stylesheet
-// import { dashboardStyle } from '../components/MaterialUi/jss/dashboardStyle';
-
-
 
 export const history = createBrowserHistory();
 
@@ -49,17 +43,26 @@ const HomeRoute = ({match}) => {
 };
 
 
- const AppRouter = ({match}) => (
+ const AppRouter = ({match, user, shipments}) => (
   <Router history ={history}>
     <React.Fragment>
       <Switch>
       <Route path='/dashboard/'  render = {(props)=>(
-          <DashboardRouter {...props} isAdmin={true} />
+          <DashboardRouter {...props}
+           isAdmin={true}
+            shipments={shipments}
+           user={ user }/>
 
         )}   />
 
         <Route path='/user/'  render = {(props)=>(
-          <UserDashboardRouter {...props} isAdmin={false} />
+          <UserDashboardRouter
+           {...props} 
+           isAdmin={false} 
+            user={ user }
+            // shipments ={shipments}
+             
+             />
 
         )}   />
       <Route path='/' component={HomeRoute}  />  
@@ -70,5 +73,13 @@ const HomeRoute = ({match}) => {
   </Router>
   );
 
+  const mapStateToProps = (state)=>{
+      return {
+    user : state.auth,
+    shipments: state.shipments,
+    users:state.users
 
-export default AppRouter
+  }
+}
+
+export default connect(mapStateToProps)(AppRouter)

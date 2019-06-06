@@ -20,13 +20,13 @@ import Orders from '../components/MaterialUi/Orders';
 
 function  DashboardInner  (props)  {
    
-   const {classes} = props;
+   const {classes, shipments} = props;
    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 return (
 
 
  <Grid container spacing={3}>
-  {/* Chart */}
+  { console.log(props)/* Chart */}
  <Grid item xs={12} md={8} lg={9}>
  <Paper className={fixedHeightPaper}>
    <Chart />
@@ -41,7 +41,7 @@ return (
 {/* Recent Orders */}
 <Grid item xs={12}>
  <Paper className={classes.paper}>
-   <Orders />
+   <Orders shipments={shipments}/>
  </Paper>
 </Grid>
 </Grid> 

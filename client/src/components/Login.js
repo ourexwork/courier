@@ -106,8 +106,6 @@ const validate = values => {
  
   return errors
 }
-console.log(validate)
-
 
 
 const renderTextField = ({

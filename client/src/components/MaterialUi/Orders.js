@@ -1,7 +1,7 @@
 /* eslint-disable no-script-url */
 
 import React from 'react';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -64,35 +64,41 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Orders() {
+export default function Orders(props) {
   const classes = useStyles();
   return (
     <React.Fragment>
+    {console.log(props)}
       <Title>Recent Orders</Title>
       <Table size='small'>
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Name</TableCell>
-            <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
+            <TableCell>cuurent location</TableCell>
+            <TableCell>delivery location</TableCell>
+            <TableCell>shipment status</TableCell>
+            <TableCell>amount</TableCell>
             <TableCell align='right'>Sale Amount</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow key={row.id}>
-              <TableCell>{row.date}</TableCell>
+          {props.shipments.map(row => (
+          
+            <TableRow key={row._id}>
+              <TableCell>xx/xx/xx</TableCell>
               <TableCell>{row.name}</TableCell>
-              <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align='right'>{row.amount}</TableCell>
+              <TableCell>{row.currentLocation}</TableCell>
+              <TableCell>{row.deliveryAddress.address}</TableCell>
+              <TableCell>{row.shipmentStatus}</TableCell>
+              <TableCell>{row.payment.amount}</TableCell>
+              <TableCell align='right'>xxxxxxx</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
       <div className={classes.seeMore}>
-        <Link color='primary' href='javascript:;'>
+        <Link to="/dashboard/listshipment" color='primary' href='javascript:;'>
           See more orders
         </Link>
       </div>

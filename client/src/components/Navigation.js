@@ -8,7 +8,8 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem
+  NavItem,
+  Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap';
 
  import { 
@@ -22,7 +23,9 @@ import SearchTrack from './SearchTrack';
 class Navigation extends Component {
   state = {
     scroll: false,
-    isOpen: false
+    isOpen: false,
+    dropdownOpen:false
+    
   };
 
   // toggle the state of the navigation
@@ -31,6 +34,12 @@ class Navigation extends Component {
       isOpen: !this.state.isOpen
     }));
   };
+
+  toggleDropdown= () => {
+    this.setState(() => ({
+      dropdownOpen: !this.state.dropdownOpen
+    }));
+  }
 
   handleSetActive = () => {
     // Check if the isOpen state is true
@@ -131,10 +140,37 @@ class Navigation extends Component {
               </NavItem>
         
               {this.props.user ?  
+             
                 <NavItem style={{ textAlign: 'center' }}>
-                <NavLink className='loginButton' to='/dashboard'>
-                dashboard
-                </NavLink>
+  
+               {  this.props.user && this.props.isAdmin ?
+                <div  > 
+                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
+                <DropdownToggle caret>
+                   name (Admin Dash...) 
+                   </DropdownToggle>
+                 <DropdownMenu>
+               <NavLink to="/dashboard"> <DropdownItem >Dashboard</DropdownItem> </NavLink>
+                 <DropdownItem>Log Out</DropdownItem>
+                   <DropdownItem disabled>Action (disabled)</DropdownItem>
+                   </DropdownMenu>
+                  </Dropdown>
+                </div>
+                :
+                <div className='loginButton' > 
+                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
+                <DropdownToggle caret>
+                   name (Dashboard) 
+                   </DropdownToggle>
+                 <DropdownMenu>
+               <NavLink to="/user"> <DropdownItem >Dashboard</DropdownItem> </NavLink>
+                 <DropdownItem>Log Out</DropdownItem>
+                   <DropdownItem disabled>Action (disabled)</DropdownItem>
+                   </DropdownMenu>
+                  </Dropdown>
+                </div>
+              }
+
               </NavItem>
                 :
                 <React.Fragment>
@@ -164,7 +200,8 @@ Navbar.propTypes = {
 };
 const mapStateToProps= (state)=>{
   return{
-    user : !!state.auth._id
+    user : !!state.auth._id,
+    isAdmin: !!state.auth.isAdmin
   }
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import {viewProfileStyle} from '../materialstyle/viewprofile.css';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
@@ -11,12 +12,11 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 //
-import classNames from 'classnames';
+
 import {Link } from 'react-router-dom';
 //icons used
 
-import IconButton from '@material-ui/core/IconButton';
-import Icon from '@material-ui/core/Icon';
+
 import {
   Email,
 Edit,
@@ -29,25 +29,7 @@ TransitEnterexitTwoTone
 import {Button} from '@material-ui/core'
 
 
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    borderRadius: '0.5rem',
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
-    flexGrow :1
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  },
-
-});
+const styles = (viewProfileStyle)
 
 class  ViewProfile extends React.Component {
     state = {
@@ -98,10 +80,10 @@ render(){
             <div className="display-items"><LocationOn /> &nbsp; {this.props.address}</div>
             <div className="display-items"><Phone /> &nbsp; {this.props.phoneNumber}</div>
             <div className="display-items"><DateRange /> &nbsp; {this.props.dateRegistered}</div>
-            <Link to={`/edit/${this.props._id}`} >   <div>
-            <Button variant="raised" color="primary">Update Your Profile <Edit /></Button>
-                 
-                  </div> </Link> 
+              <div>  <Link to={`/edit/${this.props._id}`} >
+            <Button variant="outlined" color="primary">Update Your Profile <Edit /></Button>
+            </Link> 
+                  </div> 
           </div>
           
   </div>
@@ -111,8 +93,9 @@ render(){
           value={this.state.value}
           onChange={this.handleChange}
           indicatorColor="primary"
-          textColor="primary"
+          // textColor="primary"
           centered
+          className={classes.title}
         >
           <Tab label="Current Transactions" onClick={this.handleShowCurrent}  />
           <Tab label="Transaction History" onClick={this.handleShowAll} /> 
@@ -177,15 +160,19 @@ render(){
           </ExpansionPanelDetails>
         </ExpansionPanel>
 
-        <div>if tra > 3 see more ....</div>
+        <div className={classes.seeMore}>
+        <Link to="/dashboard/listshipment" color='primary'>
+          See all orders
+        </Link>
+      </div>
         </span>
         }
           
           </div>
-          <Link to={`/edit/${this.props._id}`} >   <div>
-            <Button variant="raised" color="primary">create a shipment order <TransitEnterexitTwoTone /></Button>
-                 
-                  </div> </Link> 
+          {/*} <div> <Link to={`/edit/${this.props._id}`} >  
+             <Button variant="outlined" color="primary">create a shipment order <TransitEnterexitTwoTone /></Button>
+                  </Link> 
+      </div>*/}
         </div>
   </div>
   

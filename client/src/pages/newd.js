@@ -30,7 +30,7 @@ function MadeWithLove() {
 
 const useStyles = makeStyles(dashboardStyle);
 
-export default   function (WrapperComponent) {
+   export default  function (WrapperComponent) {
     return function Dashboard(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -46,13 +46,13 @@ export default   function (WrapperComponent) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar isAdmin={props.isAdmin}  open={open} toggleDrawer={toggleDrawer} />
+      <AppBar user={props.user} isAdmin={props.isAdmin}  open={open} toggleDrawer={toggleDrawer} />
       <Drawer isAdmin={props.isAdmin} open={open} toggleDrawer={toggleDrawer} />
 
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-    <WrapperComponent {...props} />
+    <WrapperComponent {...props}  />
           
         </Container>
         <MadeWithLove />
@@ -62,6 +62,20 @@ export default   function (WrapperComponent) {
 }
 
 }
+
+
+// const mapStateToProps = (state)=>{
+//       return {
+//     user : state.auth
+//   }
+// }
+//     //
+    
+//   export default connect(mapStateToProps)(Dashboard);
+
+
+
+
 
 
 

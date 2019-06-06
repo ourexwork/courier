@@ -13,7 +13,7 @@ import { Route, Redirect } from 'react-router-dom';
      return <Redirect to="/dashboard" /> 
       }
       else if (isAuthenticated){
-        return <Redirect to="/dashboard/...." />
+        return <Redirect to="/user" />
       }
   else {
    return <Component {...props} />
