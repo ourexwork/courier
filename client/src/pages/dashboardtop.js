@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 // Material-Ui Core
 import { withStyles } from '@material-ui/core/styles';
 
-
 // Custom Material Components
 import AppBar from '../components/MaterialUi/CustomAppBar';
 import Drawer from '../components/MaterialUi/CustomDrawer';
@@ -13,13 +12,9 @@ import Drawer from '../components/MaterialUi/CustomDrawer';
 // Stylesheet
 import { dashboardStyle } from '../components/MaterialUi/jss/dashboardStyle';
 
-
 class DashboardNav extends Component {
-
-
-      state = {
-    open: false,
- 
+  state = {
+    open: false
   };
 
   toggleDrawer = () => {
@@ -32,14 +27,10 @@ class DashboardNav extends Component {
     // const { classes } = this.props;
 
     return (
-        <React.Fragment>
+      <React.Fragment>
         <AppBar open={this.state.open} toggleDrawer={this.toggleDrawer} />
 
-        <Drawer 
-         open={this.state.open}
-          toggleDrawer={this.toggleDrawer} />
-
-
+        <Drawer open={this.state.open} toggleDrawer={this.toggleDrawer} />
       </React.Fragment>
     );
   }

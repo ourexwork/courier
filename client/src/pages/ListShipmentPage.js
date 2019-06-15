@@ -11,7 +11,8 @@ LastPage,
  ChevronLeft,
 ChevronRight,
 FilterList, Remove, ViewColumn, 
-ViewCompactOutlined
+Visibility,
+ShoppingBasket 
 }  from '@material-ui/icons';
 
 
@@ -43,50 +44,75 @@ class ListShipmentPage extends React.Component {
             title = { <div style={{fontSize:'1rem', color:'#1c88b'}}>Speedex Shipment Data</div>}
         columns={[
           { title: 'S/N', field: 'index',cellStyle:{
-            backgroundColor:'#1c88bf',
+            // backgroundColor:'#1c88bf',
             fontSize:'1.2rem',
             color:'#fff',
             width:'10px'
           } },
-          { title: 'Name', field: 'name'
+          { title: 'sender info', field: 'sender',cellStyle:{
+            // backgroundColor:'#1c88bf',
+            fontSize:'1.2rem',
+            color:'#fff',
+            width:'10px'
+          } },
+          { title: 'order name', field: 'name'
           ,cellStyle:{
             fontSize:'1.2rem',
             color:'#fff'
           }
           },
+          { title: 'current location', field: 'current_location'
+          ,cellStyle:{
+            fontSize:'1.2rem',
+            color:'#fff'
+          }
+        },
+        { title: 'delivery location', field: 'delivery_location'
+          ,cellStyle:{
+            fontSize:'1.2rem',
+            color:'#fff'
+          }
+        },
           { title: 'shipment status', field: 'status'
           ,cellStyle:{
             fontSize:'1.2rem',
             color:'#fff'
           }
         },
-        { title: 'prrice', field: 'price'
+        { title: 'price', field: 'price'
           ,cellStyle:{
             fontSize:'1.2rem',
             color:'#fff'
           }
         },
-   
-          
+        
+    
         ]}
 // data = a.map(()=>{
 //   return {[]}
 // })
      data =  {Shipments.map((data, index)=>{
-       return  { index:index + 1,  name: data.name , status: data.shipmentStatus, price: data.payment.amount, _id: data._id,  }
+       return  { index:index + 1,  name: data.name ,
+        sender : `${data.sender.firstName} ${data.sender.lastName} ${(data.sender.email)}` ,
+         status: data.shipmentStatus, 
+         current_location:data.currentLocation,
+         delivery_location: data.deliveryAddress.address,
+          price: data.payment.amount, _id: data._id,  }
      })}
              
         actions={[
           {
-            icon: ViewCompactOutlined,
-            tooltip: 'View User',
+            icon:Visibility,
+            tooltip: 'View Shipment',
+            iconProps:{style:{color:'white'}},
             onClick: (event, rowData) => this.props.history.push(`/edit/${rowData._id}`)
           },
-          // {
-          //   icon: Delete,
-          //   tooltip: 'Delete User',
-          //   onClick: (event, rowData) => alert("You want to delete " + rowData.name)
-          // }
+           {
+             icon: ShoppingBasket ,
+             tooltip: 'View Order History',
+             iconProps:{style:{color:'white'}},
+             onClick: (event, rowData) => alert("You want to view history " + rowData.name)
+          }
         ]}
 
 

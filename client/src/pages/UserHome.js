@@ -4,7 +4,6 @@ import ShipmentForm from '../components/ShipmentForm';
 const UserHome = () => {
   return (
     <>
-      <div> OSax home </div>
       <ShipmentForm />
     </>
   );

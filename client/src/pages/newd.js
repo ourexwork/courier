@@ -43,6 +43,7 @@ export default function(WrapperComponent) {
       <div className={classes.root}>
         <CssBaseline />
         <AppBar
+          user={props.user}
           isAdmin={props.isAdmin}
           open={open}
           toggleDrawer={toggleDrawer}
@@ -64,3 +65,12 @@ export default function(WrapperComponent) {
     );
   };
 }
+
+// const mapStateToProps = (state)=>{
+//       return {
+//     user : state.auth
+//   }
+// }
+//     //
+
+//   export default connect(mapStateToProps)(Dashboard);

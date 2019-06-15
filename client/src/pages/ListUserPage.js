@@ -92,7 +92,7 @@ title = { <div style={{fontSize:'1rem', color:'#1c88b'}}>Speedex Users Data</div
             icon:Visibility,
             tooltip: 'View User',
             iconProps:{style:{color:'white'}},
-            onClick: (event, rowData) => this.props.history.push(`/viewprofile/${rowData._id}`)
+            onClick: (event, rowData) => this.props.history.push(`/dashboard/viewprofile/${rowData._id}`)
           }
         ]}   
         options={{

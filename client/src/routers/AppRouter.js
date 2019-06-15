@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react';
-
+import React, { Suspense, Fragment } from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 import './configureAnchor';
 import { createBrowserHistory } from 'history';
 
@@ -50,23 +50,43 @@ const HomeRoute = ({ match }) => {
   );
 };
 
-const AppRouter = ({ match }) => (
+const AppRouter = ({ user, shipments }) => (
   <Router history={history}>
-    <React.Fragment>
+    <Fragment>
       <Switch>
         <Route
           path='/dashboard/'
-          render={props => <DashboardRouter {...props} isAdmin={true} />}
+          render={props => (
+            <DashboardRouter
+              {...props}
+              isAdmin={true}
+              shipments={shipments}
+              user={user}
+            />
+          )}
         />
 
         <Route
           path='/user/'
-          render={props => <UserDashboardRouter {...props} isAdmin={false} />}
+          render={props => (
+            <UserDashboardRouter
+              {...props}
+              isAdmin={false}
+              user={user}
+              // shipments ={shipments}
+            />
+          )}
         />
         <Route path='/' component={HomeRoute} />
       </Switch>
-    </React.Fragment>
+    </Fragment>
   </Router>
 );
 
-export default AppRouter;
+const mapStateToProps = state => ({
+  user: state.auth,
+  shipments: state.shipments,
+  users: state.users
+});
+
+export default connect(mapStateToProps)(AppRouter);

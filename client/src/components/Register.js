@@ -134,9 +134,6 @@ const validate = values => {
  
   return errors
 }
-console.log(validate)
-
-
 
 const renderTextField = ({
   input,
@@ -385,3 +382,4 @@ const mapToStateProps = (state) => {
   }
 
 export  default connect(mapToStateProps)(withStyles(styles)(UserForm));
+  

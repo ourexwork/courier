@@ -18,7 +18,7 @@ export default function Deposits() {
     <React.Fragment>
       <Title>Recent Deposits</Title>
       <Typography component='p' variant='h4'>
-        $3,024.00
+        N3,024.00
       </Typography>
       <Typography color='textSecondary' className={classes.depositContext}>
         on 15 March, 2019
