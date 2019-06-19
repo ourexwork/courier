@@ -1,4 +1,4 @@
-import { $dark_blue, } from './baseStyle/baseStyle';
+import { $dark_blue, $blue } from './baseStyle/baseStyle';
 
 
 export const viewProfileStyle = theme => ({
@@ -13,11 +13,11 @@ export const viewProfileStyle = theme => ({
         fontSize: theme.typography.pxToRem(15),
         flexBasis: '33.33%',
         flexShrink: 0,
-        color: $dark_blue
+        color: $blue
     },
     secondaryHeading: {
         fontSize: theme.typography.pxToRem(15),
-        color: $dark_blue
+        color: $blue
     },
     title: {
         color: $dark_blue

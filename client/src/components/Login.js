@@ -18,6 +18,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle'
 import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import Https from '@material-ui/icons/Https';
+import { CircularProgress } from '@material-ui/core';
 //
 import {connect} from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
@@ -223,7 +224,10 @@ class Login extends Component {
 
 <div className="reglogintext-div">
      <div>
-        <Button type="submit" variant="contained" color='primary' disabled={submitting} className={classes.loginButton} >  <span className="button-text">Sign In  </span> </Button>
+        <Button type="submit" variant="contained" color='primary' disabled={submitting} className={classes.loginButton} >  <span className="button-text">Sign In
+        {submitting  ?
+          <CircularProgress  />:''}
+        </span> </Button>
         </div>
         </div>
 
