@@ -1,9 +1,8 @@
 import React from 'react';
 
-import {Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 import './configureAnchor';
-import { store } from '../App'
-
+import { store } from '../App';
 
 import Dashboard from '../pages/newd.js';
 import DashboardInner from '../components/DashboardInner';
@@ -14,43 +13,54 @@ import ViewUserPage from '../pages/ViewUserPage';
 import NotFoundPage from '../pages/NotFoundPage';
 import { startSetUsers } from '../redux/actions/user';
 import { startSetShipments } from '../redux/actions/shipment';
-import PrivateAdminRoute from './PrivateAdminRoute'
+import PrivateAdminRoute from './PrivateAdminRoute';
 
+const Droute = ({ match, user, shipments }) => {
+  React.useEffect(() => {
+    if (user.isAdmin) {
+      store.dispatch(startSetShipments());
+      store.dispatch(startSetUsers());
+    }
+  }, user.isAdmin);
 
-
-  const  Droute  = ({match,user,shipments}) => {
-  React.useEffect(()=>{
-    if (user.isAdmin){
- store.dispatch(startSetShipments());
- store.dispatch(startSetUsers());  
-   }
-},user.isAdmin)
-  
- return (
-       <div>
+  return (
+    <div>
       <Switch>
-    <PrivateAdminRoute path={match.url} exact={true} component={()=><DashboardInner shipments={shipments} /> } />
-    <PrivateAdminRoute path={match.url+'/listuser'}  exact={true} component={ListUserPage} />
-    <PrivateAdminRoute path={match.url+'/viewprofile/:id'}  exact={true} component={ViewUserPage} />
-    <PrivateAdminRoute path={match.url+'/listshipment'}  exact={true} component={ListShipmentPage} />
-    
-    <Redirect to='/kfkfkfkf'><Route  component={NotFoundPage}  />  </Redirect>
-    </Switch>
+        <PrivateAdminRoute
+          path={match.url}
+          exact={true}
+          component={() => <DashboardInner shipments={shipments} />}
+        />
+        <PrivateAdminRoute
+          path={match.url + '/listuser'}
+          exact={true}
+          component={ListUserPage}
+        />
+        <PrivateAdminRoute
+          path={match.url + '/viewprofile/:id'}
+          exact={true}
+          component={ViewUserPage}
+        />
+        <PrivateAdminRoute
+          path={match.url + '/listshipment'}
+          exact={true}
+          component={ListShipmentPage}
+        />
+
+        <Route component={NotFoundPage} />
+      </Switch>
     </div>
-  
- )
- 
-   }
+  );
+};
 
-//      const mapStateToProps = (state)=>{
-//       return {
-//     user : state.auth
-//   }
-// }
-//     //
-//   const Droutes = connect(mapStateToProps)(Droute);
-
+// const mapStateToProps = state => {
+//   return {
+//     user: state.auth
+//   };
+// };
+//
+// const Droute = connect(mapStateToProps)(Droute);
 
 //    export const DashboardRouter =  Dashboard(Droutes);
 
-    export const DashboardRouter = Dashboard(Droute);
+export const DashboardRouter = Dashboard(Droute);

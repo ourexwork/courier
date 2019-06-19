@@ -1,9 +1,12 @@
-import React from 'react'; 
+import React from 'react';
+import ShipmentForm from '../components/ShipmentForm';
 
-const UserHome = () =>{
-    return (
-        <div> OSax home </div>
-    )
-} 
+const UserHome = () => {
+  return (
+    <>
+      <ShipmentForm />
+    </>
+  );
+};
 
-export default UserHome
+export default UserHome;
