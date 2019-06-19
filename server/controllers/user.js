@@ -32,7 +32,7 @@ const registerUser = async(req, res) => {
 
     // send the verification email to the user
 
-    // sendMail(user.email, token);
+    sendMail(user.email, token);
 
 
     const data = await user.save();
