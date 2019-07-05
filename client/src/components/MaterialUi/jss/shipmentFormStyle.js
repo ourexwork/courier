@@ -17,9 +17,12 @@ export const shipmentFormStyle = theme => ({
     minWidth: 300,
     textAlign: 'left'
   },
+  inputFile: {
+    display: 'none'
+  },
   shipment: {
-    height: '80vh',
-    overflow: 'hidden',
+    height: '90vh',
+    // overflow: 'hidden',
     position: 'relative'
   },
   proceedButton: {

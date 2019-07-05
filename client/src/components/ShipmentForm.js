@@ -4,6 +4,9 @@ import clsx from 'clsx';
 // Material-ui Core
 import Button from '@material-ui/core/Button';
 import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Grid from '@material-ui/core/Grid';
+import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
@@ -19,26 +22,31 @@ import LocationOn from '@material-ui/icons/LocationOn';
 // GeoSuggest
 import GeoSuggest from 'react-geosuggest';
 
+import { DropzoneArea } from 'material-ui-dropzone';
+
 import { withStyles } from '@material-ui/core/styles';
 
 // custom material-ui Jss
 import { shipmentFormStyle } from './MaterialUi/jss/shipmentFormStyle';
 
+// Our Map Component
+import Maps from './Maps';
+
 class ShipmentForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      description: '',
-      weight: '',
-      quantity: '',
+      name: { value: '', error: '' },
+      description: { value: '', error: '' },
+      weight: { value: '', error: '' },
+      quantity: { value: '', error: '' },
       shipmentMode: 'road',
-      shipmentFiles: [],
+      shipmentFiles: [1, 2, 3],
       pickupAddress: {},
       deliveryAddress: {},
-      recieverName: '',
-      receiverEmail: '',
-      receiverPhoneNumber: '',
+      recieverName: { value: '', error: '' },
+      receiverEmail: { value: '', error: '' },
+      receiverPhoneNumber: { value: '', error: '' },
       activeStep: 0,
       btnSlide: true,
       revealForm: false
@@ -74,7 +82,7 @@ class ShipmentForm extends Component {
   };
 
   getSteps = () => {
-    return ['Shipment Details', 'Upload File', 'Reciever Details'];
+    return ['Shipment Details', 'Upload Images', "Reciever's Details"];
   };
 
   nextStep = () => {
@@ -91,6 +99,124 @@ class ShipmentForm extends Component {
 
   // isStepOptional = step => step === 1;
 
+  // *********HANDLE ALL FORM DATA ****************
+
+  // Title or Name
+  handleTitleChange = event => {
+    const title = event.target.value;
+    // first check if the title is more than 50 chars
+    if (title.length === 0) {
+      this.setState({
+        name: {
+          value: '',
+          error: 'Title cannot be empty'
+        }
+      });
+    } else if (title.length > 50) {
+      // set the error
+      this.setState({
+        name: {
+          value: '',
+          error: 'Title cannot have more than 50 chars'
+        }
+      });
+    } else {
+      this.setState({
+        name: {
+          value: title,
+          error: ''
+        }
+      });
+    }
+  };
+
+  // Description
+  handleDescriptionChange = event => {
+    const description = event.target.value;
+    if (description.length === 0) {
+      this.setState({
+        description: {
+          value: '',
+          error: 'Description cannot be empty'
+        }
+      });
+    } else if (description.length > 150) {
+      // set the error
+      this.setState({
+        description: {
+          value: '',
+          error: 'description cannot be more than 50 chars'
+        }
+      });
+    } else {
+      // set the value
+      this.setState({
+        description: {
+          value: description,
+          error: ''
+        }
+      });
+    }
+  };
+
+  // Weight
+  handleWeightChange = event => {
+    let weight = event.target.value;
+    // check if the weight value is a number
+    if (weight.length === 0) {
+      this.setState({
+        weight: {
+          value: '',
+          error: 'Weight value cannot be empty!'
+        }
+      });
+    } else if (isNaN(weight)) {
+      this.setState({
+        weight: {
+          value: '',
+          error: 'Invalid field values, alphanumeric values not allowed!!'
+        }
+      });
+    } else {
+      // parse the weight as float and set it
+      this.setState({
+        weight: {
+          value: weight,
+          error: ''
+        }
+      });
+    }
+  };
+
+  // Handle Quantity
+  handleQuantityChange = event => {
+    let quantity = event.target.value;
+    if (quantity.length === 0) {
+      this.setState({
+        quantity: {
+          value: '',
+          error: 'quantity value cannot be empty!'
+        }
+      });
+    } else if (quantity <= 0 || isNaN(quantity)) {
+      this.setState({
+        quantity: {
+          value: '',
+          error: 'Quantity cannot have (zero|negative|alphanumeric) values.'
+        }
+      });
+    } else {
+      // round the quantity as float and set it
+      quantity = Math.round(parseInt(quantity, 10));
+      this.setState({
+        quantity: {
+          value: quantity,
+          error: ''
+        }
+      });
+    }
+  };
+
   // handles the shipment mode
   handleShipmentMode = event => {
     const shipmentMode = event.target.value;
@@ -99,39 +225,115 @@ class ShipmentForm extends Component {
     });
   };
 
+  // Handling Files
+  onFilesSelected = files => {
+    console.log(files);
+  };
+
+  isStepCompleted(step) {
+    switch (step) {
+      case 0:
+        return !(
+          !!this.state.name.value &&
+          !!this.state.description.value &&
+          !!this.state.quantity.value &&
+          !!this.state.weight.value
+        );
+      case 1:
+        return this.state.shipmentFiles.length < 3 ? true : false;
+      default:
+        break;
+    }
+  }
+
   getStepContents = (step, classes) => {
     switch (step) {
       case 0:
+        // Shipment Details
         return (
           <div>
-            <TextField
-              id='standard-name'
-              label='Name'
-              className={classes.textField}
-              margin='normal'
-            />
+            <FormControl
+              className={classes.formControl}
+              required
+              error={this.state.name.error}
+            >
+              <InputLabel htmlFor='title-error'>Title</InputLabel>
+              <Input
+                id='standard-title'
+                aria-describedby='title-error-text'
+                value={this.state.name.value}
+                onChange={this.handleTitleChange}
+                onBlur={this.handleTitleChange}
+              />
+              {this.state.name.error && (
+                <FormHelperText id='title-error-text'>
+                  {this.state.name.error}
+                </FormHelperText>
+              )}
+            </FormControl>
 
-            <TextField
-              id='standard-name'
-              label='Description'
-              className={classes.textField}
-              margin='normal'
-            />
-            <TextField
-              id='standard-name'
-              label='Weight'
-              className={classes.textField}
-              margin='normal'
-            />
-            <TextField
-              id='standard-name'
-              label='Quantity'
-              className={classes.textField}
-              margin='normal'
-            />
+            <FormControl
+              className={classes.formControl}
+              required
+              error={this.state.description.error}
+            >
+              <InputLabel htmlFor='description-error'>Description</InputLabel>
+              <Input
+                id='standard-description'
+                aria-describedby='description-error-text'
+                value={this.state.description.value}
+                onChange={this.handleDescriptionChange}
+                onBlur={this.handleDescriptionChange}
+              />
+              {this.state.description.error && (
+                <FormHelperText id='description-error-text'>
+                  {this.state.description.error}
+                </FormHelperText>
+              )}
+            </FormControl>
+            <FormControl
+              className={classes.formControl}
+              required
+              error={this.state.weight.error}
+            >
+              <InputLabel htmlFor='weight-error'>Weight(Kg)</InputLabel>
+              <Input
+                id='standard-weight'
+                aria-describedby='weight-error-text'
+                value={this.state.weight.value}
+                onChange={this.handleWeightChange}
+                onBlur={this.handleWeightChange}
+              />
+              {this.state.weight.error && (
+                <FormHelperText id='weight-error-text'>
+                  {this.state.weight.error}
+                </FormHelperText>
+              )}
+            </FormControl>
+
+            <FormControl
+              className={classes.formControl}
+              required
+              error={this.state.quantity.error}
+            >
+              <InputLabel htmlFor='quantity-error'>Quantity</InputLabel>
+              <Input
+                id='standard-quantity'
+                aria-describedby='quantity-error-text'
+                value={this.state.quantity.value}
+                onChange={this.handleQuantityChange}
+                onBlur={this.handleQuantityChange}
+              />
+              {this.state.quantity.error && (
+                <FormHelperText id='quantity-error-text'>
+                  {this.state.quantity.error}
+                </FormHelperText>
+              )}
+            </FormControl>
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor='shimpent-mode'>Shipment Mode</InputLabel>
               <Select
+                required
                 value={this.state.shipmentMode}
                 onChange={this.handleShipmentMode}
               >
@@ -144,7 +346,15 @@ class ShipmentForm extends Component {
           </div>
         );
       case 1:
-        return 2; //another part of the form
+        // Image upload form
+        return (
+          <DropzoneArea
+            onChange={this.onFilesSelected}
+            acceptedFiles={['image/jpg', 'image/jpeg', 'image/png']}
+          />
+        );
+      case 2:
+        return "Receiver's details form ";
       default:
         return;
     }
@@ -156,82 +366,96 @@ class ShipmentForm extends Component {
     return (
       <div className={classes.shipment}>
         <form>
-          <div className='shipment__address'>
-            <Paper>
-              <LocationOn className='geosuggest__input-icon' />
-              <GeoSuggest
-                placeholder='Pickup Address'
-                autoFocus
-                onSuggestSelect={this._onPickUpSuggestSelect}
-              />
-            </Paper>
-            <Paper>
-              <LocationOn className='geosuggest__input-icon' />
-              <GeoSuggest
-                placeholder='Delivery Address'
-                onSuggestSelect={this._onDestinationSuggestSelect}
-              />
-            </Paper>
-          </div>
-          <div
-            className={
-              this.state.revealForm
-                ? 'shipment__details--reveal'
-                : 'shipment__details '
-            }
+          <Grid
+            container
+            direction='row'
+            alignItems='center'
+            justify='space-between'
+            spacing={10}
           >
-            <Paper>
-              <Stepper activeStep={this.state.activeStep} connector>
-                {steps.map((label, index) => {
-                  const stepProps = {};
-                  const labelProps = {};
-                  // if (this.state.activeStep <= steps.length) {
-                  //   stepProps.completed = false;
-                  // }
-                  return (
-                    <Step key={label} {...stepProps}>
-                      <StepLabel {...labelProps}>{label}</StepLabel>
-                    </Step>
-                  );
-                })}
-              </Stepper>
-              <div style={{ textAlign: 'center', paddingBottom: '15px' }}>
-                {this.state.activeStep === steps.length ? (
-                  // render a click to pay button
-                  <Button>Make Payment</Button>
-                ) : (
-                  <div className='shipment__details-wrapper'>
-                    {this.getStepContents(this.state.activeStep, classes)}
+            <Grid item md={6}>
+              <Paper>
+                <LocationOn className='geosuggest__input-icon' />
+                <GeoSuggest
+                  placeholder='Pickup Address'
+                  autoFocus
+                  onSuggestSelect={this._onPickUpSuggestSelect}
+                />
+              </Paper>
+            </Grid>
+            <Grid item md={6}>
+              <Paper>
+                <LocationOn className='geosuggest__input-icon' />
+                <GeoSuggest
+                  placeholder='Delivery Address'
+                  onSuggestSelect={this._onDestinationSuggestSelect}
+                />
+              </Paper>
+            </Grid>
+          </Grid>
+          <Grid container spacing={2}>
+            <Grid item md={4}>
+              <Paper>
+                <Stepper activeStep={this.state.activeStep} connector>
+                  {steps.map((label, index) => {
+                    const stepProps = {};
+                    const labelProps = {};
+                    // if (this.state.activeStep <= steps.length) {
+                    //   stepProps.completed = false;
+                    // }
+                    return (
+                      <Step key={label} {...stepProps}>
+                        <StepLabel {...labelProps}>{label}</StepLabel>
+                      </Step>
+                    );
+                  })}
+                </Stepper>
+                <div style={{ textAlign: 'center', paddingBottom: '15px' }}>
+                  {this.state.activeStep === steps.length ? (
+                    // render a click to pay button
+                    <Button>Make Payment</Button>
+                  ) : (
+                    <div>
+                      {this.getStepContents(this.state.activeStep, classes)}
 
-                    <Button
-                      disabled={this.state.activeStep === 0}
-                      onClick={this.previousStep}
-                      className={classes.button}
-                    >
-                      Back
-                    </Button>
-                    <Button
-                      variant='contained'
-                      color='primary'
-                      onClick={this.nextStep}
-                      className={classes.button}
-                    >
-                      {this.state.activeStep === steps.length - 1
-                        ? 'Finish'
-                        : 'Next'}
-                    </Button>
-                  </div>
-                )}
-              </div>
-            </Paper>
-          </div>
-          <Slide
+                      <Button
+                        disabled={this.state.activeStep === 0}
+                        onClick={this.previousStep}
+                        className={classes.button}
+                      >
+                        Back
+                      </Button>
+                      <Button
+                        variant='contained'
+                        disabled={this.isStepCompleted(this.state.activeStep)}
+                        color='primary'
+                        onClick={this.nextStep}
+                        className={classes.button}
+                      >
+                        {this.state.activeStep === steps.length - 1
+                          ? 'Finish'
+                          : 'Next'}
+                      </Button>
+                    </div>
+                  )}
+                </div>
+              </Paper>
+            </Grid>
+
+            <Grid item md={8}>
+              <Paper>
+                <Maps isMarkerShown />
+              </Paper>
+            </Grid>
+          </Grid>
+
+          {/*  <Slide
             direction='up'
             in={this.state.btnSlide}
             mountOnEnter
             unmountOnExit
           >
-            <div className={classes.proceedButton}>
+           <div className={classes.proceedButton}>
               <Button
                 variant='contained'
                 color='primary'
@@ -240,8 +464,8 @@ class ShipmentForm extends Component {
               >
                 Proceed
               </Button>
-            </div>
-          </Slide>
+                      </div> 
+          </Slide>*/}
         </form>
       </div>
     );
