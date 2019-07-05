@@ -20,6 +20,7 @@ import {
    AccountCircle,
   Home,
   PhoneAndroid,
+  
   } from '@material-ui/icons';
 
  import Button from '@material-ui/core/Button';
@@ -55,6 +56,7 @@ field: {
 },
 labelfield: {
   fontSize:15,
+  fontWeight:'7px',
   color: '#364051',
   '@media (max-width:450px)':{
     fontSize:11
@@ -212,7 +214,7 @@ class UserForm extends Component {
 <Field
           name="firstName"
           component={renderTextField}
-          label="first name"
+          label="First Name"
           InputProps={{className: classes.field  ,endAdornment: 
           <InputAdornment position="end">
           <Icon><AccountCircle className={classNames(classes.iconfield)} /></Icon>
@@ -223,7 +225,7 @@ class UserForm extends Component {
         <Field
           name="lastName"
           component={renderTextField}
-          label="last name"
+          label="Last Name"
           InputProps={{className: classes.field ,endAdornment:
            <InputAdornment position="end">
            <Icon ><AccountCircle  className={classNames(classes.iconfield)} />
@@ -236,7 +238,7 @@ class UserForm extends Component {
         <Field
           name="phoneNumber"
           component={renderTextField}
-          label="phone number"
+          label="Phone Number"
           InputProps={{className: classes.field ,endAdornment: 
           <InputAdornment position="end">
           <Icon ><PhoneAndroid  className={classNames(classes.iconfield)}/></Icon>
@@ -249,7 +251,7 @@ class UserForm extends Component {
         <Field
           name="email"
           component={renderTextField}
-          label="email"
+          label="Email"
           InputProps={{className: classes.field  ,endAdornment: 
           <InputAdornment position="end">
           <Icon ><Email className={classNames(classes.iconfield)}/></Icon>
@@ -263,7 +265,7 @@ class UserForm extends Component {
         <Field
           name="address"
           component={renderTextField}
-          label="address"
+          label="Address"
           // multiline={true}
           // rows={2}
           InputProps={{className: classes.field  ,endAdornment: 
@@ -279,7 +281,7 @@ class UserForm extends Component {
 <Field
           name="password"
           component={renderPasswordField}
-          label="password"
+          label="Password"
           type={this.state.showPassword1 ? 'text' : 'password'}
           InputProps={{className: classes.field  ,
             endAdornment: (
@@ -300,7 +302,7 @@ class UserForm extends Component {
         <Field
           name="confirm_password"
           component={renderPasswordField}
-          label="confirm password"
+          label="Confirm Password"
           type={this.state.showPassword2 ? 'text' : 'password'}
           InputProps={{className: classes.field  ,
             endAdornment: (
