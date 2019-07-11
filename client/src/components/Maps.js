@@ -40,13 +40,14 @@ const Maps = compose(
       );
     }
   })
-)(props => (
-  <GoogleMap
+)(props => {
+  console.log(props.loc);
+ return <GoogleMap
     defaultZoom={7}
     defaultCenter={new google.maps.LatLng(41.85073, -87.65126)}
   >
     {props.directions && <DirectionsRenderer directions={props.directions} />}
   </GoogleMap>
-));
+});
 
 export default Maps;

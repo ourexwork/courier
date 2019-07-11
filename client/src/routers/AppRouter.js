@@ -39,11 +39,7 @@ const HomeRoute = ({ match }) => {
           exact={true}
           component={ThankyouPage}
         />
-        <Route
-          path={match.url + 'register/thankyou'}
-          exact={true}
-          component={ThankyouPage}
-        />
+
         <Route component={NotFoundPage} />
       </Switch>
     </Suspense>

@@ -54,11 +54,20 @@ class ShipmentForm extends Component {
   }
 
   _onPickUpSuggestSelect = (suggest = {}) => {
-    const { description = '', location = {}, gmaps = [] } = suggest;
+    console.log(suggest);
+    const { description = '', location = {}, gmaps = {} } = suggest;
+    let country;
+    // Check if gmaps has a property of address component
+    if (Object.keys(gmaps).includes('address_components')) {
+      country = gmaps.address_components[6].long_name;
+    } else {
+      country = '';
+    }
+
     const pickupAddress = {
       description,
       location,
-      country: gmaps.length === 1 ? gmaps.address_components[6].long_name : ''
+      country
     };
 
     if (Object.keys(suggest).length > 1) {
@@ -67,11 +76,19 @@ class ShipmentForm extends Component {
   };
 
   _onDestinationSuggestSelect = (suggest = {}) => {
-    const { description = '', location = {}, gmaps = [] } = suggest;
+    const { description = '', location = {}, gmaps = {} } = suggest;
+    let country;
+    // Check if gmaps has a property of address component
+    if (Object.keys(gmaps).includes('address_components')) {
+      country = gmaps.address_components[6].long_name;
+    } else {
+      country = '';
+    }
+
     const deliveryAddress = {
       description,
       location,
-      country: gmaps.length === 1 ? gmaps.address_components[6].long_name : ''
+      country
     };
 
     if (Object.keys(suggest).length > 1) {
@@ -444,7 +461,13 @@ class ShipmentForm extends Component {
 
             <Grid item md={8}>
               <Paper>
-                <Maps isMarkerShown />
+                <Maps
+                  isMarkerShown
+                  locationRenderer={{
+                    pickupAddress: this.state.pickupAddress.location,
+                    deliveryAddress: this.state.deliveryAddress.location
+                  }}
+                />
               </Paper>
             </Grid>
           </Grid>
