@@ -1,3 +1,5 @@
+version: "2"
+
 services:
   # client:
   #   container_name: courier-app-client
@@ -19,7 +21,7 @@ services:
     volumes:
       - "./server:/usr/src/app"
       - "/usr/src/app/node_modules"
-    depends_on:
+    links:
       - mongo
 
   mongo:
