@@ -1,8 +1,8 @@
 const _ = require("lodash");
 const { User, Validate, loginValidate } = require("../models/User");
 const { sendMail } = require("../config/mailer");
-const mongoose = require("mongoose");
 const jwtDecode = require("jwt-decode");
+const mongoose = require("mongoose");
 
 const registerUser = async (req, res) => {
   // try {

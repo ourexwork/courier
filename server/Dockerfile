@@ -5,6 +5,7 @@ WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 # RUN npm cache clean 
 RUN npm cache verify
+RUN npm install jwt-decode -f
 RUN npm install -f 
 COPY  . /usr/src/app/
 EXPOSE 80
