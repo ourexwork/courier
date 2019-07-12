@@ -183,3 +183,9 @@
                     width: 30rem;
                     padding: 1px;
                 }
+                
+                .hide-on-mobile {
+                    @media (max-width: 992px) {
+                        display: none
+                    }
+                }

@@ -1,7 +1,7 @@
 import React from 'react';
 const { compose, withProps, lifecycle } = require('recompose');
 const {
-  withScriptjs,
+  // withScriptjs,
   withGoogleMap,
   GoogleMap,
   DirectionsRenderer
