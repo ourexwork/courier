@@ -24,7 +24,7 @@ const transporter = nodemailer.createTransport({
 //  create the body of the mail
 const sendMail = async (recipient, token) => {
   // here we configure our host http://localhost:9191/api/user/confirmation/${token}
-  const url = `http://rilxpress.com/api/user/confirmation/${token}`;
+  const url = `http://rilxpress.com/api/users/confirmation/${token}`;
 
   const mail = {
     from: user,
