@@ -10,4 +10,4 @@ EXPOSE 80
 ENV coPrivateKey=;lksdlkslakdlkdslk
 ENV NODE_ENV production
 ENV GEOLOCATION_API_KEY=AIzaSyB8lm4CEk6YVOXTVvkeDDluMEXb06rOkhw
-CMD [ "npm" , "start" ] 
+CMD [ "npm" , "start" ]
