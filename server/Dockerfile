@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 RUN npm cache clean -f
 RUN npm cache verify
-RUN npm run clean && npm install && npm run build
+RUN npm run clean -f && npm install -f && npm run build -f
 RUN npm install -f
 COPY  . /usr/src/app/
 EXPOSE 80
