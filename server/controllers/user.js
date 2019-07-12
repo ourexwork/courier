@@ -57,7 +57,7 @@ const confirmUser = async (req, res) => {
 
   try {
     // decode = await jwt.verify(token, config.get('coPrivateKey'));
-    decode = jwtDecode(token);
+    decode = await jwtDecode(token);
   } catch (error) {
     res.status(400).send({ error: "Invalid token" });
     // throw the error
