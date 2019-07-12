@@ -6,8 +6,8 @@ COPY package*.json /usr/src/app/
 RUN npm cache verify
 RUN npm install -f
 COPY  . /usr/src/app/
-EXPOSE 5000
+EXPOSE 80
 ENV coPrivateKey=;lksdlkslakdlkdslk
-ENV NODE_ENV production
+# ENV NODE_ENV production
 ENV GEOLOCATION_API_KEY=AIzaSyB8lm4CEk6YVOXTVvkeDDluMEXb06rOkhw
 CMD [ "npm" , "start" ] 
