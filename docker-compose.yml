@@ -12,12 +12,13 @@ services:
   #     - "/usr/src/app/node_modules"
   #   links:
   #     - server
+  #change
   server:
     container_name: courier-app-server
     restart: always
     build: ./server
     ports:
-      - "5000:80"
+      - "80:80"
     volumes:
       - "./server:/usr/src/app"
       - "/usr/src/app/node_modules"
