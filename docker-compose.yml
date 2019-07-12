@@ -1,5 +1,3 @@
-version: '2'
-
 services:
   # client:
   #   container_name: courier-app-client
@@ -17,14 +15,15 @@ services:
     restart: always
     build: ./server
     ports:
-      - '80:80'
+      - "80:80"
     volumes:
-      - './server:/usr/src/app'
-      - '/usr/src/app/node_modules'
-    links:
-      - mongo
+      - "./server:/usr/src/app"
+      - "/usr/src/app/node_modules"
+    # depends_on:
+    #   - mongo
+
   mongo:
     container_name: mongo
     image: mongo
     ports:
-      - '27017:27017'
+      - "27017:27017"
