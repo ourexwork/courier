@@ -6,7 +6,6 @@ COPY package*.json /usr/src/app/
 # RUN npm cache clean 
 RUN npm cache verify
 RUN npm install -f 
-RUN npm run build
 COPY  . /usr/src/app/
 EXPOSE 80
 ENV coPrivateKey=;lksdlkslakdlkdslk
