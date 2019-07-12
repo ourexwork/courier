@@ -22,6 +22,7 @@ app.get("*", (req, res) => {
 });
 
 console.log(app.get("env"));
+console.log(app.get("coPrivateKey"));
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
