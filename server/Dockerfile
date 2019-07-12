@@ -5,9 +5,8 @@ WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
 RUN npm cache clean -f
 RUN npm cache verify
-RUN npm run clean -f 
 RUN npm install -f 
-RUN npm run build -f
+# RUN npm run build -f
 COPY  . /usr/src/app/
 EXPOSE 80
 ENV coPrivateKey=;lksdlkslakdlkdslk
