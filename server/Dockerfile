@@ -3,9 +3,9 @@ FROM node:8.11.2 as node-server
 RUN mkdir -p /usr/src/app/
 WORKDIR /usr/src/app
 COPY package*.json /usr/src/app/
-RUN npm cache verify
 RUN npm cache clean -f
-RUN npm install jwt-decode@2.2.0 -f --save
+RUN npm cache verify
+RUN npm run clean && npm install && npm run build
 RUN npm install -f
 COPY  . /usr/src/app/
 EXPOSE 80
