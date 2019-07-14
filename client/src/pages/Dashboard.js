@@ -150,8 +150,10 @@ class Dashboard extends Component {
 
             <Grid container spacing={3}>
             <Grid item xs={12} md={8} lg={9}>
+            <div className={classes.paper} >
               {this.state.customers && <ListUserPage history={history} />}
               {this.state.shipment && <ListShipmentPage history={history} />}
+              </div>
             </Grid>
        </Grid>
           </Container>
