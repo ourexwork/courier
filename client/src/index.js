@@ -1,30 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 // import './index.css';
-import App from './App';
-import Preloader from './components/Preloader';
-import * as serviceWorker from './serviceWorker';
+import App from "./App";
+import Preloader from "./components/Preloader";
+import * as serviceWorker from "./serviceWorker";
 
-import { startSetUsers } from './redux/actions/user';
-import { login } from './redux/actions/auth';
-import { startSetShipments } from './redux/actions/shipment';
-import jwtDecode from 'jwt-decode';
-import { store } from './App.js';
-import { history } from './routers/AppRouter';
+import { startSetUsers } from "./redux/actions/user";
+import { login } from "./redux/actions/auth";
+import { startSetShipments } from "./redux/actions/shipment";
+import jwtDecode from "jwt-decode";
+import { store } from "./App.js";
+import { history } from "./routers/AppRouter";
 
 let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {
-    ReactDOM.render(<App />, document.getElementById('root'));
+    ReactDOM.render(<App />, document.getElementById("root"));
   }
   hasRendered = true;
 }; // renders the app
 
-ReactDOM.render(<Preloader />, document.querySelector('#root'));
+ReactDOM.render(<Preloader />, document.querySelector("#root"));
 
 const checkAuth = () => {
   try {
-    const token = localStorage.getItem('x-auth-token');
+    const token = localStorage.getItem("x-auth-token");
     const user = jwtDecode(token);
     return Promise.resolve(user);
   } catch (e) {
@@ -39,10 +39,10 @@ checkAuth()
       if (!!user.isAdmin) {
         store.dispatch(startSetShipments());
         store.dispatch(startSetUsers());
-        if (history.location.pathname === '/login') {
-          history.push('/dashboard');
+        if (history.location.pathname === "/login") {
+          history.push("/dashboard");
         } else if (!user.isAdmin) {
-          if (history.location.pathname === '/login') {
+          if (history.location.pathname === "/login") {
             history.push(`/dashboard/${user._id}`);
           }
         }

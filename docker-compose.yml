@@ -12,7 +12,7 @@ services:
   #     - "/usr/src/app/node_modules"
   #   links:
   #     - server
-  #change
+  #changestatus
   server:
     container_name: courier-app-server
     restart: always

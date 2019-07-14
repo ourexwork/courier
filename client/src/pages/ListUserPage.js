@@ -152,11 +152,11 @@ class ListUserPage extends React.Component {
             color: $blue,
             fontColor: $blue
           },
-          columnStyle: {
-            // backgroundColor: $grey,
-            fontSize: "3rem",
-            textAlign: "center"
-          },
+          // columnStyle: {
+          //   // backgroundColor: $grey,
+          //   fontSize: "3rem",
+          //   textAlign: "center"
+          // },
           backgroundColor: $blue,
           filtering: true,
           isLoading: true
