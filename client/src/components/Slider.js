@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from "@material-ui/icons";
 class Slider extends React.Component {
   state = {
     auto: true,
-    intervalTime: 5000,
+    intervalTime: 10000,
     setinterval: undefined
   };
 
@@ -14,14 +14,14 @@ class Slider extends React.Component {
       this.myPrevslide();
     });
 
-    const next = document.querySelector("#right");
-    next.addEventListener("click", e => {
-      this.myNextslide();
-    });
+    // const next = document.querySelector("#right");
+    // next.addEventListener("click", e => {
+    //   this.myNextslide();
+    // });
 
     if (this.state.auto) {
       this.state.setinterval = setInterval(
-        this.myNextslide,
+        this.myslide,
         this.state.intervalTime
       );
     }
@@ -83,14 +83,7 @@ class Slider extends React.Component {
             </div>
           </div>
         </div>
-        <div class="buttons">
-          <button id="left">
-            <ArrowLeft />
-          </button>
-          <button id="right">
-            <ArrowRight />
-          </button>
-        </div>
+        <div id="left" />
       </>
     );
   }

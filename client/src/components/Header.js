@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import Slider from 'react-animated-slider';
-import Navigation from './Navigation';
+import React, { Component } from "react";
+import Slider from "react-animated-slider";
+import Navigation from "./Navigation";
+import ProductHero from "./ProductHero";
 
-import { withStyles } from '@material-ui/core/styles';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import PropTypes from 'prop-types';
+import { withStyles } from "@material-ui/core/styles";
+import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import PropTypes from "prop-types";
 
 // Style for the svg icon
 
@@ -12,26 +13,26 @@ class Header extends Component {
   state = {
     content: [
       {
-        title: 'Let Us Help you Ship Your Goods ',
+        title: "Let Us Help you Ship Your Goods ",
         description:
-          'We transfer goods as soon as you tell us to , we are at your service , lets put a smile on your face',
-        button: 'Make A Shipment Order',
-        image: '/images/slider/moving-truck.jpg'
+          "We transfer goods as soon as you tell us to , we are at your service , lets put a smile on your face",
+        button: "Make A Shipment Order",
+        image: "/images/slider/moving-truck.jpg"
       },
       {
         title:
-          'Our Staffs Get Right To Work As Soon As Your Cargo Order Is Confirmed ',
+          "Our Staffs Get Right To Work As Soon As Your Cargo Order Is Confirmed ",
         description:
-          'We understand the value of time, so we try to get to to work as soon as possible',
-        button: 'Make A Shipment Order',
-        image: '/images/slider/person-moving.jpg'
+          "We understand the value of time, so we try to get to to work as soon as possible",
+        button: "Make A Shipment Order",
+        image: "/images/slider/person-moving.jpg"
       },
       {
-        title: 'Your Cargo Is Always Safe With Us',
+        title: "Your Cargo Is Always Safe With Us",
         description:
-          'Security of your goods is top priority, sit back and Relax',
-        button: 'Make A Shipment Order',
-        image: '/images/slider/plane.jpg'
+          "Security of your goods is top priority, sit back and Relax",
+        button: "Make A Shipment Order",
+        image: "/images/slider/plane.jpg"
       }
     ]
   };
@@ -39,15 +40,18 @@ class Header extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <section id='home' className='header'>
+      <section id="home" className="header">
         <Navigation />
-        <Slider
+
+        {/*
+         <Slider
           previousButton
           nextButton
           autoplay={5000}
           className='slider-wrapper'
         >
-          {this.state.content.map((item, index) => (
+
+        {this.state.content.map((item, index) => (
             <div
               key={index}
               className='slider-content'
@@ -62,8 +66,9 @@ class Header extends Component {
             </div>
           ))}
         </Slider>
-
-        <a href='#about' className='arrow-down'>
+        */}
+        <ProductHero />
+        <a href="#about" className="arrow-down">
           <KeyboardArrowDownIcon className={classes.icon} />
         </a>
       </section>

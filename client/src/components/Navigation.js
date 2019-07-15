@@ -1,6 +1,26 @@
-import React, { Component } from 'react';
-import {connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React, { Component, useEffect } from "react";
+//
+import { fade, makeStyles } from "@material-ui/core/styles";
+import { navigationStyle } from "../materialstyle/navigation.css";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import Typography from "@material-ui/core/Typography";
+import InputBase from "@material-ui/core/InputBase";
+import Badge from "@material-ui/core/Badge";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
+import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MailIcon from "@material-ui/icons/Mail";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import MoreIcon from "@material-ui/icons/MoreVert";
+import Hidden from "@material-ui/core/Hidden";
+//
+import { connect } from "react-redux";
+import { history } from "../routers/AppRouter";
+import { NavLink } from "react-router-dom";
 import {
   Container,
   Collapse,
@@ -9,80 +29,260 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  Dropdown, DropdownToggle, DropdownMenu, DropdownItem
-} from 'reactstrap';
-
- import { 
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
+import PropTypes from "prop-types";
+import {
   //animateScroll,
-   Link } from 'react-scroll';
+  Link
+} from "react-scroll";
+import  HomePageDrawer from './HomePageDrawer';
+const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-import PropTypes from 'prop-types';
 
-import SearchTrack from './SearchTrack';
 
-class Navigation extends Component {
-  state = {
-    scroll: false,
-    isOpen: false,
-    dropdownOpen:false
-    
-  };
+// import SearchTrack from "./SearchTrack";
+
+function Navigation(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const isMenuOpen = Boolean(anchorEl);
+  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  //
+  const [scroll, setScroll] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [dropdownOpen, setDropOpen] = React.useState(false);
+  const [leftDrawer,setLeftDrawer ] = React.useState(false);
+  const [closeDrawer,setCloseDrawer ] = React.useState(null)
 
   // toggle the state of the navigation
-  toggleNavbar = () => {
-    this.setState(() => ({
-      isOpen: !this.state.isOpen
-    }));
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
   };
-
-  toggleDropdown= () => {
-    this.setState(() => ({
-      dropdownOpen: !this.state.dropdownOpen
-    }));
+  const openLeftDrawer = ()=>{
+    setLeftDrawer(true)
   }
 
-  handleSetActive = () => {
+  const handleCloseDrawer = ()=>{
+    setLeftDrawer(false)
+  }
+
+  const toggleDropdown = () => {
+    setDropOpen(!dropdownOpen);
+  };
+
+  const handleSetActive = () => {
     // Check if the isOpen state is true
-    if (this.state.isOpen) {
+    if (isOpen) {
       setTimeout(() => {
-        this.setState(() => ({
-          isOpen: false
-        }));
+        setIsOpen(false);
       }, 1500);
     }
   };
 
-  addScroll = () => {
+  const addScroll = () => {
     // get the window scroll
     const offset = window.scrollY;
     if (offset > 100) {
-      this.setState(() => ({
-        scroll: true
-      }));
+      setScroll(true);
     } else {
-      this.setState(() => ({ scroll: false }));
+      setScroll(false);
     }
   };
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.addScroll);
+  function handleProfileMenuOpen(event) {
+    setAnchorEl(event.currentTarget);
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.addScroll);
+  function handleMobileMenuClose() {
+    setMobileMoreAnchorEl(null);
   }
 
-  render() {
-    const navScroll = this.state.scroll ? 'nav--scroll' : '';
-    return (
-      // navigation components go in here
-      <Navbar expand='md' className={'nav fixed-top ' + navScroll}>
+  function handleMenuClose() {
+    setAnchorEl(null);
+    handleMobileMenuClose();
+  }
+
+  function handleMobileMenuOpen(event) {
+    setMobileMoreAnchorEl(event.currentTarget);
+  }
+
+  function handleLogOut(){
+    localStorage.removeItem('x-auth-token');
+    history.push('/');
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", addScroll);
+  }, []);
+
+  useEffect(() => {
+    window.removeEventListener("scroll", addScroll);
+  }, [scroll]);
+
+  const menuId = "primary-search-account-menu";
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    </Menu>
+  );
+
+  const mobileMenuId = "primary-search-account-menu-mobile";
+  const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      
+    
+      {props.user ?  
+             
+        <NavItem style={{ textAlign: 'center' }}>
+
+       {  props.user && props.isAdmin ?
+        <div  > 
+         <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+        <DropdownToggle caret>
+           name (Admin Dash...) 
+           </DropdownToggle>
+         <DropdownMenu>
+       <NavLink to="/dashboard"> <DropdownItem >Dashboard</DropdownItem> </NavLink>
+         <DropdownItem>Log Out</DropdownItem>
+           <DropdownItem disabled>Action (disabled)</DropdownItem>
+           </DropdownMenu>
+          </Dropdown>
+        </div>
+        :
+        <div className='loginButton' > 
+         <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
+        <DropdownToggle caret>
+           name (Dashboard) 
+           </DropdownToggle>
+         <DropdownMenu>
+       <NavLink to="/user"> <DropdownItem >Dashboard</DropdownItem> </NavLink>
+         <DropdownItem>Log Out</DropdownItem>
+           <DropdownItem disabled>Action (disabled)</DropdownItem>
+           </DropdownMenu>
+          </Dropdown>
+        </div>
+      }
+
+      </NavItem>
+        :
+        <React.Fragment>
+        <NavItem style={{ textAlign: 'center' }}>
+        <NavLink className='registerButton' to='/login'>
+          Login
+        </NavLink>
+      </NavItem>
+      <NavItem style={{ textAlign: 'center' }}>
+        <NavLink className='registerButton' to='/register'>
+          Register
+        </NavLink>
+        </NavItem>
+        </React.Fragment>
+      }
+ 
+      { props.user && 
+        <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          aria-label="Account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <AccountCircle />
+        </IconButton>
+        <p>Profile</p>
+      </MenuItem>
+      }
+      
+      
+    </Menu>
+  );
+  const navScroll = scroll ? "nav--scroll" : "";
+  const useStyles = makeStyles(navigationStyle);
+  const classes = useStyles();
+  return (
+    <div className={classes.grow} >
+    <AppBar position="fixed" className={classes.root}>
+        <Toolbar>
+      
+          <Hidden lgUp>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              // color="inherit"
+              aria-label="Open drawer"
+              onClick={handleCloseDrawer}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Hidden>
+          <HomePageDrawer
+          left={true}
+          close={closeDrawer} 
+         disableBackdropTransition={!iOS} disableDiscovery={iOS}
+         />
+          <Hidden mdUp>
+          <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Track your shipment..."
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput
+            }}
+            inputProps={{ "aria-label": "Search" }}
+          />
+        </div>
+        </Hidden>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+          <div>
+          <Navbar expand='md' className={'nav fixed-top ' + navScroll}>
+          <NavbarBrand>
+           <Typography className={classes.title} variant="h6" noWrap>
+          RILXPRESS
+        </Typography>
+        </NavbarBrand>
         <Container>
-          <NavbarBrand>brand</NavbarBrand>
-          <NavbarToggler onClick={this.toggleNavbar} className='mr-2' />
-
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <SearchTrack />
+          <NavbarToggler onClick={toggleNavbar} className='mr-2' />
+          <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Track your shipment..."
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput
+            }}
+            inputProps={{ "aria-label": "Search" }}
+          />
+        </div>
+          <Collapse isOpen={isOpen} navbar>
+           
 
             <Nav navbar className='ml-auto '>
               <NavItem>
@@ -106,7 +306,7 @@ class Navigation extends Component {
                   duration={2000}
                   activeClass='nav__linkActive'
                   offset={-18}
-                  onSetActive={this.handleSetActive}
+                  onSetActive={handleSetActive}
                 >
                   About
                 </Link>
@@ -119,7 +319,7 @@ class Navigation extends Component {
                   smooth='easeInOutQuart'
                   duration={2000}
                   activeClass='nav__linkActive'
-                  onSetActive={this.handleSetActive}
+                  onSetActive={handleSetActive}
                 >
                   Services
                 </Link>
@@ -132,33 +332,33 @@ class Navigation extends Component {
                   smooth='easeInOutQuart'
                   duration={2000}
                   activeClass='nav__linkActive'
-                  onSetActive={this.handleSetActive}
+                  onSetActive={handleSetActive}
                 >
                   Testimonial
                 </Link>
                 
               </NavItem>
         
-              {this.props.user ?  
+              {props.user ?  
              
                 <NavItem style={{ textAlign: 'center' }}>
   
-               {  this.props.user && this.props.isAdmin ?
+               {  props.user && props.isAdmin ?
                 <div  > 
-                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
+                 <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                 <DropdownToggle caret>
                    name (Admin Dash...) 
                    </DropdownToggle>
                  <DropdownMenu>
                <NavLink to="/dashboard"> <DropdownItem >Dashboard</DropdownItem> </NavLink>
-                 <DropdownItem>Log Out</DropdownItem>
+                 <DropdownItem onClick={handleLogOut}>Log Out</DropdownItem>
                    <DropdownItem disabled>Action (disabled)</DropdownItem>
                    </DropdownMenu>
                   </Dropdown>
                 </div>
                 :
                 <div className='loginButton' > 
-                 <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleDropdown}>
+                 <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                 <DropdownToggle caret>
                    name (Dashboard) 
                    </DropdownToggle>
@@ -186,23 +386,61 @@ class Navigation extends Component {
                 </NavItem>
                 </React.Fragment>
               }
+
+            {props.user && 
+              <IconButton
+              edge="end"
+              aria-label="Account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            }
+            
              
             </Nav>
+      
           </Collapse>
         </Container>
       </Navbar>
-    );
-  }
+      </div>
+            
+          </div>
+          <div className={classes.sectionMobile}>
+          <NavbarBrand>
+          <Typography className={classes.title} variant="h6" noWrap>
+         RILXPRESS
+       </Typography>
+       </NavbarBrand>
+            <IconButton
+              aria-label="Show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+      {renderMobileMenu}
+      {renderMenu}
+    </div>
+  );
 }
 
 Navbar.propTypes = {
   expand: PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
 };
-const mapStateToProps= (state)=>{
-  return{
-    user : !!state.auth._id,
+const mapStateToProps = state => {
+  return {
+    user: !!state.auth._id,
     isAdmin: !!state.auth.isAdmin
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(Navigation)
+export default connect(mapStateToProps)(Navigation);
