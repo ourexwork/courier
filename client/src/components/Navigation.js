@@ -135,8 +135,32 @@ function Navigation(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    {props.user ?
+      <>
+      <MenuItem onClick={()=>{
+        if(this.props.user && this.props.isAdmin) {
+          history.push('/dashboard');
+        }
+          else {
+            history.push('/user')
+          }
+        
+      }}>Dashboard</MenuItem>
+      <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
+      </>
+       :  <React.Fragment>
+    <NavItem style={{ textAlign: 'center' }}>
+    <NavLink className='registerButton' to='/login'>
+      Login
+    </NavLink>
+  </NavItem>
+  <NavItem style={{ textAlign: 'center' }}>
+    <NavLink className='registerButton' to='/register'>
+      Register
+    </NavLink>
+    </NavItem>
+    </React.Fragment>}
+   
     </Menu>
   );
 
@@ -153,53 +177,7 @@ function Navigation(props) {
     >
       
     
-      {props.user ?  
-             
-        <NavItem style={{ textAlign: 'center' }}>
-
-       {  props.user && props.isAdmin ?
-        <div  > 
-         <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
-        <DropdownToggle caret>
-           name (Admin Dash...) 
-           </DropdownToggle>
-         <DropdownMenu>
-       <NavLink to="/dashboard"> <DropdownItem >Dashboard</DropdownItem> </NavLink>
-         <DropdownItem>Log Out</DropdownItem>
-           <DropdownItem disabled>Action (disabled)</DropdownItem>
-           </DropdownMenu>
-          </Dropdown>
-        </div>
-        :
-        <div className='loginButton' > 
-         <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
-        <DropdownToggle caret>
-           name (Dashboard) 
-           </DropdownToggle>
-         <DropdownMenu>
-       <NavLink to="/user"> <DropdownItem >Dashboard</DropdownItem> </NavLink>
-         <DropdownItem>Log Out</DropdownItem>
-           <DropdownItem disabled>Action (disabled)</DropdownItem>
-           </DropdownMenu>
-          </Dropdown>
-        </div>
-      }
-
-      </NavItem>
-        :
-        <React.Fragment>
-        <NavItem style={{ textAlign: 'center' }}>
-        <NavLink className='registerButton' to='/login'>
-          Login
-        </NavLink>
-      </NavItem>
-      <NavItem style={{ textAlign: 'center' }}>
-        <NavLink className='registerButton' to='/register'>
-          Register
-        </NavLink>
-        </NavItem>
-        </React.Fragment>
-      }
+  
  
       { props.user && 
         <MenuItem onClick={handleProfileMenuOpen}>
@@ -211,7 +189,7 @@ function Navigation(props) {
         >
           <AccountCircle />
         </IconButton>
-        <p>Profile</p>
+        <p>Dashboard</p>
       </MenuItem>
       }
       
