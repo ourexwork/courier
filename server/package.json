@@ -19,8 +19,9 @@
   "bugs": {
     "url": "https://github.com/ourexwork/courier/issues"
   },
-  "home": "https://github.com/ourexwork/courier#readme",
+  "homepage": "localhost:5000",
   "dependencies": {
+    "jwt-decode": "^2.2.0",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.5",
     "concurrently": "^4.1.0",
@@ -34,6 +35,5 @@
     "mongoose": "^5.4.20",
     "nodemailer": "^6.0.0",
     "randomstring": "^1.1.5"
-  },
-  "homepage": "localhost:5000"
+  }
 }

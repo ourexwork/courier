@@ -61,9 +61,8 @@ class RegisterPage extends React.Component {
           form='create'
           Submit={user => {
             return startRegister(user).then(d => {
-              console.log({ ok: d });
-              if (typeof d !== undefined) {
-                this.props.history.push('/register/thankyou');
+              if (typeof d !== undefined && d.success === true) {
+                this.props.history.push('register/thankyou');
               } else {
                 console.log('error');
               }

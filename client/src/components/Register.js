@@ -207,6 +207,14 @@ class UserForm extends Component {
       return (
 
 <span className="register-form">
+<div
+className="logo-express"
+onClick={() => {
+  history.push("/");
+}}
+>
+RILXPRESS
+</div>
 {errors  && errors.error && errors.error!=="" && <span className="error-text small alert-danger">{errors.error}</span>}
 <form   onSubmit = { handleSubmit(Submit) }>
 
