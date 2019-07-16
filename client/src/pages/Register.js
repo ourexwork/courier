@@ -1,51 +1,51 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { withStyles } from "@material-ui/core/styles";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 
-import { startRegister } from "../redux/actions/user";
-import UserForm from "../components/Register";
+import { startRegister } from '../redux/actions/user';
+import UserForm from '../components/Register';
 
 //icons used
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    display: 'flex',
+    flexWrap: 'wrap'
   },
   margin: {
     margin: theme.spacing.unit
   },
   textField: {
-    display: "flex"
+    display: 'flex'
   },
 
   field: {
     fontSize: 13,
-    "@media (max-width:450px)": {
+    '@media (max-width:450px)': {
       fontSize: 12
     }
   },
   labelfield: {
     fontSize: 15,
-    "@media (max-width:450px)": {
+    '@media (max-width:450px)': {
       fontSize: 11
     }
   },
 
   icontab: {
-    color: "red",
-    display: "flex",
+    color: 'red',
+    display: 'flex',
 
-    "@media (max-width:992px)": {
+    '@media (max-width:992px)': {
       fontSize: 23
     }
   },
 
   iconfield: {
-    color: "#1c88bf",
+    color: '#1c88bf',
     fontSize: 15,
-    "@media (max-width:450px)": {
+    '@media (max-width:450px)': {
       fontSize: 11
     }
   }
@@ -58,19 +58,14 @@ class RegisterPage extends React.Component {
       <div>
         <UserForm
           login={this.props.login}
-          form="create"
+          form='create'
           Submit={user => {
             return startRegister(user).then(d => {
-<<<<<<< HEAD
-              if (typeof d !== undefined && d.success === true) {
-                this.props.history.push('register/thankyou');
-=======
               console.log({ ok: d });
               if (typeof d !== undefined) {
-                this.props.history.push("/register/thankyou");
->>>>>>> 66eca64258ddb802b101450777d1100182459870
+                this.props.history.push('/register/thankyou');
               } else {
-                console.log("error");
+                console.log('error');
               }
             });
           }}
