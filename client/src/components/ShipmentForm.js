@@ -30,7 +30,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { shipmentFormStyle } from './MaterialUi/jss/shipmentFormStyle';
 
 // Our Map Component
-import Maps from './Maps';
+import Maps from './Maps/Maps';
 
 class ShipmentForm extends Component {
   constructor(props) {
@@ -54,7 +54,7 @@ class ShipmentForm extends Component {
   }
 
   _onPickUpSuggestSelect = (suggest = {}) => {
-    console.log(suggest);
+
     const { description = '', location = {}, gmaps = {} } = suggest;
     let country;
     // Check if gmaps has a property of address component
@@ -371,7 +371,68 @@ class ShipmentForm extends Component {
           />
         );
       case 2:
-        return "Receiver's details form ";
+        return (
+          <div>
+          <FormControl
+            className={classes.formControl}
+            required
+            error={this.state.recieverName.error}
+          >
+            <InputLabel htmlFor='name-error'>Receiver's Name</InputLabel>
+            <Input
+              id='standard-name'
+              aria-describedby='name-error-text'
+              value={this.state.recieverName.value}
+              onChange={this.handleTitleChange}
+              onBlur={this.handleTitleChange}
+            />
+            {this.state.recieverName.error && (
+              <FormHelperText id='name-error-text'>
+                {this.state.recieverName.error}
+              </FormHelperText>
+            )}
+          </FormControl>
+          <FormControl
+            className={classes.formControl}
+            required
+            error={this.state.receiverEmail.error}
+          >
+            <InputLabel htmlFor='title-error'>Receiver's Email</InputLabel>
+            <Input
+              id='standard-title'
+              aria-describedby='title-error-text'
+              value={this.state.receiverEmail.value}
+              onChange={this.handleTitleChange}
+              onBlur={this.handleTitleChange}
+            />
+            {this.state.receiverEmail.error && (
+              <FormHelperText id='title-error-text'>
+                {this.state.receiverEmail.error}
+              </FormHelperText>
+            )}
+          </FormControl>
+          <FormControl
+            className={classes.formControl}
+            required
+            error={this.state.receiverPhoneNumber.error}
+          >
+            <InputLabel htmlFor='title-error'>Reciever's PhoneNumber</InputLabel>
+            <Input
+              id='standard-title'
+              aria-describedby='title-error-text'
+              value={this.state.receiverPhoneNumber.value}
+              onChange={this.handleTitleChange}
+              onBlur={this.handleTitleChange}
+            />
+            {this.state.receiverPhoneNumber.error && (
+              <FormHelperText id='title-error-text'>
+                {this.state.receiverPhoneNumber.error}
+              </FormHelperText>
+            )}
+          </FormControl>
+        
+          </div>
+        )
       default:
         return;
     }

@@ -35,7 +35,7 @@ class ListUserPage extends React.Component {
       // <div className="container mt-5">
 
       <Grid container spacing={3}>
-        <Grid item xs={12} md={8} lg={9}>
+        <Grid item xs={12} md={12} lg={9}>
           <div className={classes.fixedHeightPaper}>
             <MaterialTable
               icons={{

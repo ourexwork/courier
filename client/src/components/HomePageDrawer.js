@@ -1,34 +1,43 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import Button from "@material-ui/core/Button";
+// import Button from '@material-ui/core/Button';
 import List from "@material-ui/core/List";
+import Link from "@material-ui/core/Link";
+import { NavLink } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import { Link as ScrollLink } from "react-scroll";
 
-const useStyles = makeStyles({
-  list: {
-    width: 250
+const useStyles = makeStyles(theme => ({
+  drawer: {
+    [theme.breakpoints.up("md")]: {
+      visibility: "hidden"
+    }
   },
-  fullList: {
-    width: "auto"
+  list: {
+    width: 250,
+    [theme.breakpoints.up("md")]: {
+      visibility: "hidden"
+    }
+  },
+  links: {
+    textDecoration: "none",
+    color: "inherit"
   }
-});
+}));
 
-export default function TemporaryDrawer(props) {
+export default function MobileDrawer(props) {
   const classes = useStyles();
-  const [drawerState, setDrawerState] = React.useState(false);
+  const [drawerState, setDrawerState] = useState(false);
 
   useEffect(() => {
-    console.log(props.left);
-    if (props.left) {
-      toggleDrawer("left", true);
-    }
-  }, []);
+    setDrawerState(props.left);
+  }, [props.left]);
 
   const toggleDrawer = (side, open) => event => {
     if (
@@ -38,9 +47,10 @@ export default function TemporaryDrawer(props) {
       return;
     }
 
-    setDrawerState({ drawerState, [side]: open });
+    setDrawerState(open);
   };
 
+  // The Sidebar Nav
   const sideList = side => (
     <div
       className={classes.list}
@@ -49,65 +59,51 @@ export default function TemporaryDrawer(props) {
       onKeyDown={toggleDrawer(side, false)}
     >
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {["Home", "About", "Services", "Testimonial"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
+            <ScrollLink
+              to={text.toLowerCase()}
+              spy
+              smooth="easeInOutQuart"
+              duration={2000}
+              offset={-18}
+            >
+              <ListItemText>{text}</ListItemText>
+            </ScrollLink>
           </ListItem>
         ))}
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
+        {["Register", "Login"].map((text, index) => (
+          <NavLink
+            className={classes.links}
+            to={`/${text.toLowerCase()}`}
+            key={text}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
 
-  const fullList = side => (
-    <div
-      className={classes.fullList}
-      role="presentation"
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
+              <ListItemText> {text} </ListItemText>
+            </ListItem>
+          </NavLink>
         ))}
       </List>
     </div>
   );
 
   return (
-    <div onClick={toggleDrawer("left", true)}>
-      <Drawer open={drawerState} onClick onClose={toggleDrawer("left", false)}>
-        {sideList("left")}
-      </Drawer>
-    </div>
+    <Drawer
+      className={classes.drawer}
+      open={drawerState}
+      onClose={() => {
+        toggleDrawer("left", false);
+        props.setToggleDrawer(prevDrawerState => !prevDrawerState);
+      }}
+    >
+      {sideList("left")}
+    </Drawer>
   );
 }
