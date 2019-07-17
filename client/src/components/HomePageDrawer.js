@@ -73,24 +73,25 @@ export default function MobileDrawer(props) {
           </ListItem>
         ))}
       </List>
-      <Divider />
-      <List>
-        {["Register", "Login"].map((text, index) => (
-          <NavLink
-            className={classes.links}
-            to={`/${text.toLowerCase()}`}
-            key={text}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-
-              <ListItemText> {text} </ListItemText>
-            </ListItem>
-          </NavLink>
-        ))}
-      </List>
+      {
+        //<Divider />
+        // <List>
+        //   {["Register", "Login"].map((text, index) => (
+        //     <NavLink
+        //       className={classes.links}
+        //       to={`/${text.toLowerCase()}`}
+        //       key={text}
+        //     >
+        //       <ListItem button>
+        //         <ListItemIcon>
+        //           {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+        //         </ListItemIcon>
+        //         <ListItemText> {text} </ListItemText>
+        //       </ListItem>
+        //     </NavLink>
+        //   ))}
+        // </List>
+      }
     </div>
   );
 
