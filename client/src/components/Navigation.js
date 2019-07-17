@@ -1,26 +1,26 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from 'react';
 //
-import { fade, makeStyles } from "@material-ui/core/styles";
-import { navigationStyle } from "../materialstyle/navigation.css";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import Badge from "@material-ui/core/Badge";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import MoreIcon from "@material-ui/icons/MoreVert";
-import Hidden from "@material-ui/core/Hidden";
+import { fade, makeStyles } from '@material-ui/core/styles';
+import { navigationStyle } from '../materialstyle/navigation.css';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import Hidden from '@material-ui/core/Hidden';
 //
-import { connect } from "react-redux";
-import { history } from "../routers/AppRouter";
-import { NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
+import { history } from '../routers/AppRouter';
+import { NavLink } from 'react-router-dom';
 import {
   Container,
   Collapse,
@@ -33,13 +33,13 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem
-} from "reactstrap";
-import PropTypes from "prop-types";
+} from 'reactstrap';
+import PropTypes from 'prop-types';
 import {
   //animateScroll,
   Link
-} from "react-scroll";
-import HomePageDrawer from "./HomePageDrawer";
+} from 'react-scroll';
+import HomePageDrawer from './HomePageDrawer';
 const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 // import SearchTrack from "./SearchTrack";
@@ -118,79 +118,76 @@ function Navigation(props) {
   }
 
   function handleLogOut() {
-    localStorage.removeItem("x-auth-token");
-    history.push("/");
+    localStorage.removeItem('x-auth-token');
+    history.push('/');
   }
 
   useEffect(() => {
-    window.addEventListener("scroll", addScroll);
+    window.addEventListener('scroll', addScroll);
   }, []);
 
   useEffect(() => {
-    window.removeEventListener("scroll", addScroll);
+    window.removeEventListener('scroll', addScroll);
   }, [scroll]);
 
-  const menuId = "primary-search-account-menu";
+  const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={menuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
       {props.user ? (
-        <>
           <MenuItem
             onClick={() => {
-              if (props.user && props.isAdmin) {
-                history.push("/dashboard");
+              if (this.props.user && this.props.isAdmin) {
+                history.push('/dashboard');
               } else {
-                history.push("/user");
+                history.push('/user');
               }
             }}
           >
             Dashboard
           </MenuItem>
-          <MenuItem onClick={handleLogOut}>Log Out</MenuItem>
-        </>
       ) : (
-        <React.Fragment>
-          <NavItem style={{ textAlign: "center" }}>
-            <NavLink className="registerButton" to="/login">
+        <div>
+          <NavItem style={{ textAlign: 'center' }}>
+            <NavLink className='registerButton' to='/login'>
               Login
             </NavLink>
           </NavItem>
-          <NavItem style={{ textAlign: "center" }}>
-            <NavLink className="registerButton" to="/register">
+          <NavItem style={{ textAlign: 'center' }}>
+            <NavLink className='registerButton' to='/register'>
               Register
             </NavLink>
           </NavItem>
-        </React.Fragment>
+        </div>
       )}
     </Menu>
   );
 
-  const mobileMenuId = "primary-search-account-menu-mobile";
+  const mobileMenuId = 'primary-search-account-menu-mobile';
   const renderMobileMenu = (
     <Menu
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       id={mobileMenuId}
       keepMounted
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
       {props.user && (
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton
-            aria-label="Account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
+            aria-label='Account of current user'
+            aria-controls='primary-search-account-menu'
+            aria-haspopup='true'
+            color='inherit'
           >
             <AccountCircle />
           </IconButton>
@@ -199,19 +196,19 @@ function Navigation(props) {
       )}
     </Menu>
   );
-  const navScroll = scroll ? "nav--scroll" : "";
+  const navScroll = scroll ? 'nav--scroll' : '';
   const useStyles = makeStyles(navigationStyle);
   const classes = useStyles();
   return (
     <div className={classes.grow}>
-      <AppBar position="fixed" className={classes.root}>
+      <AppBar position='fixed' className={classes.root}>
         <Toolbar>
           <Hidden lgUp>
             <IconButton
-              edge="start"
+              edge='start'
               className={classes.menuButton}
               // color="inherit"
-              aria-label="Open drawer"
+              aria-label='Open drawer'
               onClick={handleToggleDrawer}
             >
               <MenuIcon />
@@ -230,61 +227,61 @@ function Navigation(props) {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Track your shipment..."
+                placeholder='Track your shipment...'
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
                 }}
-                inputProps={{ "aria-label": "Search" }}
+                inputProps={{ 'aria-label': 'Search' }}
               />
             </div>
           </Hidden>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <div>
-              <Navbar expand="md" className={"nav fixed-top " + navScroll}>
+              <Navbar expand='md' className={'nav fixed-top ' + navScroll}>
                 <NavbarBrand>
-                  <Typography className={classes.title} variant="h6" noWrap>
+                  <Typography className={classes.title} variant='h6' noWrap>
                     RILXPRESS
                   </Typography>
                 </NavbarBrand>
                 <Container>
-                  <NavbarToggler onClick={toggleNavbar} className="mr-2" />
+                  <NavbarToggler onClick={toggleNavbar} className='mr-2' />
                   <div className={classes.search}>
                     <div className={classes.searchIcon}>
                       <SearchIcon />
                     </div>
                     <InputBase
-                      placeholder="Track your shipment..."
+                      placeholder='Track your shipment...'
                       classes={{
                         root: classes.inputRoot,
                         input: classes.inputInput
                       }}
-                      inputProps={{ "aria-label": "Search" }}
+                      inputProps={{ 'aria-label': 'Search' }}
                     />
                   </div>
                   <Collapse isOpen={isOpen} navbar>
-                    <Nav navbar className="ml-auto ">
+                    <Nav navbar className='ml-auto '>
                       <NavItem>
                         <Link
-                          className="navigation__link"
-                          to="home"
+                          className='navigation__link'
+                          to='home'
                           spy
-                          smooth="easeInOutQuart"
+                          smooth='easeInOutQuart'
                           duration={2000}
-                          activeClass="nav__linkActive"
+                          activeClass='nav__linkActive'
                         >
                           Home
                         </Link>
                       </NavItem>
                       <NavItem>
                         <Link
-                          className="navigation__link"
-                          to="about"
+                          className='navigation__link'
+                          to='about'
                           spy
-                          smooth="easeInOutQuart"
+                          smooth='easeInOutQuart'
                           duration={2000}
-                          activeClass="nav__linkActive"
+                          activeClass='nav__linkActive'
                           offset={-18}
                           onSetActive={handleSetActive}
                         >
@@ -293,12 +290,12 @@ function Navigation(props) {
                       </NavItem>
                       <NavItem>
                         <Link
-                          className="navigation__link"
-                          to="services"
+                          className='navigation__link'
+                          to='services'
                           spy
-                          smooth="easeInOutQuart"
+                          smooth='easeInOutQuart'
                           duration={2000}
-                          activeClass="nav__linkActive"
+                          activeClass='nav__linkActive'
                           onSetActive={handleSetActive}
                         >
                           Services
@@ -306,12 +303,12 @@ function Navigation(props) {
                       </NavItem>
                       <NavItem>
                         <Link
-                          className="navigation__link"
-                          to="testimonial"
+                          className='navigation__link'
+                          to='testimonial'
                           spy
-                          smooth="easeInOutQuart"
+                          smooth='easeInOutQuart'
                           duration={2000}
-                          activeClass="nav__linkActive"
+                          activeClass='nav__linkActive'
                           onSetActive={handleSetActive}
                         >
                           Testimonial
@@ -319,7 +316,7 @@ function Navigation(props) {
                       </NavItem>
 
                       {props.user ? (
-                        <NavItem style={{ textAlign: "center" }}>
+                        <NavItem style={{ textAlign: 'center' }}>
                           {props.user && props.isAdmin ? (
                             <div>
                               <Dropdown
@@ -330,9 +327,9 @@ function Navigation(props) {
                                   name (Admin Dash...)
                                 </DropdownToggle>
                                 <DropdownMenu>
-                                  <NavLink to="/dashboard">
-                                    {" "}
-                                    <DropdownItem>Dashboard</DropdownItem>{" "}
+                                  <NavLink to='/dashboard'>
+                                    {' '}
+                                    <DropdownItem>Dashboard</DropdownItem>{' '}
                                   </NavLink>
                                   <DropdownItem onClick={handleLogOut}>
                                     Log Out
@@ -344,7 +341,7 @@ function Navigation(props) {
                               </Dropdown>
                             </div>
                           ) : (
-                            <div className="loginButton">
+                            <div className='loginButton'>
                               <Dropdown
                                 isOpen={dropdownOpen}
                                 toggle={toggleDropdown}
@@ -353,11 +350,11 @@ function Navigation(props) {
                                   name (Dashboard)
                                 </DropdownToggle>
                                 <DropdownMenu>
-                                  <NavLink to="/user">
-                                    {" "}
-                                    <DropdownItem>Dashboard</DropdownItem>{" "}
+                                  <NavLink to='/user'>
+                                    {' '}
+                                    <DropdownItem>Dashboard</DropdownItem>{' '}
                                   </NavLink>
-                                  <DropdownItem onClick={handleLogOut}>Log Out</DropdownItem>
+                                  <DropdownItem>Log Out</DropdownItem>
                                   <DropdownItem disabled>
                                     Action (disabled)
                                   </DropdownItem>
@@ -368,19 +365,31 @@ function Navigation(props) {
                         </NavItem>
                       ) : (
                         <React.Fragment>
-                          <NavItem style={{ textAlign: "center" }}>
-                            <NavLink className="loginButton" to="/login">
+                          <NavItem style={{ textAlign: 'center' }}>
+                            <NavLink className='loginButton' to='/login'>
                               Login
                             </NavLink>
                           </NavItem>
-                          <NavItem style={{ textAlign: "center" }}>
-                            <NavLink className="registerButton" to="/register">
+                          <NavItem style={{ textAlign: 'center' }}>
+                            <NavLink className='registerButton' to='/register'>
                               Register
                             </NavLink>
                           </NavItem>
                         </React.Fragment>
                       )}
 
+                      {props.user && (
+                        <IconButton
+                          edge='end'
+                          aria-label='Account of current user'
+                          aria-controls={menuId}
+                          aria-haspopup='true'
+                          onClick={handleProfileMenuOpen}
+                          color='inherit'
+                        >
+                          <AccountCircle />
+                        </IconButton>
+                      )}
                     </Nav>
                   </Collapse>
                 </Container>
@@ -389,16 +398,16 @@ function Navigation(props) {
           </div>
           <div className={classes.sectionMobile}>
             <NavbarBrand>
-              <Typography className={classes.title} variant="h6" noWrap>
+              <Typography className={classes.title} variant='h6' noWrap>
                 RILXPRESS
               </Typography>
             </NavbarBrand>
             <IconButton
-              aria-label="Show more"
+              aria-label='Show more'
               aria-controls={mobileMenuId}
-              aria-haspopup="true"
+              aria-haspopup='true'
               onClick={handleMobileMenuOpen}
-              color="inherit"
+              color='inherit'
             >
               <MoreIcon />
             </IconButton>
