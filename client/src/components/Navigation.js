@@ -143,7 +143,7 @@ function Navigation(props) {
     >
       <MenuItem
         onClick={() => {
-          if (this.props.user && this.props.isAdmin) {
+          if (props.user && props.isAdmin) {
             history.push("/dashboard");
           } else {
             history.push("/user");
