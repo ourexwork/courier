@@ -7,7 +7,7 @@ const About = () => (
       <div className='row'>
         <div className='col-xs-12 col-sm-12 col-md-6 order-2 order-md-1 '>
           <p>
-            Speedex is a courier service created to simplify movement of your
+            Rilxpress is a courier service created to simplify movement of your
             goods all over the world. We operate base on integrity and trust,
             and our clients all over the world trust us to deliver quality
             services. Our team is available to attend to your service need of
