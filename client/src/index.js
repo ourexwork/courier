@@ -31,7 +31,7 @@ const checkAuth = () => {
     return Promise.reject(e);
   }
 };
-
+ReactDOM.render(<Preloader />, document.querySelector("#root"));
 checkAuth()
   .then(user => {
     if (user) {
