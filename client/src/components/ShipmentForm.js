@@ -54,7 +54,6 @@ class ShipmentForm extends Component {
   }
 
   _onPickUpSuggestSelect = (suggest = {}) => {
-
     const { description = '', location = {}, gmaps = {} } = suggest;
     let country;
     // Check if gmaps has a property of address component
@@ -244,7 +243,38 @@ class ShipmentForm extends Component {
 
   // Handling Files
   onFilesSelected = files => {
-    console.log(files);
+    this.setState({
+      shipmentFiles: files
+    });
+  };
+
+  // Handle Receiver's Details
+  handleReceiverName = event => {
+    const name = event.target.value;
+    // first check if the title is more than 50 chars
+    if (name.length === 0) {
+      this.setState({
+        recieverName: {
+          value: '',
+          error: 'Name cannot be empty'
+        }
+      });
+    } else if (name.length > 50) {
+      // set the error
+      this.setState({
+        recieverName: {
+          value: '',
+          error: 'Name cannot have more than 50 chars'
+        }
+      });
+    } else {
+      this.setState({
+        recieverName: {
+          value: name,
+          error: ''
+        }
+      });
+    }
   };
 
   isStepCompleted(step) {
@@ -367,72 +397,75 @@ class ShipmentForm extends Component {
         return (
           <DropzoneArea
             onChange={this.onFilesSelected}
+            filesLimit={3}
             acceptedFiles={['image/jpg', 'image/jpeg', 'image/png']}
+            maxFileSize={2000000} //2MB
           />
         );
       case 2:
         return (
           <div>
-          <FormControl
-            className={classes.formControl}
-            required
-            error={this.state.recieverName.error}
-          >
-            <InputLabel htmlFor='name-error'>Receiver's Name</InputLabel>
-            <Input
-              id='standard-name'
-              aria-describedby='name-error-text'
-              value={this.state.recieverName.value}
-              onChange={this.handleTitleChange}
-              onBlur={this.handleTitleChange}
-            />
-            {this.state.recieverName.error && (
-              <FormHelperText id='name-error-text'>
-                {this.state.recieverName.error}
-              </FormHelperText>
-            )}
-          </FormControl>
-          <FormControl
-            className={classes.formControl}
-            required
-            error={this.state.receiverEmail.error}
-          >
-            <InputLabel htmlFor='title-error'>Receiver's Email</InputLabel>
-            <Input
-              id='standard-title'
-              aria-describedby='title-error-text'
-              value={this.state.receiverEmail.value}
-              onChange={this.handleTitleChange}
-              onBlur={this.handleTitleChange}
-            />
-            {this.state.receiverEmail.error && (
-              <FormHelperText id='title-error-text'>
-                {this.state.receiverEmail.error}
-              </FormHelperText>
-            )}
-          </FormControl>
-          <FormControl
-            className={classes.formControl}
-            required
-            error={this.state.receiverPhoneNumber.error}
-          >
-            <InputLabel htmlFor='title-error'>Reciever's PhoneNumber</InputLabel>
-            <Input
-              id='standard-title'
-              aria-describedby='title-error-text'
-              value={this.state.receiverPhoneNumber.value}
-              onChange={this.handleTitleChange}
-              onBlur={this.handleTitleChange}
-            />
-            {this.state.receiverPhoneNumber.error && (
-              <FormHelperText id='title-error-text'>
-                {this.state.receiverPhoneNumber.error}
-              </FormHelperText>
-            )}
-          </FormControl>
-        
+            <FormControl
+              className={classes.formControl}
+              required
+              error={this.state.recieverName.error}
+            >
+              <InputLabel htmlFor='name-error'>Receiver's Name</InputLabel>
+              <Input
+                id='standard-name'
+                aria-describedby='name-error-text'
+                value={this.state.recieverName.value}
+                onChange={this.handleReceiverName}
+                onBlur={this.handleReceiverName}
+              />
+              {this.state.recieverName.error && (
+                <FormHelperText id='name-error-text'>
+                  {this.state.recieverName.error}
+                </FormHelperText>
+              )}
+            </FormControl>
+            <FormControl
+              className={classes.formControl}
+              required
+              error={this.state.receiverEmail.error}
+            >
+              <InputLabel htmlFor='title-error'>Receiver's Email</InputLabel>
+              <Input
+                id='standard-title'
+                aria-describedby='title-error-text'
+                value={this.state.receiverEmail.value}
+                onChange={this.handleTitleChange}
+                onBlur={this.handleTitleChange}
+              />
+              {this.state.receiverEmail.error && (
+                <FormHelperText id='title-error-text'>
+                  {this.state.receiverEmail.error}
+                </FormHelperText>
+              )}
+            </FormControl>
+            <FormControl
+              className={classes.formControl}
+              required
+              error={this.state.receiverPhoneNumber.error}
+            >
+              <InputLabel htmlFor='title-error'>
+                Reciever's PhoneNumber
+              </InputLabel>
+              <Input
+                id='standard-title'
+                aria-describedby='title-error-text'
+                value={this.state.receiverPhoneNumber.value}
+                onChange={this.handleTitleChange}
+                onBlur={this.handleTitleChange}
+              />
+              {this.state.receiverPhoneNumber.error && (
+                <FormHelperText id='title-error-text'>
+                  {this.state.receiverPhoneNumber.error}
+                </FormHelperText>
+              )}
+            </FormControl>
           </div>
-        )
+        );
       default:
         return;
     }
