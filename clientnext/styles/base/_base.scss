@@ -1,0 +1,24 @@
+// html {
+//   font-size: 62.5%;
+// }
+
+body {
+  background-color: $light-grey;
+  box-sizing: border-box;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+
+  // @media (min-width: 960px) {
+  //   overflow: visible !important;
+  //   padding-right: 0 !important;
+  // }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Acme', 'Franklin Gothic Medium', 'Arial Narrow', Arial;
+}

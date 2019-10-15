@@ -1,0 +1,30 @@
+.landing-bg {
+  background-image: url('/static/homepage/transport-package.svg');
+  background-repeat: no-repeat;
+  /* background-origin: border-box; */
+  background-position: top right;
+  background-size: 600px;
+}
+
+.landing-text {
+  color: $dark-blue;
+  font-family: 'Acme', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 68px;
+  // opacity: 1;
+  font-size: -webkit-xxx-large;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+.landing-text-secondary {
+  color: #022b69;
+  line-height: 1.7;
+}
+
+.about-text {
+  font-family: 'Acme', sans-serif;
+}
+
+.section-bg {
+  background: $bg-link-water;
+}

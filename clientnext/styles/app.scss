@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css?family=Acme|Montserrat:400,700&display=swap');
+
+// Partials
+@import './base/settings';
+@import './base/base';
+
+// Pages
+@import './pages/index.scss';
+
+// compoenents
+@import './components/navigation';
+@import './components//button';
+@import './components//service';
+@import './components//footer';
+// .landing-bg
+
+.learn-text {
+  letter-spacing: 0.87px;
+}
+
+.learn-img::before {
+  content: 'Learn A Few Things About Us';
+  background: #0066f5;
+  padding: 10px;
+}
+.primary {
+  color: #0066f5;
+}
+
+.primary-bg {
+  background: #0066f5;
+}
+.secondary {
+  color: #022b69;
+}
+
+.secondary-bg {
+  background: #022b69;
+}
+.primary-light {
+  color: #def2f1;
+}
+
+.primary-light-bg {
+  background: #def2f1;
+}
+
+.justify-content-space-around {
+  justify-content: space-around;
+}
+.bg-search {
+  background: #022b69 !important;
+  opacity: 0.4 !important;
+}
+
+@media (min-width: 768px) {
+  .margin-left-banner {
+    margin-left: 135px !important;
+  }
+}
+
+.margin-left-cancel {
+  margin-left: -150px !important;
+}
+.logo {
+  color: #fff !important;
+}
+.ril-bg-side {
+  // height: 450px;
+  background: #0066f5 0% 0% no-repeat padding-box;
+  opacity: 0.89;
+}
+.bg-color {
+  background-color: #ffffff !important;
+}
+.ui.primary.inverted.segment {
+  background: #708ca9 !important;
+
+  border: none;
+  background: #022b69;
+}
+
+// .nav-link {
+//   color: #ffffff;
+// }
