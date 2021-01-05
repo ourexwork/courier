@@ -22,7 +22,7 @@
   "homepage": "localhost:5000",
   "dependencies": {
     "jwt-decode": "^2.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcrypt": "^3.0.5",
     "concurrently": "^4.1.0",
     "config": "^3.0.1",
